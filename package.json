@@ -1,7 +1,7 @@
 {
-  "name": "'example4'",
+  "name": "'ionic-mycontacts'",
   "version": "1.1.1",
-  "description": "'Example4': An Ionic project",
+  "description": "'ionic-mycontacts': An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",
@@ -21,5 +21,7 @@
     "cordova-plugin-splashscreen",
     "com.ionic.keyboard"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "android"
+  ]
 }
