@@ -1,3 +1,5 @@
+/// <reference path="../lib/ionic/js/angular/angular.js" />
+
 angular.module('starter.services', [])
 
 .factory('Chats', function () {
@@ -20,7 +22,7 @@ angular.module('starter.services', [])
     function getToken() {
         var dtd = $.Deferred();
 
-        $.post(apiBaseUrl + 'user/get_token/', { 'account': 'joel', 'password': 'joel' },
+        $.post(apiBaseUrl + 'user/get_token/', { 'account': '', 'password': '' },
         function (data) {
             //console.log(data);
             //alert( data );
@@ -98,15 +100,17 @@ angular.module('starter.services', [])
                         "id": parseInt(m.id),
                         "name": m.Name,
                         "title": "Staff",
-                        "division": m.DivisionId,
-                        "cellPhone": m.Mobile01,
+                        "division": findDivisionName(m.DivisionId),
+                        "cellPhone": formatCellphone(m.Mobile01),
+                        "cellPhone02": formatCellphone(m.Mobile02),
                         "officePhone": m.Tel,
                         "ext": m.Ext,
                         "email": m.Email,
                         "city": "",
-                        "face": "img/no-pic.png",
-                        "pinyinFull": $.pinyin.getFullChars(m.Name),
-                        "pinyinInitial": $.pinyin.getCamelChars(m.Name)
+                        "face": m.hasPic == "1" ? "img/" + m.id + ".png" : "img/no-pic.png",
+                        "pinyinFull": m.pinyinFull,
+                        "pinyinInitial": m.pinyinInitial,
+                        "showMobile02": m.Mobile02.length > 0
                     };
                 }
             });
@@ -123,6 +127,24 @@ angular.module('starter.services', [])
     }
 
     
+    function findDivisionName(id) {
+        var name = "";
+
+        for (var i = 0; i < divisionList.length; i++)
+            if (divisionList[i].id == id)
+                return divisionList[i].Name.substring(0, 2);
+
+        return "";
+    }
+
+    function formatCellphone(cellphone) {
+        var reg = /^([1-9]{3})([0-9]{4})([0-9]{4})$/;
+
+        if (cellphone && reg.test(cellphone))
+            return cellphone.replace(reg, "$1-$2-$3");
+
+        return cellphone;
+    }
 
     return {
         all: function () {
@@ -143,15 +165,16 @@ angular.module('starter.services', [])
             var arr = [];
             for (var i = 0; i < chats.length; i++) {
                 if (chats[i].name.indexOf(s) > -1 ||
-                    chats[i].pinyinFull.indexOf(s)>-1||
-                    chats[i].pinyinInitial.indexOf(s) > -1) {
+                    chats[i].pinyinFull.indexOf(s.toLowerCase())>-1||
+                    chats[i].pinyinInitial.indexOf(s.toLowerCase()) > -1) {
                     arr.push(chats[i]);
                 }
             }
             return arr;
         },
         load: function (callback) {
-            $.when(getToken()).then(loadDivisionData).then(loadStaffData).then(callback);
+            //$.when(getToken()).then(loadDivisionData).then(loadStaffData).then(callback);
+            $.when(loadDivisionData('fake_token')).then(loadStaffData).then(callback);
         }
     };
 });
