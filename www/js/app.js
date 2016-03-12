@@ -31,20 +31,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     // Each state's controller can be found in controllers.js
     $stateProvider
 
-    .state('employees', {
+    .state('app', {
+        url: '/app',
+        abstract: true,
+        templateUrl: 'templates/menu.html',
+        controller: 'AppCtrl'
+    })
+    .state('app.settings', {
+        url: '/settings',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/settings.html',
+                controller: 'SettingsCtrl'
+            }
+        }
+    })
+
+    .state('app.employees', {
         url: '/employees',
         views: {
-            'tab-chats': {
+            'menuContent': {
                 templateUrl: 'templates/tab-chats.html',
                 controller: 'ChatsCtrl'
             }
         }
     })
 
-    .state('employee-detail', {
+    .state('app.employee-detail', {
         url: '/employee/:chatId',
         views: {
-            'tab-chats': {
+            'menuContent': {
                 templateUrl: 'templates/chat-detail.html',
                 controller: 'ChatDetailCtrl'
             }
@@ -52,6 +68,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     });
 
 
-    $urlRouterProvider.otherwise('/employees');
+    $urlRouterProvider.otherwise('/app/employees');
 
 });
