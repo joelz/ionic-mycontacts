@@ -1,0 +1,69 @@
+<ion-view view-title="设置">
+    <ion-content class="padding">
+        <div class="list">
+            <ul class="list">
+                <li class="item item-checkbox">
+                    <label class="checkbox checkbox-assertive">
+                        <input type="checkbox" checked="checked" ng-model="setting01">
+                    </label>
+                    允许刷新本地数据
+                </li>
+            </ul>
+        </div>
+
+        <div class="list">
+            <ul class="list">
+                <li class="item item-toggle">
+                    Wifi（没什么用）
+                    <label class="toggle toggle-assertive">
+                        <input type="checkbox" ng-model="settingWifi">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </li>
+                <li class="item item-toggle">
+                    蓝牙（也没什么用）
+                    <label class="toggle toggle-positive">
+                        <input type="checkbox" ng-model="settingBlueteeth">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </li>
+            </ul>
+        </div>
+
+        <div class="list">
+            <ul class="list">
+                <li class="item item-toggle">
+                    version：0.2.1
+                </li>
+                <li class="item item-toggle">
+                    数据存储：SAE，LazyRest
+                </li>
+                <li class="item item-toggle">
+                    应用框架：Ionic
+                </li>
+                <li class="item item-toggle">
+                    打包：Apache Cordova
+                </li>
+
+            </ul>
+
+            <a class="item" href="#" onclick="window.open('https://bitbucket.org/joelz/ionic-mycontacts','_system'); return false;">
+                去Bitbucket看看源代码
+            </a>
+
+        </div>
+
+        <div class="padding">
+            <button class="button button-block button-positive" ng-disabled="!setting01" ng-click="refresh()">
+                刷新本地数据
+            </button>
+        </div>
+
+
+    </ion-content>
+
+</ion-view>
