@@ -3,22 +3,22 @@
 angular.module('starter.services', [])
 
 .factory('Chats', function () {
-
+    var lsKey = "allEmployees";
     var apiBaseUrl = 'http://lazyrest287227634.sinaapp.com/api/';
     // Some fake testing data
-    var chats = [{
-        id: 0,
-        name: 'Ben Sparrow',
-        lastText: 'You on your way?',
-        face: 'img/no-pic.png'
-    }
-
+    var chats = [
+        //{
+        //    id: 0,
+        //    name: 'Ben Sparrow',
+        //    lastText: 'You on your way?',
+        //    face: 'img/no-pic.png'
+        //}
     ];
 
 
     var divisionList = [];
 
-    
+
     function getToken() {
         var dtd = $.Deferred();
 
@@ -118,6 +118,7 @@ angular.module('starter.services', [])
             //console.log(staffs);
 
             chats = staffs;
+            localStorage.setItem(lsKey, JSON.stringify(staffs));
 
             dtd.resolve();
 
@@ -126,7 +127,7 @@ angular.module('starter.services', [])
         return dtd.promise();
     }
 
-    
+
     function findDivisionName(id) {
         var name = "";
 
@@ -146,6 +147,19 @@ angular.module('starter.services', [])
         return cellphone;
     }
 
+
+    function loadDataFromLocal() {
+        var str = localStorage.getItem(lsKey);
+        if (str)
+        {
+            chats = JSON.parse(localStorage.getItem(lsKey));
+            return true;
+        }
+        else
+            return false;
+    }
+
+
     return {
         all: function () {
             return chats;
@@ -154,6 +168,9 @@ angular.module('starter.services', [])
             chats.splice(chats.indexOf(chat), 1);
         },
         get: function (chatId) {
+            if (chats.length == 0)
+                loadDataFromLocal();
+
             for (var i = 0; i < chats.length; i++) {
                 if (chats[i].id === parseInt(chatId)) {
                     return chats[i];
@@ -165,16 +182,26 @@ angular.module('starter.services', [])
             var arr = [];
             for (var i = 0; i < chats.length; i++) {
                 if (chats[i].name.indexOf(s) > -1 ||
-                    chats[i].pinyinFull.indexOf(s.toLowerCase())>-1||
+                    chats[i].pinyinFull.indexOf(s.toLowerCase()) > -1 ||
                     chats[i].pinyinInitial.indexOf(s.toLowerCase()) > -1) {
                     arr.push(chats[i]);
                 }
             }
             return arr;
         },
-        load: function (callback) {
+        load: function (callback,fromRemote) {
             //$.when(getToken()).then(loadDivisionData).then(loadStaffData).then(callback);
+
+            if (loadDataFromLocal() == false || fromRemote) {
+                $.when(loadDivisionData('fake_token')).then(loadStaffData).then(callback);
+            }
+            else {
+                callback();
+            }
+        },
+        refresh: function (callback) {
             $.when(loadDivisionData('fake_token')).then(loadStaffData).then(callback);
         }
     };
-});
+})
+;
