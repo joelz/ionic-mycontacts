@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="crmApp" ng-controller="crmController">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+        
+        <title>Mobiscroll Mobile CRM</title>
+
+        <link href='http://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
+        
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+        <script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular-animate.min.js"></script>
+
+        <!-- Mobiscroll Stylsheet Reference -->
+        <link href="css/mobiscroll.custom-2.17.1.min.css" rel="stylesheet" type="text/css" />
+        <!-- Mobiscroll Javascript Reference -->
+        <script type="text/javascript" src="js/mobiscroll.custom-2.17.1.min.js"></script>
+        <!-- You can exchange your mobiscroll references (script and css) if you need to. You can get the packages from http://download.mobiscroll.com#calendar/datetime/listview/select/menustrip/forms/ng/ -->
+
+        <link href='css/crm.css' rel='stylesheet' type='text/css' />
+
+        <script type="text/javascript">
+            var MS = MS || {};
+            MS.mobile = true;
+        </script>
+        <script type="text/javascript">
+            MS.demo = 'crm';
+            MS.theme = 'mobiscroll';
+            MS.context1 = 'body';
+            MS.context2 = 'body' ;
+        </script>
+        <script type="text/javascript" src="js/crm.js"></script>
+
+    </head>
+
+    <body class="demo-crm mobile external-demo crm-demo" >
+        
+
+    <div ng-class="'crm-' + theme" class="demo-phone-screen wrapper loading">
+        <iframe id="phoneiframe" class="crm-phone-iframe"></iframe>
+
+        <div id="message" class="crm-message"><div class="crm-message-i">{{message}}</div></div>
+
+        <div class="demo-phone-scroll">
+
+            <div class="contact-list demo-scroll">
+
+                <select style="display:none;" id="categories" multiple ng-model="selectedCategories" mobiscroll-select="categorySettings">
+                    <option ng-repeat="category in categories">{{category}}</option>
+                </select>
+
+                <input type="hidden" id="calendar" ng-model="appointmentDate" mobiscroll-calendar="{
+                    theme: theme,
+                    context: context1,
+                    animate: 'pop',
+                    controls: ['date', 'time'],
+                    invalid: invalidDates,
+                    stepMinute: 30,
+                    minDate: now,
+                    onSelect: addAppointment
+                }" />
+
+                <div id="appointments" ng-model="appointments" mobiscroll-event-calendar="{
+                    theme: theme,
+                    layout: 'liquid',
+                    display: 'modal',
+                    context: context1,
+                    animate: 'pop',
+                    markedText: true,
+                    eventText: 'appt.',
+                    eventsText: 'appt.',
+                    buttons: [],
+                    showDivergentDays: false
+                }"></div>
+
+                <div mbsc-enhance>
+                    <ul id="contacts" style="display:none;" mobiscroll-listview="contactSettings" mobiscroll-data="contacts">
+                        <li data-type="contact" data-phone="{{item.phone}}" data-email="{{item.email}}" data-id="{{item.id}}" ng-show="isInCategory(item.categories)">
+                            <img ng-src="{{item.image}}" class="contact-icon" />
+                            <h3 ng-bind="item.name"></h3>
+                            <p>{{item.phone}}</p>
+                            <ul class="contact-detail">
+                                <li class="contact-hdr" data-id="{{'c' + item.id}}">
+                                    <img ng-src="{{item.image}}" class="contact-icon" />
+                                    <h3 class="contact-name" ng-bind="item.name"></h3>
+                                    <div class="contact-cat-tag" mbsc-ng-repeat="(category, val) in item.categories " ng-show="item.categories[category]">{{category}}</div>
+                                    <ul class="contact-detail-edit" >
+                                        <li class="crm-form-cont" data-id="{{ 'ec' + item.id }}">
+                                            <form class="edit-form" novalidate name="form">
+                                                <div class="mbsc-divider">Contact Details</div>
+                                                <label>
+                                                    Name
+                                                    <input name="Name" type="text" placeholder="Name" data-icon="user4" name="name" ng-model="currentItems[$index].name">
+                                                </label>
+
+                                                <label>
+                                                    Address
+                                                    <textarea placeholder="Address" data-icon="location" name="address" ng-model="currentItems[$index].address"></textarea>
+                                                </label>
+
+                                                <label>
+                                                    Company
+                                                    <input type="text" placeholder="Company" data-icon="office" name="company" ng-model="currentItems[$index].company">
+                                                </label>
+
+                                                <div class="mbsc-divider">Phone</div>
+                                                <label mbsc-ng-repeat="phone in currentItems[$index].phones">
+                                                    {{phone.name}}
+                                                    <input type="tel" placeholder="Phone" name="phone" data-icon="phone" ng-model="phone.number">
+                                                </label>
+
+                                                <div class="mbsc-divider">Email</div>
+                                                <label mbsc-ng-repeat="email in currentItems[$index].emails">
+                                                    {{email.name}}
+                                                    <input type="email" placeholder="Phone" name="email" data-icon="foundation-mail" ng-model="email.email">
+                                                </label>
+
+                                                <div ng-init="it = currentItems[$index]" class="mbsc-divider">Contact Categories</div>
+
+                                                <label mbsc-ng-repeat="(cat,v) in currentItems[$index].categories">{{cat}}
+                                                    <input type="checkbox" ng-model="it.categories[cat]">
+                                                </label>
+
+                                                <div class="contact-detail-save mbsc-padding">
+                                                    <button class="mbsc-btn-block" data-icon="checkmark" ng-click="updateContacts(currentItems[$index], $index)">Save</button>
+                                                </div>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li data-type="newAppointment" data-name="{{item.name}} " class="contact-app-add">
+                                    <div class="crm-contact-btn">
+                                        <button  class="mbsc-btn-block" ng-click="selectAppointmentDate(item.name)" data-icon="plus">Add appointment</button>
+                                    </div>
+                                    <div class="crm-contact-btn">
+                                        <button  class="mbsc-btn-block" data-icon="pencil" class="crm-edit-btn" ng-click="editContacts(item.id)">Edit contact</button>
+                                    </div>
+                                </li>
+                                <li data-role="list-divider">Company</li>
+                                <li>{{item.company}}</li>
+                                <li data-role="list-divider">Address</li>
+                                <li data-type="address" data-coord="{{item.coordinates}}" data-icon="ion-navigate" data-icon-align="right" >{{item.address}}</li>
+                                <li data-role="list-divider">Phone</li>
+                                <li class="mbsc-lv-item mbsc-lv-item-ic-right" data-type="phone" data-phone="{{phone.number}}" mbsc-ng-repeat="phone in item.phones">
+                                    <h3 class="mbsc-lv-txt">{{phone.name}}</h3>
+                                    <p class="mbsc-lv-txt">{{phone.number}}</p>
+                                    <div class="mbsc-lv-item-ic mbsc-ic mbsc-ic-phone"></div>
+                                </li>
+                                <li data-role="list-divider">Email</li>
+                                <li class="mbsc-lv-item mbsc-lv-item-ic-right" data-type="email"  data-email="{{email.email}}" mbsc-ng-repeat="email in item.emails">
+                                    <h3 class="mbsc-lv-txt">{{email.name}}</h3>
+                                    <p class="mbsc-lv-txt">{{email.email}}</p>
+                                    <div class="mbsc-lv-item-ic mbsc-ic mbsc-ic-foundation-mail"></div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div ng-if="theme == 'android-holo-light' || theme == 'android-holo'">
+            <ul id="tabs" mobiscroll-menustrip="menuSettings" style="display:none;">
+                <li data-selected="true" ng-click="hideCalendar()">Contacts</li>
+                <li ng-click="showCalendar()">Calendar</li>
+            </ul>
+        </div>
+
+        <div ng-if="theme != 'android-holo-light' && theme != 'android-holo'">
+            <ul id="tabs" mobiscroll-menustrip="menuSettings" style="display:none;">
+                <li data-selected="true" data-icon="user4" ng-click="hideCalendar()">Contacts</li>
+                <li data-icon="calendar" ng-click="showCalendar()">Calendar</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    </body>
+</html>

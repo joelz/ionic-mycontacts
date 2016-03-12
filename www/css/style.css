@@ -1,0 +1,20 @@
+
+#search-bar {
+  background: none;
+  position: absolute;
+  width: 100%;
+  top: 35px;
+  right:0px;
+  height: 40px;
+  z-index: 3;
+}
+#search-bar .item {
+  background: none;
+  border: none;
+}
+#content {
+  top: 35px;
+  padding-top: 45px;
+  padding-bottom: 20px;
+}
+

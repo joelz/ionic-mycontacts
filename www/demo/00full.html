@@ -1,0 +1,4710 @@
+﻿
+
+
+<!DOCTYPE html>
+<html>
+
+
+
+<!-- 用于手机调用页面，不获取用户登录信息，避免抛出异常。"dgu" don't get user -->
+
+
+
+<script>
+var baseURL = "/wxqyh";var resourceURL = "http://res.do1.com.cn/qwy";var localport = "http://qwyimg.do1.com.cn/fileweb";var compressURL = "http://qwyimg.do1.com.cn/fileweb/compress";var agentJson = "%5B%7B%22angentId%22%3A%22activity%22%2C%22regex%22%3A%22%5E.*activity.*%24%22%7D%2C%7B%22angentId%22%3A%22addressBook%22%2C%22regex%22%3A%22%5E.*addressbook.*%24%22%7D%2C%7B%22angentId%22%3A%22ask%22%2C%22regex%22%3A%22%5E.*%2Fask%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22chat%22%2C%22regex%22%3A%22%5E.*chat.*%24%22%7D%2C%7B%22angentId%22%3A%22checkwork%22%2C%22regex%22%3A%22%5E.*checkwork.*%24%22%7D%2C%7B%22angentId%22%3A%22crm%22%2C%22regex%22%3A%22%5E.*crm.*%24%22%7D%2C%7B%22angentId%22%3A%22diary%22%2C%22regex%22%3A%22%5E.*diary.*%24%22%7D%2C%7B%22angentId%22%3A%22dynamic%22%2C%22regex%22%3A%22%5E.*dynamicin.*%24%22%7D%2C%7B%22angentId%22%3A%22express%22%2C%22regex%22%3A%22%5E.*express.*%24%22%7D%2C%7B%22angentId%22%3A%22form%22%2C%22regex%22%3A%22%5E.*form.*%24%22%7D%2C%7B%22angentId%22%3A%22homework%22%2C%22regex%22%3A%22%5E.*homework.*%24%22%7D%2C%7B%22angentId%22%3A%22jdoa%22%2C%22regex%22%3A%22%5E.*%2Foa%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22jdoabhw%22%2C%22regex%22%3A%22%5E.*bhw.*%24%22%7D%2C%7B%22angentId%22%3A%22meetingassistant%22%2C%22regex%22%3A%22%5E.*meeting.*%24%22%7D%2C%7B%22angentId%22%3A%22moveapprove%22%2C%22regex%22%3A%22%5E.*moveapprove.*%24%22%7D%2C%7B%22angentId%22%3A%22outsidework%22%2C%22regex%22%3A%22%5E.*outwork.*%24%7C%5E.*movework.*%24%7C%5E.*moveworksign.*%24%7C%5E.*outsideworkinfo.*%24%22%7D%2C%7B%22angentId%22%3A%22productinfo%22%2C%22regex%22%3A%22%5E.*product.*%24%22%7D%2C%7B%22angentId%22%3A%22qwhelper%22%2C%22regex%22%3A%22%5E.*qwhelper.*%24%22%7D%2C%7B%22angentId%22%3A%22secretary%22%2C%22regex%22%3A%22%5E.*explain.*%24%22%7D%2C%7B%22angentId%22%3A%22survey%22%2C%22regex%22%3A%22%5E.*question.*%24%22%7D%2C%7B%22angentId%22%3A%22task%22%2C%22regex%22%3A%22%5E.*task.*%24%22%7D%2C%7B%22angentId%22%3A%22topic%22%2C%22regex%22%3A%22%5E.*topic.*%24%22%7D%2C%7B%22angentId%22%3A%22formdiy%22%2C%22regex%22%3A%22%5E.*%2Fformdiy%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22wqqd%22%2C%22regex%22%3A%22%5E.*%2Fwqqd%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22todo%22%2C%22regex%22%3A%22%5E.*%2Ftodo%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22recruit%22%2C%22regex%22%3A%22%5E.*%2Frecruit%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22car%22%2C%22regex%22%3A%22%5E.*%2Fcar%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22qwim%22%2C%22regex%22%3A%22%5E.*%2Fqwim%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22reimbursement%22%2C%22regex%22%3A%22%5E.*%2Freimbursement%2F.*%24%22%7D%5D";var wxqyh_corpId = "wxe6535b20ca67180d";var dqdp_csrf_token = "";
+var downFileURL="/Struts2/fileUploadAction!exportFile.action?filePath=";var openURL="http://qy.do1.com.cn/open";var wxqyh_isOpen = false;var lastDeadline="2015-12-20 23:59";
+</script>
+
+<div id="id_dqdp_tip" style="position: absolute;"></div>
+
+
+
+
+<script type="text/javascript">
+
+function storage(){
+	var url = document.location.href;
+	if(url.charAt(url.length-1)=='#'){
+		url=url.substr(0,url.length-1);
+	}
+    if (window.localStorage[url]) {
+        var json = JSON.parse(localStorage.getItem(url));
+/*         if(json['uploadImgList']){//上传图片
+        	$('#imglist').html(json['uploadImgList']);
+        }
+        if(json['toPersonList']){//负责人
+        	selectedToUser=json['toPersonList'];
+        	resetUsersTo();
+        }
+        if(json['ccPersonList']){//相关人
+        	selectedCcUser=json['ccPersonList'];
+        	resetUsersCc();
+        } */
+
+        $('input').each(function(index, el) {
+            var name = $(el).attr('name');
+            if(name&&json[name]){
+            	var type = $(el).attr('type');
+                if (type == 'checkbox' || type == 'radio') {
+                    $('input[name="' + name + '"]').each(function(index, el) {
+                        $(el).prop('checked', (json[name][index]));
+                    });
+                }
+                if (type == 'text') {
+                    $('input[name="' + name + '"]').each(function(index, el) {
+                        $(el).val(json[name][index]);
+                    });
+                }
+            }
+
+        });
+        $('textarea').each(function(index, el) {
+            var name = $(el).attr('name');
+            if(name&&json[name]){
+            	$('[name="' + name + '"]').each(function(index, el) {
+                    $(el).val(json[name][index]);
+                });
+            }
+
+        });
+        $('select').each(function(index, el) {
+            var name = $(el).attr('name');
+            if(name&&json[name]){
+            	$('[name="' + name + '"]').each(function(index, el) {
+                    $(el).find('option[value="' + json[name][index] + '"]').prop('selected', true);
+                    // $(el).val(json[name][index])
+                });
+            }
+
+        });
+        $('input,textarea,select').on('focus input change',function() {
+            var local = {};
+            json['date'] = [new Date()];
+            $('input').each(function(index, el) {
+                var name = $(el).attr('name');
+                if(name){
+                	 var type = $(el).attr('type');
+                     var tmp = local[name];
+                     tmp = $.isArray(tmp) ? tmp: [];
+                     if (type == 'checkbox' || type == 'radio') {
+                         tmp.push($(el).prop('checked'));
+                     } else if (type == 'text') {
+                         tmp.push($(el).val());
+                     } else {
+                         return;
+                     }
+                     json[name] = tmp;
+                }
+
+            });
+            $('textarea').each(function(index, el) {
+                var name = $(el).attr('name');
+                if(name){
+                	var tmp = local[name];
+                    tmp = $.isArray(tmp) ? tmp: [];
+                    tmp.push($(el).val());
+                    json[name] = tmp;
+                }
+
+            });
+            $('select').each(function(index, el) {
+                var name = $(el).attr('name');
+                if(name){
+                	var tmp = local[name];
+                    tmp = $.isArray(tmp) ? tmp: [];
+                   /* tmp.push($(el).find('option:selected').val());*/
+                    tmp.push($(el).find('option').not(function(){ return !this.selected }).val());
+
+                    json[name] = tmp;
+                }
+
+            });
+            localStorage[url] = JSON.stringify(json);
+        })
+    } else {
+
+        $('input,textarea,select').on('focus input change',function() {
+        	var local = {};
+            local['date'] = [new Date()];
+            $('input').each(function(index, el) {
+                var name = $(el).attr('name');
+                if(name){
+                	var type = $(el).attr('type');
+                    var tmp = local[name];
+                    tmp = $.isArray(tmp) ? tmp: [];
+                    if (type == 'checkbox' || type == 'radio') {
+                        tmp.push($(el).prop('checked'));
+                    }
+                    if (type == 'text') {
+                        tmp.push($(el).val());
+                    }
+                    if (type == 'button') {
+                        return;
+                    }
+                    local[name] = tmp;
+                }
+
+            });
+            $('textarea').each(function(index, el) {
+                var name = $(el).attr('name');
+                if(name){
+                	var tmp = local[name];
+                    tmp = $.isArray(tmp) ? tmp: [];
+                    tmp.push($(el).val());
+                    local[name] = tmp;
+                }
+
+            });
+            $('select').each(function(index, el) {
+                var name = $(el).attr('name');
+                if(name){
+                	var tmp = local[name];
+                    tmp = $.isArray(tmp) ? tmp: [];
+                    // tmp.push($(el).find('option:selected').val());
+                     tmp.push($(el).find('option').not(function(){ return !this.selected }).val());
+                    local[name] = tmp;
+                }
+
+            });
+
+            localStorage[url] = JSON.stringify(local);
+
+        })
+    }
+
+
+}
+//清除缓存
+function removeStorage(){
+	 var url=document.location.href;//@相关人缓存
+	if(url.charAt(url.length-1)=='#'){
+		url=url.substr(0,url.length-1);
+	}
+	if(window.localStorage){
+
+	localStorage.removeItem(url)
+	}
+}
+
+</script>
+
+<head>
+    <meta charset="utf-8">
+    <title>新建</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <link rel="stylesheet" href="/wxqyh/jsp/wap/css/ku.css?ver=2016.02.18.01" />
+    <link rel="stylesheet" href="/wxqyh/jsp/wap/css/mobiscroll.2.13.2.min.css?ver=2016.02.18.01" />
+    <link rel="stylesheet" href="/wxqyh/jsp/wap/css/font-awesome.min.css?ver=2016.02.18.01" />
+    <script src='/wxqyh/js/3rd-plug/jquery-ui-1.8/js/jquery-1.7.2.min.js'></script>
+    <script type="text/javascript" src="/wxqyh/jsp/wap/js/mobiscroll.2.13.2.min.js"></script>
+    <script type="text/javascript" src="/wxqyh/jsp/wap/js/detect-jquery.js"></script>
+    <script type="text/javascript" src="/wxqyh/jsp/wap/js/flipsnap.js"></script>
+    <script type="text/javascript" src="/wxqyh/jsp/wap/js/wechat.js"></script>
+    <script type="text/javascript" src="/wxqyh/jsp/wap/js/emojify.min.js?ver=2016.02.18.01"></script>
+    <script type="text/javascript" src="/wxqyh/jsp/wap/js/ku-jquery.js?ver=2016.02.18.01"></script>
+    <script type="text/javascript" src="/wxqyh/themes/wap/js/ask/ask.js?ver=2016.02.18.01"></script>
+    <script src='/wxqyh/jsp/wap/js/common.js?ver=2016.02.18.01'></script>
+    <script src="/wxqyh/js/3rd-plug/jquery/jquery.form.js"></script>
+
+    <script src='/wxqyh/themes/qw/wap/ask/ask.js?ver=2016.02.18.01'></script>
+
+    <script type="text/javascript">
+		    (function($){
+		        $(function(){
+					agentCode_to = "ask";
+					agentCode_cc = "ask";
+		        	/* var opt = {
+		        	        preset: 'datetime', //日期
+		        	        theme: 'android-holo light', //皮肤样式
+		        	        display: 'bottom', //显示方式
+		        	        mode: 'scroller', //日期选择模式
+		        	        dateFormat: 'yy-mm-dd', // 上面部分的日期格式
+		        	        setText: '确定', //确认按钮名称
+		        	        cancelText: '取消',//取消按钮名籍我
+		        	        dateOrder: 'yymmdD', //面板中日期排列格式
+		        	        showNow: true,
+		        	        nowText: "今天",
+		        	         group: true,
+		        	         stepMinute: 5,//设置分钟间隔
+		        	        dayText: '日', monthText: '月份', yearText: '年份', //面板中年月日文字
+		        	        endYear:2050 //结束年份
+
+		        	    }; */
+		        	opt.preset='datetime';//调用日历显示  日期时间
+		        	$('#taskStop,#taskStart').mobiscroll(opt);//直接调用日历 插件
+		            $('#taskStop').on('focus', function(){
+		            	//关闭输入法
+		            	$("#title").css("ime-mode","disabled");
+		            	$("#content").css("ime-mode","disabled");
+		                /* setTimeout(function(){
+		                	$("#taskStop").calendar('show');
+
+		                },800); */
+		            });
+		            $('#taskStart').on('focus', function(){
+		            	$("#title").css("ime-mode","disable");
+		        		$("#content").css("ime-mode","disable");
+		        		/* setTimeout(function(){
+			                $("#taskStart").calendar('show');
+		        		},800); */
+		            });
+		        });
+
+		    })(jQuery);
+    </script>
+    <script>
+        	var template1 = ''
+	        	+'<li class="toli" style="display:@Show;height: 45px;"> '
+	        	+'    <input type="hidden" name="incharges" value="@UserId" /> '
+	        	+'    <a class="remove_icon" href="javascript:void()" onclick="deleteUser(this,\'to\',@ArrayValue)" ></a> '
+	        	+'    <p class="img"> '
+	        	+'        <img src="@HeadPic" onerror="javascript:replaceUserHeadImage(this);" alt="" /> '
+	        	+'    </p> '
+	        	+'    <p class="name">@UserName</p> '
+	        	+'</li>';
+        	var template2 = ''
+            	+'<li class="ccli" style="display:@Show;height: 45px;"> '
+            	+'    <input type="hidden" name="relatives" value="@UserId" /> '
+            	+'    <a class="remove_icon" href="javascript:void()" onclick="deleteUser(this,\'cc\',@ArrayValue)" ></a> '
+            	+'    <p class="img"> '
+            	+'        <img src="@HeadPic" onerror="javascript:replaceUserHeadImage(this);" alt="" /> '
+            	+'    </p> '
+            	+'    <p class="name">@UserName</p> '
+            	+'</li>';
+
+         //   var dayslist;
+            var workhour;
+        	function init(){
+        		//设置初始化时间
+      			var nowDate1=new Date();
+      			$("#taskStart").val(nowDate1.Format("yyyy-MM-dd 09:00"));
+     			var nowDate2=new Date();
+    			$("#taskStop").val(nowDate2.Format("yyyy-MM-dd 18:00"));
+
+        		//显示类型字典
+        		showTypeDict();
+				//getConfig();
+				//getConfigFlows();
+
+        		//加载上一次的相关人和负责人
+        		//loadTOAndCC();
+        	}
+
+        	//初始化相关人和负责人
+        	function loadTOAndCC(){
+	        	$.ajax({
+	        		url:"/wxqyh/portal/askAction!loadCCAndTo.action",
+	        		type:"get",
+	        		dataType:"json",
+	        		success:function(result){
+	        			if(result.code=="0"){
+
+	        				var toList=result.data.toList;
+	                		var toUsers = "";
+	                		for(var i=0;i<toList.length;i++){
+	               	   			var person = toList[i];
+	               	   			var item = template1;
+	               	   			selectedToUser.push(person.userId+"|"+person.personName+"|"+person.headPic);
+	               				item = item.replace("@UserId",person.userId);
+	               				item = item.replace("@UserName",person.personName);
+	               				item = item.replace("@HeadPic",person.headPic);
+	            				item = item.replace("@ArrayValue","'"+person.userId+"|"+person.personName+"|"+person.headPic+"'");
+	               				toUsers += item;
+	                		}
+	            			$("#toPersonList").prepend(toUsers);
+
+	            			var ccList=result.data.ccList;
+	                		var ccUsers = "";
+							for(var i=0;i<ccList.length;i++){
+								var person = ccList[i];
+	               	   			var item = template2;
+	               	   			selectedCcUser.push(person.userId+"|"+person.personName+"|"+person.headPic);
+	               				item = item.replace("@UserId",person.userId);
+	               				item = item.replace("@UserName",person.personName);
+	               				item = item.replace("@HeadPic",person.headPic);
+	            				item = item.replace("@ArrayValue","'"+person.userId+"|"+person.personName+"|"+person.headPic+"'");
+	               				ccUsers += item;
+	                		}
+	            			$("#ccPersonList").prepend(ccUsers);
+	        			}else{
+	        				showMsg("",result.desc,1);
+	        			}
+	        		}
+	        	});
+        	}
+
+          	//显示联系人按钮
+        	function removePersons(obj,type){
+        		var arry;
+        		if(type=="taskto"){
+        			arry = $("#toPersonList").find("a");
+        		}else{
+        			arry = $("#ccPersonList").find("a");
+        		}
+        		var show = $(obj).attr("show");
+        		if(show==0){
+        			$(obj).attr("show","1");
+        			for(var i=0;i<arry.length;i++){
+        				$(arry[i]).show();
+        			}
+        		}else{
+        			$(obj).attr("show","0");
+        			for(var i=0;i<arry.length;i++){
+        				$(arry[i]).hide();
+        			}
+        		}
+        	}
+        	//删除历史选择联系人
+        	function deletePersons(type){
+        		if(type=="taskto"){
+        			$("#toPersonList").html("<li class=\"f-user-add\" style=\"margin-bottom:20px\" onclick=\"showSelectUser('taskto')\"></li><li class=\"f-user-remove\" style=\"margin-bottom:20px\" show=\"0\" onclick=\"removePersons(this,'taskto')\"></li>");
+        		}else{
+        			$("#ccPersonList").html("<li class=\"f-user-add\" style=\"margin-bottom:20px\" onclick=\"showSelectUser('taskcc')\"></li><li class=\"f-user-remove\" style=\"margin-bottom:20px\" show=\"0\" onclick=\"removePersons(this,'taskcc')\"></li>");
+        		}
+        	}
+        	//删除全部图片
+        	function removeAllPic(){
+        		var html = '<div class="f-add-user-list"><ul id="imglist" class="impression">'
+							+'<li class="f-user-add" id="addimage">'
+							+' <input id="imageFileInput" class="imageFileInput" type="file"></li></ul></div>';
+            	$("#upPicDiv").html(html);
+        	}
+        	/* //显示全部审批人
+        	function showAllto(){
+        		var p = $("#toPersonList").find("li");
+        		for(var i=0;i<p.length;i++){
+        			$(p[i]).show();
+        		}
+				$("#tomoreDiv").hide();
+        	}
+        	//显示全部相关人
+        	function showAllcc(){
+        		var p = $("#ccPersonList").find("li");
+        		for(var i=0;i<p.length;i++){
+        			$(p[i]).show();
+        		}
+				$("#ccmoreDiv").hide();
+        	} */
+        	/* //标题长度超过30个字时给予提示    yuanminsha 2015-07-31
+        	function countTitle(obj){
+        		if(obj){
+        			if($("#title").val().length>30){
+        				showMsg("","标题长度不能超过30个字");
+        				return;
+        			}
+        		}
+        	} */
+        	//提交任务
+        	function commitTask(status){
+        		$("#taskStatus").val(status);
+        		/* if(date2<date3){
+        			showMsg("","请假天数不能超过开始时间与结束时间的天数",1);
+        			return ;
+        		} */
+        		if(status!='0'){
+        			var asktemp=/^\d+(\.\d+)?$/;
+            		var askDay=$('#askDay').val();
+            		if(askDay!=null &&askDay!=""){
+            			if(!asktemp.test(askDay)){
+        	      	    	showMsg("","请假天数只能为数字",1);
+                			return ;
+        	      	    }
+            		}else{
+            			$('#askDay').val("0");
+            		}
+    	      	    var askHour=$("#askHour").val();
+    	      	    if(askHour==""||askHour==null){
+    	      	    	$("#askHour").val("0");
+    	      	    }else{
+    		      	  	if(!asktemp.test(askHour)){
+    		      	    	showMsg("","请假小时数只能为数字",1);
+    	      				return ;
+    		      	    }
+    	      	    }
+    	      	   if($('#askDay').val()=="0"&&$("#askHour").val()=="0"){
+        	    		showMsg("","申请时长不能为0",1);
+          				return ;
+        	    	}
+
+    	      	   //申请时长验证
+    	      	   if($("#askHour").val()*1.0>=workhour*1.0){
+    	      		 showMsg("","申请时长的小时填写有误，请填写 小于 "+workhour+"的数字，或直接填写天数",1);
+    	      		 return;
+    	      	   }
+
+             		//var startTime = $("#taskStart").val()+" "+$("#startHour").val()+":"+$("#startMinute").val()+":00";
+            		//var endTime = $("#taskStop").val()+" "+$("#stopHour").val()+":"+$("#stopMinute").val()+":00";
+
+            		var startTime=$("#taskStart").val()+":00";
+            		var endTime = $("#taskStop").val()+":00";
+
+
+            		var date1=new Date(Date.parse(startTime.replace(/-/g, "/")));
+            		var date2=new Date(Date.parse(endTime.replace(/-/g, "/")));
+            		var date3=new Date((date1/1000+86400*askDay)*1000);
+            		if(date1>date2){
+            			showMsg("","开始时间不可以早于结束时间",1);
+            			return ;
+            		}
+	        		if($("#taskType").val()==""){
+	        			showMsg("","请选择类型",1);
+	        			return ;
+	        		}
+	        		//申请时长 剩余假期 验证
+    	      	 //  var remainindays = getRemainDays($("#taskType").val());
+	        	   var remainindays = $('#remainingDays').html();
+	    	       var template = templateMap.get($("#taskType").val());
+    	      	   if(remainindays&&template.type=='0'){
+    	      	   	   var applaydays = $('#applyDays').html();//申请时长
+	    	      	   if(applaydays*1.0>remainindays*1.0){
+	    	      		 showMsg("","您申请的时长超出了可用剩余假期，请重新输入。",1);
+	    	      		 return;
+	    	      	   }
+    	      	   }
+	        		if($("#title").val().length>200){
+	        			showMsg("","标题过长，请重新编辑",1);
+	        			return ;
+	        		}
+	        		if($("#content").val()==""){
+	        			showMsg("","请输入请假内容",1);
+	        			return ;
+	        		}else {
+	        			var content=$("#content").val();
+	        			/* if(!isWeChatApp()){//非手机端发表评论
+	        			 	content=content.replaceAll("<(S*?)[^>]*>|<.*?/> ","");
+	        			} */
+	        			if(content.length>500){
+	        				showMsg("","内容字数不能超过500",1);
+		        			return ;
+	        			}
+	        		}
+	        		if($("#taskStart").val()==""){
+	        			showMsg("","请输入请假开始时间",1);
+	        			return ;
+	        		}
+	        		if($("#taskStop").val()==""){
+	        			showMsg("","请输入请假结束时间",1);
+	        			return ;
+	        		}
+					if(isFreeFlow=="1"){
+						var tempUser2="";
+						for(var q=0;q<selectedToUser.length;q++){
+							tempUser2=tempUser2+selectedToUser[q];
+						}
+						if(tempUser2.indexOf("e8d1cf89a03e4c91b9d019df01db385b")!=-1){
+							showMsg("","审批人不可以选择自己，请检查",1);
+							return ;
+						}
+						if(selectedToUser.length==0){
+							showMsg("","请选择审批人 ",1);
+							return ;
+						}
+					}	else if(isFreeFlow=="0" && $("#flowId").val()==""){
+        				if(chooseBoxOption.length==0){
+                  			showMsg("","没找到可用的固定流程，请联系管理员。",1);
+                 			return ;
+        				}else{
+        					showMsg("","请选择固定流程",1);
+                 			return ;
+        				}
+	             	}else if(audtiFlag!="1"&&$("#dpId").val()==""){
+	             		showMsg("","请选择审批部门 ",1);
+               			return ;
+	             	}
+        		}
+        		/* if($("#askDay").val()==""){
+        			showMsg("","请输入请假天数",1);
+        			return ;
+        		} */
+        		//合并日期与时间
+        		var start = "";
+        		//start = $("#taskStart").val()+" "+$("#startHour").val()+":"+$("#startMinute").val()+":00";
+        		start = $("#taskStart").val()+":00";
+        		$("#hiddenStartTime").val(start);
+        		var stop="";
+        		//stop = $("#taskStop").val()+" "+$("#stopHour").val()+":"+$("#stopMinute").val()+":00";
+        		stop = $("#taskStop").val()+":00";
+        		$("#hiddenStopTime").val(stop);
+
+        		showLoading("正在提交...");
+	        	$.ajax({
+	        		url:"/wxqyh/portal/askAction!ajaxAdd.action",
+	        		type:"POST",
+	        		data:$("#taskform").serialize(),
+	        		dataType:"json",
+	        		success:function(result){
+	        			//$("#imgFileLoadDiv").hide();
+	        			if(result.code=="0"){
+        					//提交完成后清除缓存
+        					removeStorage();
+	        				if(status=="0"){
+	        					//提交草稿跳转到草稿列表
+	        					window.location.href="/wxqyh/jsp/wap/ask/list.jsp?type=1&status=0";
+	        				}else{
+		        				//提交发布跳转到已提交列表
+		        				window.location.href="/wxqyh/jsp/wap/ask/list.jsp?type=1&status=1";
+	        				}
+	        			}else{
+	            			showMsg("",result.desc,1);
+	        			}
+	        			hideLoading();
+	        		},
+	        		error:function(){
+	        			showMsg("",internetErrorMsg,1);
+	        		}
+	        	});
+        	}
+        	var templateMap = new Map();
+        	var userName="";
+        	function showTypeDict(){
+	        	$.ajax({
+	        		url:"/wxqyh/portal/askAction!getAskTemplate.action",
+	        		type:"get",
+	        		async:false,
+	        		dataType:"json",
+	        		success:function(result){
+	        			if(result.code=="0"){
+	        				var templatelist = result.data.template;
+	        				userName=result.data.personName;
+	        				var html = "<option value=''>请选择类型</option>";
+	        				if(templatelist.length==0){
+	        					html="<option value=''>请选择类型(后台可设置类型)</option>";
+	        				}
+	        				//指定默认选中的任务类型
+	        				var diaryType = '';
+	        				for(var i=0;i<templatelist.length;i++){
+	        					var template = templatelist[i];
+	        					templateMap.put(template.id,template);
+	        					if(template.id==diaryType){
+	        						document.title = "新建"+template.name;
+	        						html += "<option selected='true' value='"+template.id+"'>"+template.name+"</option>";
+	        					}else{
+	        						html += "<option value='"+template.id+"'>"+template.name+"</option>";
+	        					}
+	        				}
+	        				$("#taskType").append(html);
+
+	        				//加载默认负责人和相关人
+	        				var toList = result.data.tolist;
+	                		var toUsers = "";
+	                		if(toList.length>0){
+	    	            		for(var i=0;i<toList.length;i++){
+	    	           	   			var person = toList[i];
+	    	           	   			var item = template1;
+    		           	   			selectedToUser.push(person.userId+"|"+person.personName+"|"+person.headPic);
+    		           				item = item.replace("@UserId",person.userId);
+    		           				item = item.replace("@UserName",person.personName);
+    		           				//item = item.replace("@HeadPic",""+person.userId+"_S.jpg");
+    		           				item = item.replace("@HeadPic",person.headPic);
+    		        				item = item.replace("@ArrayValue","'"+person.userId+"|"+person.personName+"|"+person.headPic+"'");
+    		           				toUsers += item;
+	    	            		}
+	    	            		$("#toPersonList").prepend(toUsers);
+	    	                 	$("#toselected_user").show();
+	    	                 	$("#toNum").html(selectedToUser.length);
+	                		}
+	                		var ccList = result.data.cclist;
+	                		var ccUsers = "";
+	                		if(ccList.length>0){
+	    	            		for(var i=0;i<ccList.length;i++){
+	    	           	   			var person = ccList[i];
+	    	           	   			var item = template2;
+    		           	   			selectedCcUser.push(person.userId+"|"+person.personName+"|"+person.headPic);
+    		           				item = item.replace("@UserId",person.userId);
+    		           				item = item.replace("@UserName",person.personName);
+    		           				item = item.replace("@HeadPic",person.headPic);
+    		        				item = item.replace("@ArrayValue","'"+person.userId+"|"+person.personName+"|"+person.headPic+"'");
+    		           				ccUsers += item;
+	    	            		}
+	    	            		$("#ccPersonList").prepend(ccUsers);
+	    	                 	$("#ccselected_user").show();
+	    	                 	$("#ccNum").html(selectedCcUser.length);
+	                		}
+	                		$("#tomoreDiv").append('<input id="showTomore" type="hidden" value="0">');
+	               			$("#ccmoreDiv").append('<input id="showCcmore" type="hidden" value="0">');
+	               			//dayslist = result.data.dayslist;
+	               			workhour = result.data.workhour;
+	                		storage();//H5缓存调用
+	                		$('textarea.inputStyle').trigger('click');
+	                		getFlowAndRemainDays();
+	                		//showRemainDaysDiv($("#taskType").val(),$("#taskType").find("option:selected").text());
+	               			//showFreeOrFix($("#taskType").val());
+	        			}
+	        		},
+	        		error:function(){
+	        			showMsg("",internetErrorMsg,1);
+	        		}
+	        	});
+        	}
+
+        	function showDelete(obj){
+        		$($(obj).find("a")[0]).toggle();
+        	}
+        	//var  oldTemplate="";
+        	function autoInput(value,text){
+        		getFlowAndRemainDays();
+        		var template = templateMap.get(value);
+        		if(template){
+	    			var title = userName+"_"+template.title+"_"+new Date().Format("yyyyMMdd");
+	       			$("#title").val(title);
+	    			var content = $("#content").val();
+	    			$("#content").val(template.content+'\n'+content);
+	        		//显示剩余假期
+	        		//showRemainDaysDiv(value,text);
+					var toList = template.tolist;
+	        		var toUsers = "";
+	        		var tempUser="";
+	           		for(var z=0;z<selectedToUser.length;z++){
+	           			tempUser=tempUser+selectedToUser[z];
+	           		}
+	       			//deletePersons("taskcc");
+	       			//deletePersons("taskto");
+	        		if(toList && toList.length>0){
+	            		for(var i=0;i<toList.length;i++){
+	           	   			var person = toList[i];
+	           	   			var item = template1;
+	           	   			if(tempUser.indexOf(person.userId)==-1){
+		           	   			selectedToUser.push(person.userId+"|"+person.personName+"|"+person.headPic);
+		           				item = item.replace("@UserId",person.userId);
+		           				item = item.replace("@UserName",person.personName);
+		           				//item = item.replace("@HeadPic",""+person.userId+"_S.jpg");
+		           				item = item.replace("@HeadPic",person.headPic);
+		        				item = item.replace("@ArrayValue","'"+person.userId+"|"+person.personName+"|"+person.headPic+"'");
+		           				toUsers += item;
+	           	   			}
+	            		}
+	            		$("#toPersonList").prepend(toUsers);
+	                 	$("#toselected_user").show();
+	        		}
+	        		var ccList = template.cclist;
+	        		var ccUsers = "";
+	        		var tempUsercc="";
+	           		for(var y=0;y<selectedCcUser.length;y++){
+	           			tempUsercc=tempUsercc+selectedCcUser[y];
+	           		}
+	        		if(ccList && ccList.length>0){
+	            		for(var i=0;i<ccList.length;i++){
+	           	   			var person = ccList[i];
+	           	   			var item = template2;
+		           	   		if(tempUsercc.indexOf(person.userId)==-1){
+		           	   			selectedCcUser.push(person.userId+"|"+person.personName+"|"+person.headPic);
+		           				item = item.replace("@UserId",person.userId);
+		           				item = item.replace("@UserName",person.personName);
+		           				//item = item.replace("@HeadPic",""+person.userId+"_S.jpg");
+		           				item = item.replace("@HeadPic",person.headPic);
+		        				item = item.replace("@ArrayValue","'"+person.userId+"|"+person.personName+"|"+person.headPic+"'");
+		           				ccUsers += item;
+		           	   		}
+	            		}
+	            		$("#ccPersonList").prepend(ccUsers);
+	                 	$("#ccselected_user").show();
+	        		}
+        		}
+        		//maquanyang 2015-8-4 清空标题提示的span
+        		if($("#maxlengthId")){
+        			$("#maxlengthId").html("");
+        		}
+        		//获取流程
+        		//showFreeOrFix(value);
+        	}
+
+    </script>
+</head>
+
+<body>
+    <div id="wrap_main" class="wrap">
+        <div id="main" class="wrap_inner">
+
+            <form action="/wxqyh/portal/askAction!ajaxAdd.action" id="taskform" onsubmit="return false;">
+                <input type="hidden" name="tbQyAskPO.isFree" id="isFreeFlow" />
+                <div class="form-style">
+                    <div class="f-item ">
+                        <div class="inner-f-item item-text flexbox">
+                            <span class="f-item-title">类型</span>
+                            <div class="flexItem">
+                                <select name="tbQyAskPO.askType" id="taskType" onchange="autoInput(this.value,this.options[this.selectedIndex].text)" class="flexItem item-select"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-item ">
+                        <div class="inner-f-item">
+                            <div class="flexItem">
+                                <input type="text" name="tbQyAskPO.title" value="" id="title" valid="{maxLength:150}" placeholder="请输入请假标题" class="item-select inputStyle maxlength" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-item">
+                        <div class="inner-f-item">
+                            <div class="text_div">
+                                <textarea class="item-select inputStyle" name="tbQyAskPO.content" id="content" cols="30" rows="2" placeholder="请输入请假内容" maxlength="500"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-item ">
+                        <div class="inner-f-item item-text flexbox">
+                            <span class="f-item-title">申请时长</span>
+                            <div class="flexItem">
+                                <input type="number" name="tbQyAskPO.askDay" style="width:35%" value="1" id="askDay" placeholder="请输入天数" class="item-select inputStyle" /><span>天零</span>
+                                <input type="number" name="tbQyAskPO.ext1" style="width:35%;" value="" id="askHour" placeholder="0" class="item-select inputStyle" /><span>小时</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-item ">
+                        <div class="inner-f-item item-text flexbox ">
+                            <span class="f-item-title">开始时间</span>
+                            <div class="flexItem">
+                                <input type="hidden" name="tbQyAskPO.startTime" value="" id="hiddenStartTime" />
+                                <input type="text" style="width:75%" id="taskStart" value="" placeholder="请选择日期" readonly="readonly" class="item-input inputStyle" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-item">
+                        <div class="inner-f-item item-text flexbox ">
+                            <span class="f-item-title">截止时间</span>
+                            <div class="flexItem">
+                                <input type="hidden" name="tbQyAskPO.endTime" value="" id="hiddenStopTime" />
+                                <input type="text" style="width:75%" id="taskStop" value="" placeholder="请选择日期" readonly="readonly" class="item-input inputStyle" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-item bgefefef">
+                        <div class="SS_title inner-f-item item-text">
+                            <div id="remainingDiv" class="hidden">你剩余可用<span id="vacationName"></span>为<span id="remainingDays">1</span> 天</div>
+                            <div>本次申请 <span id="applyDays">1</span> 天</div>
+                            <div id="workhourDiv" class="hidden red">申请时长的小时不能大于<span id="workhourDays">8</span>(工作日时长)</div>
+                        </div>
+                    </div>
+                    <div class="f-item">
+                        <div class="loadImg mb10 clearfix" id="upPicDiv" style="padding-left: 10px;">
+                            <div class="f-add-user-list">
+                                <ul id="imglist" class="impression">
+                                    <li class="f-user-add" id="addimage" style="margin-bottom:14px">
+                                        <input id="imageFileInput" class="imageFileInput" accept="image/*" type="file">
+                                    </li>
+                                    <li class="f-user-remove" show="0" onclick="removeImage(this,'imglist')"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="isRelatives" style="display:none" class="letter_bar">审批人<div class="loadlast_onoff">加载上次<div class="onOff" id="onOff2"><span class="onOff_off"> <input type="hidden" name="toSelectId" id="toSelectId" value="0" /></span></div></div></div>
+                    <div class="f-add-user clearfix" id="responsibility_user_div" style="display:none">
+                        <div class="inner-f-add-user">
+                            <div class="f-add-user-list">
+                                <ul class="clearfix" id="toPersonList">
+                                    <li class="f-user-add" style="margin-bottom:20px" onclick="showSelectUser('taskto')"></li>
+                                    <li class="f-user-remove" style="margin-bottom:20px" show="0" onclick="removePersons(this,'taskto')"></li>
+                                </ul>
+                                <div class="load_more_user" style="display:none" id="tomoreDiv">
+                                    <a href="javascript:showAllto()">点击查看全部(<span id="toNum">0</span>人)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="letter_bar">相关人<div class="loadlast_onoff">加载上次<div class="onOff" id="onOff3"><span class="onOff_off"> <input type="hidden" name="ccSelectId" id="ccSelectId" value="0" /></span></div></div></div>
+                    <div class="f-add-user clearfix">
+                        <div class="inner-f-add-user">
+                            <div class="f-add-user-list">
+                                <ul class="clearfix" id="ccPersonList">
+                                    <li class="f-user-add" style="margin-bottom:20px" onclick="showSelectUser('taskcc')"></li>
+                                    <li class="f-user-remove" style="margin-bottom:20px" show="0" onclick="removePersons(this,'taskcc')"></li>
+                                </ul>
+                                <div class="load_more_user" style="display:none" id="ccmoreDiv">
+                                    <a href="javascript:showAllcc()">点击查看全部(<span id="ccNum">0</span>人)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="letter_bar" id="flowShowDiv" style="display:none">可用流程</div>
+                    <div class="answer-list radio_btn">
+                        <input type="hidden" id="flowId" name="flowId" value="" />
+                        <input type="hidden" id="dpId" name="flowDpId" value="" />
+                        <ul id="flowListDiv"></ul>
+                    </div>
+                    <div class="letter_bar" style="display:none" id="start_audit_users_div">处理人</div>
+                    <div class="f-add-user clearfix">
+                        <div class="inner-f-add-user">
+                            <div class="f-add-user-list">
+                                <ul class="clearfix" id="startAuditUserList"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form_btns mt10">
+                        <div class="inner_form_btns">
+                            <div class="fbtns flexbox">
+                                <input type="hidden" name="tbQyAskPO.askStatus" id="taskStatus" value="" />
+                                <a class="fbtn btn gray_btn flexItem" style="margin-right: 5px;" href="javascript:commitTask('0')">保存为草稿</a>
+                                <a class="fbtn btn flexItem" style="margin-left: 5px;" href="javascript:commitTask('1')">立即提交</a>
+                            </div>
+                            <div class="fbtns_desc">如果你还没有确定现在立即发布，可以保存为草稿，之后可以再次编辑。</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- 审批流程节点弹出框开始 -->
+    <div class="processPop" id="flowDialog">
+        <div class="process">
+            <div class="processTitBox">
+                <span class="processClose" onclick="hideProcessPop()"></span>
+                <span class="processTit"></span>
+            </div>
+            <ul class="nodeList">
+                <!-- 节点数据 -->
+            </ul>
+        </div>
+    </div>
+    <!-- 审批流程节点弹出框结束 -->
+
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
+    <script type="text/javascript" src="/wxqyh/jsp/wap/js/CheckJSApi.js?ver=2016.02.18.01"></script>
+    <script type="text/javascript" language="javascript">
+
+	var operationNeedHandle = "";
+
+    var width = $(this).width(),
+        height = $(this).height(),
+        win_width = $(window).width(),
+        win_height = ($(window).height())*0.9;//需要减去微信上方的头的2倍高度
+	/**
+	 * msgTitle 标题
+	 * msgContent 消息内容
+	 * type 1 确认；2确认，取消
+	 * needHandle 传入成功或者失败的处理函数，如下{ok:function(result){},fail:function(result){}}
+	 */
+	function showMsg(msgTitle, msgContent, type, needHandle) {
+		 restoreSubmit();//还原提交按钮
+		if (msgTitle == "")
+			msgTitle = "提示内容";
+		//$("#showMsg_overlay").height(($("#showMsg_overlay").height()+document.body.clientHeight)+"px");
+		$("#showMsg_overlay").height($(document).height());
+		$("#hmsgTitle").html(msgTitle);
+		$("#pmsgContent").html(msgContent);
+		if (1 == type) {
+			$("#btnConfirm").show();
+			$("#btnCancel").hide();
+		} else if (2 == type) {
+			$("#btnConfirm").show();
+			$("#btnCancel").show();
+		} else {
+			$("#btnConfirm").show();
+			$("#btnCancel").hide();
+		}
+
+		$(".overlay").show();
+		win_height = document.getElementById("overlayImage").offsetHeight/5;
+		win_width = document.getElementById("overlayImage").offsetWidth;
+		//$("#showMsg_div").show();
+		document.getElementById("showMsg_div").style.display = "block";
+		//让加载中剧中对齐
+        var tips_width = document.getElementById("showMsg_div").offsetWidth,
+        tips_height= document.getElementById("showMsg_div").offsetHeight,
+        top = (win_height-tips_height)/2,
+        left = (win_width-tips_width)/2;
+		$("#showMsg_div").css({
+			'top' : top + "px",
+			'left' : left + "px"
+		});
+		operationNeedHandle = needHandle;
+		//$("#operationNeedHandle").val(needHandle);
+		//operationCancelHandle = needCancelHandle;
+		//$("#operationCancelHandle").val(needCancelHandle);
+	}
+
+	/* $(window).scroll(function() { */
+		/* var scrolltop = $(window).scrollTop();
+		$("#showMsg_div").css({
+			'top' : scrolltop + 100 + "px"
+		}); */
+		/* //让加载中剧中对齐
+        tips_height= document.getElementById("showMsg_div").offsetHeight,
+        top = (win_height-tips_height)/2,
+		$("#showMsg_div").css({
+			'top' : top + "px"
+		});
+	}); */
+
+	/**
+	 * 关闭消息窗口 operationRCD{0:确定, -1:取消，1:关闭}
+	 */
+	function closeMsgBox(flag) {
+		$("#hmsgTitle").html("");
+		$("#pmsgContent").html("");
+		$(".overlay").hide();
+		document.getElementById("showMsg_div").style.display = "none";
+
+		if (operationNeedHandle == undefined || operationNeedHandle == "") {
+			return;
+		} else if (operationNeedHandle == 1) {
+			if (0 == flag) {
+				try {
+					handle();
+				} catch (e) {
+
+				}
+			}
+		} else {
+			//执行操作事件
+			if (0 == flag) {
+				e = operationNeedHandle.ok;
+			} else {
+				e = operationNeedHandle.fail;
+			}
+			if (e != null) {
+				e && e.call(e, null, null);
+			}
+		}
+	}
+
+	 /**
+	 *显示加载页面
+	 *msgContent 加载页面显示的内容，如果不传，默认为"加载中..."
+	 */
+	function showLoading(msgContent) {
+		//传入的信息为空
+		if(msgContent == undefined || msgContent==""){
+			$("#loading_text").html("加载中...");
+		}
+		else{
+			$("#loading_text").html(msgContent);
+		}
+		$(".overlay").show();
+		win_height = document.getElementById("overlayImage").offsetHeight/5;
+		win_width = document.getElementById("overlayImage").offsetWidth;
+
+		document.getElementById("loading_simple_div").style.display = "block";
+		//让加载中剧中对齐
+        var tips_width = document.getElementById("loading_simple_div").offsetWidth,
+        tips_height= document.getElementById("loading_simple_div").offsetHeight,
+        top = (win_height-tips_height)/2,
+        left = (win_width-tips_width)/2;
+		$("#loading_simple_div").css({
+			'top' : top + "px",
+			'left' : left + "px"
+		});
+	}
+
+	 /**
+	 *隐藏加载页面
+	 */
+	function hideLoading() {
+		$(".overlay").hide();
+		document.getElementById("loading_simple_div").style.display = "none";
+	}
+
+	 /**
+	  * show original image
+	  */
+	function showImage(url) {
+		$("#src_image").attr("src",url);
+		$("#overlayImage").show();
+		$("#loading_image_div").show();
+	}
+
+	 /**
+	  * hide original image
+	  */
+	function hideImage() {
+		$("#overlayImage").hide();
+		$("#loading_image_div").hide();
+	}
+
+
+	/**
+	 * option 选项
+	 * msgTitle 标题
+	 * needHandle 传入成功或者失败的处理函数，如下{ok:function(result){},fail:function(result){}}
+	 */
+	function showChooseBox(option, msgTitle, needHandle,flowId) {
+		if(1<arguments.length && msgTitle != ""){
+			$("#chooseMsgTital").html("<p>"+msgTitle+"</p>");
+		}
+		else{
+			$("#chooseMsgTital").hide();
+		}
+		if(option.length>0){
+			var temp = "";
+			if(flowId){
+				for(var i=0;i<option.length;i++){
+					if(flowId==option[i].id){
+						temp += '<li class="active"><input type="radio" style="display:none" name="radio_choose" checked="checked" vname="'+option[i].name+'" value="'+option[i].id+'">'+
+						'<div class="xian_option"><i class="fa"></i>'+option[i].name+'</div></li>';
+					}
+					else{
+						temp += '<li><input type="radio" style="display:none" name="radio_choose" vname="'+option[i].name+'" value="'+option[i].id+'">'+
+						'<div class="xian_option"><i class="fa"></i>'+option[i].name+'</div></li>';
+					}
+				}
+			}
+			else{
+				for(var i=0;i<option.length;i++){
+					temp += '<li><input type="radio" style="display:none" name="radio_choose" vname="'+option[i].name+'" value="'+option[i].id+'">'+
+					'<div class="xian_option"><i class="fa"></i>'+option[i].name+'</div></li>';
+				}
+			}
+			$("#chooseMsgUl").html(temp);
+		}
+
+		$(".overlay").show();
+		win_height = document.getElementById("overlayImage").offsetHeight/5;
+		win_width = document.getElementById("overlayImage").offsetWidth;
+		//$("#showMsg_div").show();
+		document.getElementById("chooseMsg_div").style.display = "block";
+		//让加载中剧中对齐
+        var tips_width = document.getElementById("chooseMsg_div").offsetWidth,
+        tips_height= document.getElementById("chooseMsg_div").offsetHeight,
+        top = (win_height-tips_height)/2,
+        left = (win_width-tips_width)/2;
+		$("#chooseMsg_div").css({
+			'top' : top + "px",
+			'left' : left + "px"
+		});
+		if(2<arguments.length){
+			operationNeedHandle = needHandle;
+		}
+        $('#chooseMsgUl').on('click','li',function(event){
+            var self = $(this),
+            context = self.parent(),
+            siblings = $('.active',context);
+
+    	    siblings.removeClass('active');
+    	    self.addClass('active');
+
+    	    context.find("input[type='radio']").attr("checked", false);
+    	    self.find("input[type='radio']").attr("checked", true);
+        });
+	}
+	/**
+	 * 关闭消息窗口 operationRCD{0:确定, -1:取消，1:关闭}
+	 */
+	function closeChooseMsgBox(flag) {
+		//console.log($("#chooseMsgUl input[name='radio_choose'][checked]"));
+		var choose =  $("#chooseMsgUl input[name='radio_choose'][checked]");
+		$("#chooseMsgTital").html("");
+		$("#chooseMsgUl").html("");
+		$(".overlay").hide();
+		document.getElementById("chooseMsg_div").style.display = "none";
+
+		if (operationNeedHandle == "") {
+			return;
+		}
+		else {
+			//执行操作事件
+			if (0 == flag) {
+				e = operationNeedHandle.ok;
+			} else {
+				e = operationNeedHandle.fail;
+			}
+			if (e != null) {
+				var chooseValue = {};
+				chooseValue.id = choose.val();
+				chooseValue.name = choose.attr("vname");
+				e && e.call(e, chooseValue, null);
+			}
+		}
+	}
+
+    </script>
+    <div class="text_tips" id="showMsg_div"
+         style="display: none; position: fixed; left: 50%;">
+        <div class="inner_text_tips">
+            <div class="text_tips_content" id="pmsgContent"></div>
+            <div class="text_tips_btns flexbox">
+                <a id="btnConfirm" class="btn tips_submit_btn flexItem" href="javascript:closeMsgBox(0);">确定</a>
+                <a id="btnCancel" class="btn tips_cancel_btn  flexItem" href="javascript:closeMsgBox(-1);">取消</a>
+            </div>
+        </div>
+        <input type="hidden" value="" id="operationNeedHandle" />
+    </div>
+
+    <div class="simple_tips" id="loading_simple_div" style="display: none; position: fixed;">
+        <div class="simple_tips_content text-center">
+            <div id="loading" class="loading ma">
+                <div>
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="simple_tips_text mt10">
+                <p id="loading_text">加载中...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlayImage" style="display: none;"></div>
+
+    <!--图片预览-->
+    <div class="img_preview" id="loading_image_div" style="display: none;">
+        <div class="inner_img_preview">
+            <img id='src_image' src="" alt="" onclick="hideImage();" />
+
+        </div>
+    </div>
+
+    <div class="text_tips" id="chooseMsg_div" style="display: none;position: fixed; left: 40%;">
+        <div class="inner_text_tips">
+            <div id="question1" class="question_detail" style="">
+                <div class="inner_question_detail">
+                    <div class="ask_info" id="chooseMsgTital"></div>
+                    <div class="ask_info">
+                        <div class="answer-list radio_btn">
+                            <ul id="chooseMsgUl"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text_tips_btns flexbox">
+                <a id="btnConfirm" class="btn tips_submit_btn flexItem" href="javascript:closeChooseMsgBox(0);">确定</a>
+                <a id="btnCancel" class="btn tips_cancel_btn  flexItem" href="javascript:closeChooseMsgBox(-1);">取消</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" charset="utf-8" src="/wxqyh/jsp/wap/uploadImage/js/global.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/wxqyh/jsp/wap/uploadImage/js/global1.js?ver=2016.02.18.01"></script>
+    <script type="text/javascript" charset="utf-8" id="sea" src="/wxqyh/jsp/wap/uploadImage/js/seajs.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/wxqyh/jsp/wap/uploadImage/js/register.js?ver1=2016.02.18.01"></script>
+    <script type="text/javascript" charset="utf-8" src="/wxqyh/jsp/wap/uploadImage/js/mobileBUGFix.mini.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/wxqyh/jsp/wap/uploadImage/js/uploadImage2.js?ver1=2016.02.18.01"></script>
+
+    <form action="/wxqyh/portal/imageupload/imageUploadAction!doUploadImageBase64.action" method="post" id="imgFileBaseForm" enctype="multipart/form-data">
+        <input type="hidden" name="imgFileBase" id="imgFileBase" value="">
+        <input type="hidden" name="agent" id="uploadImgAgent" value="">
+    </form>
+
+    <script type="text/javascript">
+$(function() {
+	//alert(wxqyh.agent);
+	if(null!=wxqyh.agent && "undefined"!=wxqyh.agent && ""!=$.trim(wxqyh.agent)){
+		$("#uploadImgAgent").val(wxqyh.agent);
+	}
+
+    seajs.use(['register'], function(register) {
+        register.init();
+        //city.init();
+    });
+});
+    </script>
+
+
+
+    <style type="text/css">
+        .num {
+            min-width: 20px;
+            padding-top: 6px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: right;
+            padding-right: 15px;
+            display: inline-block;
+        }
+    </style>
+    <link rel="stylesheet" href="/wxqyh/jsp/wap/css/wt.css" />
+    <div style="display:none" id="user_select_div2">
+        <input type="hidden" name="userId" id="userId" value="" />
+        <form action="/wxqyh/portal/departmentAction!getChildDeptAndPerson.action?sortTop=1&userId=&pId=&deptId=" method="post" id="department_user_search" onsubmit="return false">
+            <input name="targetUser" value="" type="hidden" id="targetUser" />
+            <div id="wrap_main_to" class="wrap">
+                <div class="search-box fixed">
+                    <div class="inner-search-box">
+                        <div class="search-box-o flexbox">
+                            <div class="flexItem">
+                                <div class="search-input-box flexbox">
+                                    <div class="flexItem">
+                                        <input class="search-input" type="text" placeholder="输入【姓名\拼音\手机号】搜索" name="keyWord" id="keyWord2" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="search_more">
+                                <a id="letter_search" href="#" class="search_letter_btn"><i class="fa fa-th"></i></a>
+                                <a id="users_search" href="#" class="search_letter_btn hide"><i class="fa fa-search"></i></a>
+                                <div class="letter_list hide">
+                                    <ul class="clearfix">
+                                        <li> <a href="javascript:searchLetter2('A')">A</a></li>
+                                        <li> <a href="javascript:searchLetter2('B')">B</a></li>
+                                        <li> <a href="javascript:searchLetter2('C')">C</a></li>
+                                        <li> <a href="javascript:searchLetter2('D')">D</a></li>
+                                        <li> <a href="javascript:searchLetter2('E')">E</a></li>
+                                        <li> <a href="javascript:searchLetter2('F')">F</a></li>
+                                        <li> <a href="javascript:searchLetter2('G')">G</a></li>
+                                        <li> <a href="javascript:searchLetter2('H')">H</a></li>
+                                        <li> <a href="javascript:searchLetter2('I')">I</a></li>
+                                        <li> <a href="javascript:searchLetter2('J')">J</a></li>
+                                        <li> <a href="javascript:searchLetter2('K')">K</a></li>
+                                        <li> <a href="javascript:searchLetter2('L')">L</a></li>
+                                        <li> <a href="javascript:searchLetter2('M')">M</a></li>
+                                        <li> <a href="javascript:searchLetter2('N')">N</a></li>
+                                        <li> <a href="javascript:searchLetter2('O')">O</a></li>
+                                        <li> <a href="javascript:searchLetter2('P')">P</a></li>
+                                        <li> <a href="javascript:searchLetter2('Q')">Q</a></li>
+                                        <li> <a href="javascript:searchLetter2('R')">R</a></li>
+                                        <li> <a href="javascript:searchLetter2('S')">S</a></li>
+                                        <li> <a href="javascript:searchLetter2('T')">T</a></li>
+                                        <li> <a href="javascript:searchLetter2('U')">U</a></li>
+                                        <li> <a href="javascript:searchLetter2('V')">V</a></li>
+                                        <li> <a href="javascript:searchLetter2('W')">W</a></li>
+                                        <li> <a href="javascript:searchLetter2('X')">X</a></li>
+                                        <li> <a href="javascript:searchLetter2('Y')">Y</a></li>
+                                        <li> <a href="javascript:searchLetter2('Z')">Z</a></li>
+                                        <li> <a href="javascript:searchAll2()" style="font-size: 30px;">*</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--已选择人员-->
+                    <div class="selected_user" id="selected_user2">
+                        <div class="selected_user_inner" id="selected_user_inner2">
+                            <ul class="clearfix f-add-user-list " id="alreadySelected2"></ul>
+                        </div>
+                    </div>
+                    <!-- 已选择人员 end -->
+                </div>
+                <div id="usmain2" class="wrap_inner" style="min-height:350px">
+                    <div class="search-box-height" id="chooseUserId2"></div>
+                    <div class="chooseAllus common_list relative" id="chooseAll2"></div><!-- 全选 -->
+                    <div class="wrap_content">
+                        <div class="search-box-height" style="height: 5px;"></div>
+                        <div class="address_list" id="department_list">
+                            <!-- 显示模板数据 -->
+                        </div>
+                        <div class="footheight"></div>
+                        <div class="all_pull" id="getmore_comment_d" style="margin-bottom:0px;">
+                            <div class="load_more_user">已没有更多</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="foot_bar" id="menuDiv">
+                    <div class="foot_bar_inner flexbox">
+                        <a class="flexItem btn white_btn ask_btn prev_ask_btn" href="javascript:userSelectCancel()">取消</a>
+                        <a class="flexItem btn white_btn ask_btn next_ask_btn" id="createBtn" href="javascript:doSure()">确定<span id="num2">0人</span></a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+	//上级目录数组
+	var arr = new Array();
+
+	var tempback = '<div class="settings-item"> '
+        +' <a class="a_link" href="javascript:preDept()"></a>'
+        +' <div class="inner-settings-item flexbox">'
+        +'     <div class="return_back"> <i class="fa"></i></div>'
+        +'     <div class="title flexItem">'
+        +'         <p class="name">返回上一级</p>'
+        +'     </div></div></div>';
+
+	var tempDepart = '<div class="settings-item"> <a class="rightLink" href="javascript:void(0)"></a>'
+       +' <div class="inner-settings-item flexbox" style="cursor: pointer;"> '
+       +'<div id="ccd3781ed48a2349dcb3fa9a0a029fc455" class="@deptClass" name="dept">'
+	   +'</div>'
+       +'     <div class="description_title flexItem flexbox ohidden" onclick="selectDept(@pid,@deptId,@userId)" style="z-index: 3;"> '
+       +'         <p class="onep flexItem">@deptName </p><span class="num">@totalUser</span></div> '
+       +' </div></div>';
+
+	var tempHtml_ = '<div class="letter_bar">@FirstNameP</div>';
+
+	var tempHtml2_ = ' <div class="settings-item" > '
+			+ '      <div class="inner-settings-item flexbox" style="cursor: pointer;" onclick="selectUser(this,@UserID,@personName,@UserPic);" >                '
+		    + '<div id="@User_DIV" class="@userClass" style="z-index: 3;" name="users">'
+		    + '<i class="fa"></i>'
+		    + '</div>'
+			+ '          <div class="avator" style="z-index: 3;">           '
+			+ '              <img src="@personImage" alt="" onerror="javascript:replaceUserHeadImage(this);"/>'
+			+ '          </div>     '
+			+ '          <div class="name flexItem" >@UserName</div>  '
+			+ '  </div>      ';
+
+    var temp_choose_all2='<div class="settings-item" style="height: 55px;" >'
+    	+'<div class="inner-settings-item flexbox">'
+    	+'<div class="user_select_icon actived" id="selectUserAllTo_div" allSelectTo="0"></div>'
+    	+'<div class="title flexItem">'
+    	+'</div>'
+    	+'</div>'
+    	+'</div><div class="xuanrenBtn" onclick="changeChoose(0)">按名称选人</div>';
+	var pageIndex2 = 1;
+	var ischange = 0;
+	$(document).ready(function(){
+    	setTimeout(function(){
+        	$(".wrap_inner").height($(window).height());
+    	},800);
+		$("#users_search").on("click",function(){
+			   var keyWord =$.trim($('#keyWord2').val());
+			   if(keyWord != ''){
+					$("#department_list").html("");
+					doSearchUser("search");
+			   }else{
+				   $("#department_user_search").attr("action"," /wxqyh/portal/departmentAction!getChildDeptAndPerson.action?sortTop=1&userId=&pId=&deptId=");
+				   doSearch();
+			   }
+		});
+		$('.search-input').keydown(function(e){
+			if(e.keyCode==13 && "1" == chooseType){
+			   var keyWord =$.trim($('#keyWord2').val());
+			   if(keyWord != ''){
+					$("#department_list").html("");
+					doSearchUser("search");
+			   }else{
+				   $("#department_user_search").attr("action"," /wxqyh/portal/departmentAction!getChildDeptAndPerson.action?sortTop=1&userId=&pId=&deptId=");
+				   doSearch();
+			   }
+			}
+		});
+	});
+
+
+	/**
+	 * 加载数据
+	 */
+	function doSearch(keep) {
+		showLoading();
+		$('#department_user_search').ajaxSubmit({
+			data : {
+				'page' : pageIndex2
+			},
+			dataType : 'json',
+			success : function(result) {
+				if ("0" == result.code) {
+					$("#department_list").html("");
+					var pId = result.data.pId;
+					if(keep=='yes')arr.push(pId);
+					//返回按钮
+					if(pId!="top"&&arr.length!=0){
+						var bitem = tempback;
+						$("#department_list").append(bitem);
+					}
+					$("#chooseAll2").html(temp_choose_all2);
+					//部门列表
+					var dlist = result.data.deptlist;
+					if(dlist){
+						for ( var i = 0; i < dlist.length; i++) {
+							var deptinfo = dlist[i];
+							var ditem = tempDepart;
+							ditem = ditem.replaceAll("@userId","'"+''+"'" );
+							ditem = ditem.replaceAll("@deptName",deptinfo.departmentName );
+							if(!deptinfo.totalUser){
+								ditem = ditem.replaceAll("@totalUser","" );
+							}else{
+								ditem = ditem.replaceAll("@totalUser", deptinfo.totalUser);
+							}
+							ditem = ditem.replaceAll("@pid", "'"+ deptinfo.parentDepart + "'");
+							ditem = ditem.replaceAll("@deptId", "'"+ deptinfo.id + "'");
+							ditem = ditem.replaceAll("@deptClass", "user_select_icon actived");
+							$("#department_list").append(ditem);
+						}
+					}
+					//人员列表
+					var userList = result.data.userList;
+					var pinyin = "";
+					var pinyin2 = "";
+					for ( var i = 0; i < userList.length; i++) {
+						var userinfo = userList[i];
+
+						var item = tempHtml_;
+						if(userinfo.isTop>0){
+							//添加置顶
+							pinyin="";//不显示置顶栏
+						}else{
+							pinyin = userinfo.pinyin.toUpperCase().substr(0, 1);
+						}
+						//添加拼音
+						item = item.replace("@FirstNameP",pinyin);
+						if (pinyin2 != pinyin && pinyin!="") {
+							$("#department_list").append(item);
+							pinyin2 = pinyin;
+						}
+
+						item = tempHtml2_;
+						item = item.replaceAll("@UserID", "'"+ userinfo.userId + "'");
+						item = item.replaceAll("@User_DIV",userinfo.userId + "_d");
+						item = item.replaceAll("@UserName",userinfo.personName);
+						item = item.replaceAll("@personName","'"+userinfo.personName + "'");
+						item = item.replaceAll("@UserPic","'"+userinfo.headPic+ "'");
+						item = item.replaceAll("@personImage",userinfo.headPic);
+						if(selectedToUser){
+							$("#selected_user_inner2").width(selectedToUser.length*53+30);
+						}
+						if(selectedToUser.indexOf(userinfo.userId+"|"+userinfo.personName+"|"+userinfo.headPic)>-1){
+							item = item.replace("@userClass","user_select_icon active");
+						}else{
+							item = item.replace("@userClass","user_select_icon actived");
+						}
+						$("#department_list").append(item);
+					}
+
+  					if(dlist.length==0&&userList.length==0){
+						$("#department_list").append("<p style='text-align:center;margin-top: 10px;'>无更多联系人信息</p>");
+  					}
+
+					if("1"==pageIndex2 && userList.length<=0){
+						$("#getmore_comment_d").hide();
+					}else{
+						$("#getmore_comment_d").show();
+					}
+				}
+				hideLoading();
+			},
+			error : function() {
+				showMsg("",internetErrorMsg,1);
+				hideLoading();
+			}
+		});
+	}
+
+	function seachUsers(obj, userID) {
+		document.getElementById("department_user_search").action = "user_detail.jsp";
+		$("#targetUser").val(userID);
+		document.getElementById("department_user_search").submit();
+	}
+
+	function selectDept(pId,deptId){
+		document.getElementById("department_user_search").action = "/wxqyh/portal/departmentAction!getChildDeptAndPerson.action?sortTop=1&userId=&pId="+pId+"&deptId="+deptId;
+		doSearch('yes');
+	}
+	function preDept(){
+		var pId = arr.pop();
+		document.getElementById("department_user_search").action = "/wxqyh/portal/departmentAction!getChildDeptAndPerson.action?sortTop=1&userId=&pId="+pId+"&deptId="+pId;
+		doSearch('no');
+	}
+
+	/**
+	 * 搜索拼音首字母
+	 */
+	function searchLetter2(letter){
+		$("#keyWord2").val(letter);
+		$("#department_list").html("");
+		pageIndex2 = 1;
+		doSearchUser("firstletter");
+		$(".letter_list").hide();
+		$(".over_opactiy_lay").css({
+            "display": "none",
+            "opacity":0
+        })
+	}
+	//搜索全部
+	function searchAll2(){
+		$("#department_user_search").attr("action"," /wxqyh/portal/departmentAction!getChildDeptAndPerson.action?sortTop=1&userId=&pId=&deptId=");
+		$(".letter_list").hide();
+		doSearch();
+	}
+
+	function doSearchUser(type){
+		var url = "";
+
+		//var keyWord=$.trim($("#keyWord").val());
+		if(type=="firstletter"){	//搜索首字母
+			url = "/wxqyh/portal/contactAction!searchFirstLetterList.action";
+		}else{		//普通搜索
+			url = "/wxqyh/portal/departmentAction!getUserByNameOrPhone.action";
+		}
+
+		document.getElementById("department_user_search").action=url;
+    	showLoading();
+    	$('#department_user_search').ajaxSubmit({
+			data : {
+				'page' : pageIndex2
+			},
+			dataType : 'json',
+			success : function(result) {
+		/*  $.ajax({
+			url:url,
+			type:"get",
+			data: {keyWord:keyWord},
+			dataType:"json",
+			success:function(result){  */
+				//$('.search-input').val("");
+	             $("#letter_search").show();
+	             $("#users_search").hide();
+				if(result.code == "0"){
+					var userList = result.data.userList;
+					var pinyin = "";
+					var pinyin2 = "";
+					for ( var i = 0; i < userList.length; i++) {
+						var userinfo = userList[i];
+						//添加拼音
+						var item = tempHtml_;
+						pinyin = userinfo.pinyin.toUpperCase().substr(0, 1);
+						item = item.replace("@FirstNameP",pinyin);
+						if (i == 0 || pinyin2 != pinyin) {
+							$("#department_list").append(item);
+							pinyin2 = pinyin;
+						}
+						item = tempHtml2_;
+						item = item.replaceAll("@UserID", "'"+ userinfo.userId + "'");
+						item = item.replaceAll("@User_DIV",userinfo.userId + "_d");
+						item = item.replaceAll("@UserName",userinfo.personName);
+						item = item.replace("@Remark",userinfo.mark);
+						item = item.replaceAll("@personName","'"+userinfo.personName + "'");
+						item = item.replaceAll("@UserPic","'"+userinfo.headPic+ "'");
+						item = item.replace("@personImage",userinfo.headPic);
+						if(selectedToUser.indexOf(userinfo.userId+"|"+userinfo.personName+"|"+userinfo.headPic)>-1){
+							item = item.replace("@userClass","user_select_icon active");
+						}else{
+							item = item.replace("@userClass","user_select_icon actived");
+						}
+						$("#department_list").append(item);
+					}
+					if(userList.length==0){
+						$("#department_list").append("<p style='text-align:center;margin-top: 10px;'>没有搜索到任何数据，换别的关键字试试。例如姓名、拼音、手机号都可以哦</p>");
+					}
+
+					if("1"==pageIndex2 && userList.length<=0){
+						$("#getmore_comment_d").hide();
+					}else{
+						$("#getmore_comment_d").show();
+					}
+
+				}
+				hideLoading();
+			},
+			error:function(){
+				$('.search-input').val("");
+	             $("#letter_search").show();
+	             $("#users_search").hide();
+				hideLoading();
+			}
+		});
+	}
+
+	function selectUser(obj,userID,userName,headPic){
+		if(''==userID){
+			return;
+		}
+		if($(obj).find(".user_select_icon").hasClass("active")){
+			//$(obj).find(".user_select_icon").removeClass("active");
+			//$(obj).find(".user_select_icon").addClass("actived");
+			$("#selectUserAllTo_div").removeClass("active");
+			$("#selectUserAllTo_div").addClass("actived");
+			$("#"+userID+"_a").removeClass("active");
+			$("#"+userID+"_a").addClass("actived");
+			$("#"+userID+"_d").removeClass("active");
+			$("#"+userID+"_d").addClass("actived");
+			$("#to"+userID).removeClass("active").addClass("actived");
+			selectedToUser.remove(userID+"|"+userName+"|"+headPic);
+			refreshSelected2('1',userID+"|"+userName+"|"+headPic);
+
+			//去除该用户所在的常用联系人群组勾选状态
+			var groupId="";
+			for(var i=0;i<togroupArray.length;i++){
+				if(togroupArray[i].indexOf(userID)>=0){
+					groupId=togroupArray[i].split("|")[0];
+					var temp="#togroup"+groupId;
+					$(temp).removeClass("active").addClass("actived");
+				}
+			}
+			var length=togroupArray.length-1;
+			for(var j=length;j>=0;j--){
+				if(togroupArray[j].split("|")[0]==groupId){
+					var temp=togroupArray[j];
+					togroupArray.remove(temp);
+				}
+			}
+
+		}else{
+			//$(obj).find(".user_select_icon").removeClass("actived");
+			//$(obj).find(".user_select_icon").addClass("active");
+			$("#"+userID+"_a").removeClass("actived");
+			$("#"+userID+"_a").addClass("active");
+			$("#"+userID+"_d").removeClass("actived");
+			$("#"+userID+"_d").addClass("active");
+			$("#to"+userID).removeClass("actived").addClass("active");
+			selectedToUser.push(userID+"|"+userName+"|"+headPic);
+			refreshSelected2('2',userID+"|"+userName+"|"+headPic);
+		}
+		$("#tonum").html(selectedToUser.length+"人");
+		$("#num2").html(selectedToUser.length+"人");
+	}
+
+
+	function refreshSelected2(a,b){
+		if(a=="1"){	//减人
+			var list = $("#toselected_user").find("li");
+			var id = b.split("|")[0];
+			for(var i=0;i<list.length;i++){
+				if($(list[i]).attr("id")==("toalready"+id)){
+					$(list[i]).remove();
+				}
+			}
+			$(".selected_user_inner_to").width(selectedToUser.length*53+30);
+
+			var list = $("#selected_user2").find("li");
+			var id = b.split("|")[0];
+			for(var i=0;i<list.length;i++){
+				if($(list[i]).attr("id")==("toalready"+id)){
+					$(list[i]).remove();
+				}
+			}
+			$("#selected_user_inner2").width(selectedToUser.length*53+30);
+			if(selectedToUser.length==0){
+				$(".search-box-height-to").css("height","50px");
+				$("#chooseUserId2").css("height","50px");
+				$("#toselected_user").hide();
+				$("#selected_user2").hide();
+			}
+		}
+		if(a=="2"){
+			var user = b.split("|");
+            var li = temp_already_to;
+            li = li.replaceAll("@userId",user[0]);
+            li = li.replaceAll("@userName",user[1]);
+            li = li.replaceAll("@personImage",user[2]);
+        	$(".selected_user_inner_to").width(selectedToUser.length*53+30);
+        	$("#selected_user_inner2").width(selectedToUser.length*53+30);
+         	$("#toalreadySelected").append(li);
+			$("#alreadySelected2").append(li);
+    		$(".search-box-height-to").css("height","150px");
+    		$("#chooseUserId2").css("height","150px");
+         	$("#toselected_user").show();
+         	$("#selected_user2").show();
+		}
+    }
+
+	/*取消选择人员信息*/
+	function userSelectCancel(){
+		//keywork="";
+		//isShowGroup = 0;
+		//优化取消后联系人还在集合里问题 chenfeixiong 2014-08-01
+		var len=selectedToUser.length;
+		for(var x=len-1;x>=0;x--){
+			//手动删除常用联系人群组
+			var groupId="";
+			for(var i=0;i<togroupArray.length;i++){
+				if(togroupArray[i].indexOf(selectedToUser[x].split("|")[0])>=0){
+					groupId=togroupArray[i].split("|")[0];
+					var temp="#togroup"+groupId;
+					$(temp).removeClass("active").addClass("actived");
+				}
+			}
+			var length=togroupArray.length-1;
+			for(var j=length;j>=0;j--){
+				if(togroupArray[j].split("|")[0]==groupId){
+					var temp=togroupArray[j];
+					togroupArray.remove(temp);
+				}
+			}
+			$("#selectUserAllTo_div").removeClass("active").addClass("actived");
+
+			refreshSelected2("1",selectedToUser[x]);
+			selectedToUser.remove(selectedToUser[x]);
+		}
+		for(var x=0;x<oldselectedToUser.length;x++){
+			selectedToUser.push(oldselectedToUser[x]);
+			refreshSelected2("2",selectedToUser[x]);
+		}
+	    if(selectedToUser.length==0){
+			$("#toalreadySelected").html("");
+    		$(".search-box-height-to").css("height","50px");
+    		$("#toselected_user").hide();
+		}
+		$("#selectToUser_div").hide();
+		$("#user_select_div2").hide();
+		$("#wrap_main").show();
+	}
+
+	/*确定选择*/
+    function doSure(){
+    	//keywork="";
+    	//isShowGroup = 0;
+    	if(selectedToUser.length==0){
+    		showMsg("提示信息", "您未选择任何人！", 1);
+    		return ;
+    	}else{
+    		if(1 == chooseType){//部门选人
+    			$("#toalreadySelected").html($("#alreadySelected2").html());
+    		}
+   			resetUsersTo();
+   			$("#selectToUser_div").hide();
+   			$("#user_select_div2").hide();
+   			$("#wrap_main").show();
+   		}
+    }
+    </script>
+    <div style="display:none" id="selectToUser_div">
+        <input type="hidden" name="userId" id="userId" value="" />
+        <div class="wrap">
+            <div class="search-box fixed">
+                <form action="/wxqyh/portal/selectUserAction!ajaxGetUserListByOrgID.action" method="post" id="toUserSearch" onsubmit="return false">
+                    <div class="inner-search-box">
+                        <div class="search-box-o flexbox">
+                            <div class="flexItem">
+                                <div class="search-input-box flexbox">
+                                    <div class="flexItem">
+                                        <input class="tosearch-input" type="text" placeholder="输入【姓名\拼音\手机号】搜索" name="keyWord" id="tokeyWord" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="search_more">
+                                <a id="toletter_search" href="#" class="search_letter_btn"><i class="fa fa-th"></i></a>
+                                <a id="tousers_search" href="#" class="search_letter_btn hide"><i class="fa fa-search"></i></a>
+                                <div class="letter_list hide" style="z-index: 99;">
+                                    <ul class="clearfix">
+                                        <li> <a href="javascript:tosearchLetter('A')">A</a></li>
+                                        <li> <a href="javascript:tosearchLetter('B')">B</a></li>
+                                        <li> <a href="javascript:tosearchLetter('C')">C</a></li>
+                                        <li> <a href="javascript:tosearchLetter('D')">D</a></li>
+                                        <li> <a href="javascript:tosearchLetter('E')">E</a></li>
+                                        <li> <a href="javascript:tosearchLetter('F')">F</a></li>
+                                        <li> <a href="javascript:tosearchLetter('G')">G</a></li>
+                                        <li> <a href="javascript:tosearchLetter('H')">H</a></li>
+                                        <li> <a href="javascript:tosearchLetter('I')">I</a></li>
+                                        <li> <a href="javascript:tosearchLetter('J')">J</a></li>
+                                        <li> <a href="javascript:tosearchLetter('K')">K</a></li>
+                                        <li> <a href="javascript:tosearchLetter('L')">L</a></li>
+                                        <li> <a href="javascript:tosearchLetter('M')">M</a></li>
+                                        <li> <a href="javascript:tosearchLetter('N')">N</a></li>
+                                        <li> <a href="javascript:tosearchLetter('O')">O</a></li>
+                                        <li> <a href="javascript:tosearchLetter('P')">P</a></li>
+                                        <li> <a href="javascript:tosearchLetter('Q')">Q</a></li>
+                                        <li> <a href="javascript:tosearchLetter('R')">R</a></li>
+                                        <li> <a href="javascript:tosearchLetter('S')">S</a></li>
+                                        <li> <a href="javascript:tosearchLetter('T')">T</a></li>
+                                        <li> <a href="javascript:tosearchLetter('U')">U</a></li>
+                                        <li> <a href="javascript:tosearchLetter('V')">V</a></li>
+                                        <li> <a href="javascript:tosearchLetter('W')">W</a></li>
+                                        <li> <a href="javascript:tosearchLetter('X')">X</a></li>
+                                        <li> <a href="javascript:tosearchLetter('Y')">Y</a></li>
+                                        <li> <a href="javascript:tosearchLetter('Z')">Z</a></li>
+                                        <li> <a href="javascript:tosearchAll()" style="font-size: 30px;">*</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!--已选择人员-->
+                <div class="selected_user" id="toselected_user">
+                    <div class="selected_user_inner selected_user_inner_to">
+                        <ul class="clearfix f-add-user-list " id="toalreadySelected"></ul>
+                    </div>
+                </div>
+                <!-- 已选择人员 end -->
+            </div>
+            <div id="tomain" class="wrap_inner">
+                <div class="search-box-height search-box-height-to"></div>
+                <div class="chooseAllTo common_list relative" id="chooseAll"></div><!-- 全选 -->
+                <div class="letter_bar" onclick="switchPublicGroupList()" id="publicgroup">公共群组(<span id="publicgroupNum">0</span>)<span id="pugroup" class="downarrow"></span></div>
+                <div id="publicgroupUserIdList" class="common_list" style="display: none;"></div>
+                <div class="letter_bar" onclick="switchGroupListTo()" id="groupUserIdTo">常用联系人群组(<span id="groupUserIdToNum">0</span>)<span id="togroup" class="uparrow"></span></div>
+                <div id="groupUserIdListTo" class="common_list"></div>
+                <div class="letter_bar" onclick="switchCommonListTo()">常用联系人<span id="toarrow" class="uparrow"></span></div>
+                <div id="commonUserListTo" class="common_list"></div>
+                <div class="address_list">
+                    <div class="tolist">
+                        <!-- 模板数据 -->
+                    </div>
+                    <div class="all_pull" id="tips" style="display:none">
+                        <p class="lastComment">正在加载中...</p>
+                    </div>
+                </div>
+                <div class="footheight"></div>
+            </div>
+            <div class="foot_bar">
+                <div class="foot_bar_inner flexbox">
+                    <a class="flexItem btn white_btn ask_btn prev_ask_btn" href="javascript:userSelectCancelTo()">取消</a>
+                    <a class="flexItem btn white_btn ask_btn next_ask_btn" href="javascript:doSureTo()">确定<span id="tonum">0人</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+	var selectedToUser = new Array();
+
+	var oldselectedToUser = new Array();  //存储已选择人员的临时集
+	var oldSelectedToUserLength =0;      //记录选择人数，用于全选取消后判断
+	var tempHtml = '<div class="letter_bar">@FirstNameP</div>';
+
+	var tempHtml2 = ' '
+	+'<div class="settings-item" onclick="selectUserTo(this,@UserID,@UserName,\'@personImage\');"> '
+	+'    <a class="a_link" href="#"></a> '
+	+'    <div class="inner-settings-item flexbox to"> '
+	+'        <div class="user_select_icon touser_select_icon @actived" id="to@ToUserId"> <i class="fa"></i> '
+	+'        </div> '
+	+'        <div class="avator"> '
+	+'            <img src="@personImage" alt="" onerror="javascript:replaceUserHeadImage(this);"/>'
+	+'        </div> '
+	+'        <div class="title flexItem"> '
+	+'            <p class="name">@UserName</p> '
+	+'        </div> '
+	+'    </div> '
+	+'</div>';
+    var temp_choose_all_to='<div class="settings-item" onclick="chooseAllTo();">'
+    	+'<div class="inner-settings-item flexbox">'
+    	+'<div class="user_select_icon actived" id="selectUserAllTo_div" allSelectTo="0"><i class="fa"></i></div>'
+    	+'<div class="title flexItem">'
+    	+'<p class="name">全选</p>'
+    	+'</div>'
+    	+'</div>'
+    	+'</div><div class="xuanrenBtn" id="zuzhi_to" onclick="changeChoose(1)">按组织选人</div>';
+   	//已选择人员模板
+   	var temp_already_to = ''
+   		+'<li id="toalready@userId" onclick="toremoveAlready(this,\'@userId\',\'@userName\',\'@personImage\')"><img src="@personImage" alt="" onerror="javascript:replaceUserHeadImage(this);" />'
+   		+ '<p class="name">@userName</p></li>';
+    //常用联系人群组模版
+	var tempHtmlgto = ''
+		+'<div class="settings-item" onclick="selectgroup(this,@groupId);"> '
+		+'    <a class="a_link" href="#"></a> '
+		+'	  <div id="tohidden@Id" style="display:none"></div>'
+		+'    <div class="inner-settings-item flexbox to"> '
+		+'        <div class="user_select_icon touser_select_icon @actived" id="togroup@Id"> <i class="fa"></i> '
+		+'        </div> '
+		+'        <div class="avator"> '
+		+'            <img src="../images/img/aa.jpg" alt="" />'
+		+'        </div> '
+		+'        <div class="title flexItem"> '
+		+'            <p class="name">@groupName</p> '
+		+'        </div> '
+		+'    </div> '
+		+'</div>';
+	//常用联系人人员模版
+	var tempperson = ''
+   		+'<li><p class="name">@userId</p>'
+   		+ '<p class="name">@userName</p></li>';
+	var topageIndex = 1;
+	var tomaxPageIndex;
+	var ischange = 0;
+	var tomaxPage,tocurrPage;
+	var userListAllTo = new Array();
+
+	/**
+	 * 搜索拼音首字母
+	 */
+	function tosearchLetter(letter){
+		//userListAllTo = tocommonArray.concat();
+		userListAllTo = new Array();
+		document.getElementById("toUserSearch").action="/wxqyh/portal/selectUserAction!searchFirstLetter.action";
+		$("#tokeyWord").val(letter);
+		$(".tolist").html("");
+		topageIndex = 1;
+		//isShowGroupto = 0;
+		doSearchTo();
+		$(".letter_list").hide();
+		$(".over_opactiy_lay").css({
+            "display": "none",
+            "opacity":0
+        })
+        //搜索时隐藏常用联系人
+		$("#commonUserListTo").hide();
+		$("#toarrow").removeClass("uparrow").addClass("downarrow");
+
+		//隐藏常用联系人群组
+		$("#groupUserIdListTo").hide();
+		$("#togroup").removeClass("uparrow").addClass("downarrow");
+		//隐藏公共群组
+		$("#publicgroupUserIdList").hide();
+		$("#pugroup").removeClass("uparrow").addClass("downarrow");
+	}
+	//搜索全部相关人
+	function tosearchAll(){
+		tokeywork="";
+		//userListAllTo = tocommonArray.concat();
+		userListAllTo = new Array();
+		$("#toUserSearch").attr("action","/wxqyh/portal/selectUserAction!ajaxGetUserListByOrgID.action");
+		$("#tokeyWord").val("");
+		$(".tolist").html("");
+		topageIndex = 1;
+		//isShowGroupto = 0;
+		doSearchTo();
+		$(".letter_list").hide();
+		$(".over_opactiy_lay").css({
+            "display": "none",
+            "opacity":0
+        })
+        //搜索时隐藏常用联系人
+		$("#commonUserListTo").hide();
+		$("#toarrow").removeClass("uparrow").addClass("downarrow");
+
+		//隐藏常用联系人群组
+		$("#groupUserIdListTo").hide();
+		$("#togroup").removeClass("uparrow").addClass("downarrow");
+		//隐藏公共群组
+		$("#publicgroupUserIdList").hide();
+		$("#pugroup").removeClass("uparrow").addClass("downarrow");
+	}
+	/**
+	 * 加载数据
+	 */
+	var tokeywork="";
+	var isShowGroupto = 0;
+	var topinyin = "";
+	var topinyin2 = "";
+	var toIsOpen = "0";
+	var isShowCommonTo = "0";
+	var searchUserIdListTo = "";	//搜索结果人员ID集合
+	var agentCode_to = "";
+	function doSearchTo() {
+		toIsOpen = "1";
+		if(topageIndex == 1){
+			showLoading();
+			searchUserIdListTo = "";
+		}
+		$('#toUserSearch').ajaxSubmit({
+			data : {
+				'agentCode' : agentCode_to,
+				'page' : topageIndex
+			},
+			dataType : 'json',
+			success : function(result) {
+				lock_roll=false;
+				//tokeywork=$("#tokeyWord").val();
+				//$("#tokeyWord").val("");
+	             $("#toletter_search").show();
+	             $("#tousers_search").hide();
+				if ("0" == result.code) {
+					$(".chooseAllTo").html(temp_choose_all_to);
+					tomaxPageIndex=result.data.maxPage;
+					tomaxPage = result.data.maxPage;
+					tocurrPage = result.data.currPage;
+					var userListTo = result.data.pageData;
+					//var userListTo = result.data.userList;
+					if(userListTo&&userListTo.length>0){
+						for ( var i = 0; i < userListTo.length; i++) {
+							var userinfo = userListTo[i];
+							/* if(commonUserIdListTo.indexOf(userinfo.userId)>=0){
+								//此用户已存在常用联系人，不再显示
+								continue ;
+							} */
+							searchUserIdListTo += userinfo.userId;
+							if(userListAllTo.indexOf(userinfo.userId+"|"+userinfo.personName+"|"+userinfo.headPic)<=-1){
+								userListAllTo.push(userinfo.userId+"|"+userinfo.personName+"|"+userinfo.headPic);
+							}
+
+							var item = tempHtml;
+							topinyin = userinfo.pinyin.toUpperCase().substr(0, 1);
+							item = item.replace("@FirstNameP",topinyin);
+							if (topinyin2 != topinyin) {
+								$(".tolist").append(item);
+								topinyin2 = topinyin;
+							}
+
+							item = tempHtml2;
+							item = item.replace("@UserID", "'"+ userinfo.userId + "'");
+							item = item.replace("@ToUserId", userinfo.userId);
+							item = item.replace("@UserName","'"+userinfo.personName+"'");
+							item = item.replace("@UserName",userinfo.personName);
+							//item = item.replace("@HeadPic","'"+userinfo.headPic+"'");
+							item = item.replaceAll("@personImage",userinfo.headPic);
+							item = item.replace("@actived","actived");
+							for(var k=0;k<selectedToUser.length;k++){
+								var uid = selectedToUser[k].split("|")[0];
+								if(uid==userinfo.userId){
+									item = item.replace("actived","active");
+								}
+							}
+							$("#tonum").html(selectedToUser.length+"人");
+							$(".tolist").append(item);
+							$("#zuzhi_to").hide();
+							if(result.data.isRangeAll == true){
+								$("#zuzhi_to").show();
+							}
+						}
+					}else{
+						$("#zuzhi_to").hide();
+						$(".tolist").html("<p style='text-align:center;margin-top: 10px;'>没有搜索到任何数据，换别的关键字试试</p>");
+					}
+					hideLoading();
+				} else {
+					hideLoading();
+				}
+				refreshCommonUsersTo();
+			},
+			error : function() {
+				hideLoading();
+                showMsg("", "系统繁忙，请稍后再试！", 1);
+			}
+		});
+		if(isShowGroupto == 0){
+			doGetGroupUsersTo(); //获取常用联系人群组
+			isShowGroupto++;
+		}
+	}
+
+	function seachUsers(obj, userID) {
+		document.getElementById("toUserSearch").action = "user_detail.jsp?id="
+				+ userID;
+		document.getElementById("toUserSearch").submit();
+	}
+
+	function selectUserTo(obj,userID,userName,headPic){
+		if($(obj).find(".user_select_icon").hasClass("active")){
+			$(obj).find(".user_select_icon").removeClass("active");
+			$(obj).find(".user_select_icon").addClass("actived");
+			$("#selectUserAllTo_div").removeClass("active");
+			$("#selectUserAllTo_div").addClass("actived");
+			selectedToUser.remove(userID+"|"+userName+"|"+headPic);
+			torefreshSelected('1',userID+"|"+userName+"|"+headPic);
+
+			//去除该用户所在的常用联系人群组勾选状态
+			var groupId="";
+			for(var i=0;i<togroupArray.length;i++){
+				if(togroupArray[i].indexOf(userID)>=0){
+					groupId=togroupArray[i].split("|")[0];
+					var temp="#togroup"+groupId;
+					$(temp).removeClass("active").addClass("actived");
+				}
+			}
+			var length=togroupArray.length-1;
+			for(var j=length;j>=0;j--){
+				if(togroupArray[j].split("|")[0]==groupId){
+					var temp=togroupArray[j];
+					togroupArray.remove(temp);
+				}
+			}
+		}else{
+			$(obj).find(".user_select_icon").removeClass("actived");
+			$(obj).find(".user_select_icon").addClass("active");
+			selectedToUser.push(userID+"|"+userName+"|"+headPic);
+			torefreshSelected('2',userID+"|"+userName+"|"+headPic);
+		}
+		$("#tonum").html(selectedToUser.length+"人");
+	}
+
+	//全选
+	function chooseAllTo(){
+		selectedToUser = new Array();
+		//清空已选择人员列表
+		$("#toalreadySelected").html("");
+		$("#alreadySelected2").html("");
+		$(".search-box-height-to").css("height","50px");
+		$("#toselected_user").hide();
+		$("#chooseUserId2").css("height","50px");
+		$("#selected_user2").hide();
+		//取消全选
+		if($("#selectUserAllTo_div").hasClass("active")){
+			$("#selectUserAllTo_div").removeClass("active");
+			$("#selectUserAllTo_div").addClass("actived");
+			$("#selectUserAllTo_div").attr("allSelectTo","0");
+
+			$("#tomain").find(".user_select_icon").each(function(){
+				$(this).removeClass("active");
+				$(this).addClass("actived");
+	        });
+			$("#usmain2").find(".user_select_icon").each(function(){
+				$(this).removeClass("active");
+				$(this).addClass("actived");
+	        });
+			$("#tonum").html("0人");
+			$("#num2").html("0人");
+		}else{
+			$("#selectUserAllTo_div").removeClass("actived");
+			$("#selectUserAllTo_div").addClass("active");
+			$("#selectUserAllTo_div").attr("allSelectTo","1");
+
+			$("#tomain").find(".user_select_icon").each(function(){
+				$(this).removeClass("actived");
+				$(this).addClass("active");
+	        });
+			$("#usmain2").find(".user_select_icon").each(function(){
+				$(this).removeClass("actived");
+				$(this).addClass("active");
+	        });
+			var userinfo;
+			for ( var i = 0; i < userListAllTo.length; i++) {
+				userinfo = userListAllTo[i];
+				selectedToUser.push(userinfo);
+				torefreshSelected("2",userinfo);
+			}
+			//用于取消后判断全选
+			oldSelectedToUserLength=selectedToUser.length;
+
+			$("#tonum").html(selectedToUser.length+"人");
+			$("#num2").html(selectedToUser.length+"人");
+		}
+	}
+	//打开选人页面
+	function openSelect(userId,target){
+    	$("#userId").val(userId);
+		$("#user_select_div").show();
+		$("#wrap_main").hide();
+		if($("#userIds").val() == ""){
+			$("#keyWord").val("");
+			doSearchUserSelect();
+		}
+    }
+	/*取消选择人员信息*/
+	function userSelectCancelTo(){
+		//tokeywork="";
+		$("#selectToUser_div").hide();
+		$("#wrap_main").show();
+
+		//优化取消后联系人还在集合里问题 chenfeixiong 2014-08-01
+		var len=selectedToUser.length;
+		for(var x=len-1;x>=0;x--){
+			//去除该用户所在的常用联系人群组勾选状态
+			var groupId="";
+			var userID=selectedToUser[x].split("|")[0];
+			for(var i=0;i<togroupArray.length;i++){
+				if(togroupArray[i].indexOf(userID)>=0){
+					groupId=togroupArray[i].split("|")[0];
+					var temp="#togroup"+groupId;
+					$(temp).removeClass("active").addClass("actived");
+				}
+			}
+			var length=togroupArray.length-1;
+			for(var j=length;j>=0;j--){
+				if(togroupArray[j].split("|")[0]==groupId){
+					var temp=togroupArray[j];
+					togroupArray.remove(temp);
+				}
+			}
+
+			torefreshSelected("1",selectedToUser[x]);
+			selectedToUser.remove(selectedToUser[x]);
+		}
+		for(var x=0;x<oldselectedToUser.length;x++){
+			selectedToUser.push(oldselectedToUser[x]);
+			torefreshSelected("2",selectedToUser[x]);
+		}
+	    if(selectedToUser.length==0){
+			$("#toalreadySelected").html("");
+    		$(".search-box-height-to").css("height","50px");
+    		$("#toselected_user").hide();
+		}
+	    if(selectedToUser.length!=oldSelectedToUserLength){				//全选按钮控制
+			$("#selectUserAllTo_div").removeClass("active").addClass("actived");
+		}else if(selectedToUser.length==oldSelectedToUserLength && selectedToUser.length!=0){
+			$("#selectUserAllTo_div").removeClass("actived").addClass("active");
+		}
+	    $("#user_select_div2").hide();
+		resetUsersTo();
+	}
+	//确认选择
+	function doSureTo(){
+		//tokeywork="";
+    	if(selectedToUser.length==0){
+    		showMsg("提示信息", "您未选择任何人！", 1);
+    		return ;
+    	}
+    	else{
+    		resetUsersTo();
+   			$("#selectToUser_div").hide();
+   			$("#wrap_main").show();
+   		}
+    }
+	function resetUsersTo(){
+		var persons="";
+   		var userIds="";
+   		var users = "";
+   		if(selectedToUser.length>5){
+			$("#tomoreDiv").show();
+			$("#toNum").html(selectedToUser.length);
+			var list =$("#tomoreDiv").find("input");
+   			if(list.length>0){
+   				$(list[0]).remove();
+   			}
+		}else{
+			$("#tomoreDiv").hide();
+		}
+		for ( var i = 0; i < selectedToUser.length; i++) {
+   			var person = selectedToUser[i].split("|");
+   			var item = template1;
+   			if(i<5){
+   				item = item.replace("@Show","block");
+   			}else{
+   				item = item.replace("@Show","none");
+   			}
+			item = item.replace("@UserId",person[0]);
+			item = item.replace("@UserName",person[1]);
+			//item = item.replace("@HeadPic","" + person[0] + "_S.jpg");
+			//item = item.replace("@ArrayValue","'"+person[0]+"|"+person[1]+"'");
+			item = item.replace("@HeadPic",person[2]);
+			item = item.replace("@ArrayValue","'"+person[0]+"|"+person[1]+"|"+person[2]+"'");
+			users += item;
+		}
+		deletePersons("taskto");
+
+		$("#toPersonList").prepend(users);
+
+		var url=document.location.href;//@负责人缓存
+		if(url.charAt(url.length-1)=='#'){
+			url=url.substr(0,url.length-1);
+		}
+			if(window.localStorage[url]){//H5本地缓存
+				var json=JSON.parse(localStorage.getItem(url));
+				json['toPersonList']=selectedToUser;
+				localStorage[url]=JSON.stringify(json);
+			}else{
+				var json={};
+				json['toPersonList']=selectedToUser;
+				localStorage[url]=JSON.stringify(json);
+			}
+	}
+
+		$(function(){
+			$("#tousers_search").on("click",function(){
+				//isShowGroupto = 0;
+
+	 				topageIndex = 1;
+ 				   //userListAllTo = tocommonArray.concat();
+ 				   userListAllTo = new Array();
+ 				   $(".tolist").html("");
+ 					if($("#tokeyWord").val()==""){
+ 						document.getElementById("toUserSearch").action="/wxqyh/portal/selectUserAction!ajaxGetUserListByOrgID.action";
+ 					}
+ 					else{
+ 						document.getElementById("toUserSearch").action="/wxqyh/portal/selectUserAction!searchByNameOrPhone.action";
+ 					}
+ 				   //$("#toUserSearch").attr("action","/wxqyh/portal/selectUserAction!ajaxGetUserListByUserNameOrPhone.action");
+ 				   doSearchTo();
+ 			        //搜索时隐藏常用联系人
+ 					$("#commonUserListTo").hide();
+ 					$("#toarrow").removeClass("uparrow").addClass("downarrow");
+
+ 					//隐藏常用联系人群组
+ 					$("#groupUserIdListTo").hide();
+ 					$("#togroup").removeClass("uparrow").addClass("downarrow");
+ 					//隐藏常用联系人群组
+ 					$("#publicgroupUserIdList").hide();
+ 					$("#pugroup").removeClass("uparrow").addClass("downarrow");
+			});
+			//当用户回车时
+	 		$('#tokeyWord').keydown(function(e){
+	 			if(e.keyCode==13){
+	 				topageIndex = 1;
+ 				   userListAllTo = new Array();
+ 				   $(".tolist").html("");
+ 					if($("#tokeyWord").val()==""){
+ 						document.getElementById("toUserSearch").action="/wxqyh/portal/selectUserAction!ajaxGetUserListByOrgID.action";
+ 					}
+ 					else{
+ 						document.getElementById("toUserSearch").action="/wxqyh/portal/selectUserAction!searchByNameOrPhone.action";
+ 					}
+ 				   //$("#toUserSearch").attr("action","/wxqyh/portal/selectUserAction!ajaxGetUserListByUserNameOrPhone.action");
+ 				   doSearchTo();
+ 			        //搜索时隐藏常用联系人
+ 					$("#commonUserListTo").hide();
+ 					$("#toarrow").removeClass("uparrow").addClass("downarrow");
+
+ 					//隐藏常用联系人群组
+ 					$("#groupUserIdListTo").hide();
+ 					$("#togroup").removeClass("uparrow").addClass("downarrow");
+ 					//隐藏常用联系人群组
+ 					$("#publicgroupUserIdList").hide();
+ 					$("#pugroup").removeClass("uparrow").addClass("downarrow");
+	 			}
+	 		});
+			// 搜索框字母导航
+		    /*弹出框*/
+		    function show_lay(){
+		        var over_opactiy_lay = $(".over_opactiy_lay");
+		        if(!over_opactiy_lay.length){
+		            $("body").append('<div class="over_opactiy_lay"></div>');
+		            over_opactiy_lay = $(".over_opactiy_lay");
+		        }
+		        over_opactiy_lay.css({
+		            "display": "block",
+		            "opacity":1
+		        })
+		    }
+
+		    function hide_lay(){
+		        var over_opactiy_lay = $(".over_opactiy_lay");
+		        over_opactiy_lay.css({
+		            "display": "none",
+		            "opacity":0
+		        })
+		    }
+		    $(".tosearch-input").on("input", function(){
+		        var val = $(this).val();
+		         if(val!=""){
+		             $("#toletter_search").hide();
+		             $("#tousers_search").show();
+		             $(".letter_list").hide();
+		             hide_lay();
+		         }else{
+		             $("#toletter_search").show();
+		             $("#tousers_search").hide();
+		         }
+		     });
+
+		     $("#toletter_search").on("click", function(){
+		    	 show_lay();
+		         $(".letter_list").toggle();
+		         var over_opactiy_lay = $(".over_opactiy_lay");
+		         if(over_opactiy_lay.length){
+		             over_opactiy_lay.on("click", function(){
+		                 $(".letter_list").hide();
+		                 over_opactiy_lay.off();
+		                 hide_lay();
+		             });
+		         }
+		     });
+		})
+
+	function switchCommonListTo(){
+		if($("#toarrow").hasClass("uparrow")){
+			$("#commonUserListTo").hide();
+			$("#toarrow").removeClass("uparrow").addClass("downarrow");
+		}else{
+			$("#commonUserListTo").show();
+			$("#toarrow").removeClass("downarrow").addClass("uparrow");
+		}
+	}
+	//获取常用联系人
+	var commonUserIdListTo = "";
+	var tocommonArray = new Array();//常用联系人数组
+	function doGetCommonUsersTo(){
+		$.ajax({
+			url:"/wxqyh/portal/selectUserAction!getCommonList.action",
+			data : {"agentCode" : agentCode_to},
+			type:"get",
+			dataType:"json",
+			success:function(result){
+				if(result.code=="0"){
+					var commonList = result.data.commonList;
+					if(commonList&&commonList.length>0){
+						for(var i=0;i<commonList.length;i++){
+							var value = commonList[i];
+							tocommonArray.push(value.userId+"|"+value.personName+"|"+value.headPic);
+							if(searchUserIdListTo.indexOf(value.userId)>=0){
+								//此用户在搜索结果中，常用联系人 不再显示
+								continue ;
+							}
+							if(userListAllTo.indexOf(value.userId+"|"+value.personName+"|"+value.headPic)<=-1){
+								userListAllTo.push(value.userId+"|"+value.personName+"|"+value.headPic);
+							}
+							item = tempHtml2;
+							item = item.replace("@UserID", "'"+ value.userId + "'");
+							item = item.replace("@ToUserId", value.userId);
+							item = item.replace("@UserName","'"+value.personName+"'");
+							item = item.replace("@UserName",value.personName);
+							//item = item.replace("@HeadPic","'"+value.headPic+"'");
+							item = item.replaceAll("@personImage",value.headPic);
+							item = item.replace("@actived","actived");
+							for(var k=0;k<selectedToUser.length;k++){
+								var uid = selectedToUser[k].split("|")[0];
+								if(uid==value.userId){
+									item = item.replace("actived","active");
+								}
+							}
+							//commonUserIdListTo += value.userId;
+							$("#commonUserListTo").append(item);
+						};
+					}
+				}
+				//userListAllTo = tocommonArray.concat();
+				//doSearchTo();
+			}
+		});
+	}
+
+	//获取常用联系人群组  chenfeixiong 2014/08/25
+	var groupUserIdListTo = "";
+	var togroupArray = new Array();	//常用联系人群组数组
+	function doGetGroupUsersTo(){
+		$("#groupUserIdListTo").html("");
+		$("#publicgroupUserIdList").html("");
+		$.ajax({
+			url:"/wxqyh/portal/selectUserAction!getUserGroup.action",
+			type:"get",
+			dataType:"json",
+			success:function(result){
+				if(result.code=="0"){
+					var groupList = result.data.pageData;
+					if(groupList&&groupList.length>0){
+						//maquanyang 添加群组数量 2015-8-7
+						$("#groupUserIdToNum").html(groupList.length);
+						for(var i=0;i<groupList.length;i++){
+							var value = groupList[i];
+							item = tempHtmlgto;
+							item = item.replaceAll("@groupId", "'"+ value.groupId + "'");
+							item = item.replace("@groupName",value.groupName);
+							item = item.replaceAll("@Id",value.groupId);
+							/* if(togroupArray.indexOf(value.groupId+"|")>-1){
+								item = item.replace("@actived","active");
+							}else{ */
+								item = item.replace("@actived","actived");
+							//}
+							$("#groupUserIdListTo").append(item);
+						 }
+					}
+					//添加公共群组 chenfeixiong
+					var publicList = result.data.publicList;
+					if(publicList&&publicList.length>0){
+						//maquanyang 添加群组数量 2015-8-7
+						$("#publicgroupNum").html(publicList.length);
+						for(var i=0;i<publicList.length;i++){
+							var value = publicList[i];
+							item = tempHtmlgto;
+							item = item.replaceAll("@groupId", "'"+ value.groupId + "'");
+							item = item.replace("@groupName",value.groupName);
+							item = item.replaceAll("@Id",value.groupId);
+							/* if(togroupArray.indexOf(value.groupId+"|")>-1){
+								item = item.replace("@actived","active");
+							}else{ */
+								item = item.replace("@actived","actived");
+							//}
+							$("#publicgroupUserIdList").append(item);
+						 }
+					}
+				}
+			}
+		});
+	}
+	var userTostr="";
+	function selectgroup(obj,groupid){
+		if(userTostr.indexOf(groupid)<0){
+			$.ajax({		//加载群组人员
+				url:"/wxqyh/portal/selectUserAction!getUserGroupPerson.action",
+				type:"post",
+				async:false,
+				data:{groupId:groupid,
+				'agentCode' : agentCode_to},
+				dataType:"json",
+				success : function(json) {
+					if ("0" == json.code) {
+						if(userTostr!=null){
+							userTostr+=","+groupid;
+						}else{
+							userTostr=groupid;
+						}
+						var userList = json.data.pageData;
+						if(userList&&userList.length>0){
+							for ( var i = 0; i < userList.length; i++) {
+								var userinfo = userList[i];
+								var temp="#tohidden"+groupid;
+								$(temp).append("<input value='"+userinfo.userId+"|"+userinfo.personName+"|"+userinfo.headPic+"' />");
+							}
+						}
+					}
+				},
+			});
+		}
+		var userList= new Array();
+		$("#tohidden"+groupid).find("input").each(function (){
+			userList.push(this.value);
+		});
+		if(userList.length>0){
+			if($(obj).find(".user_select_icon").hasClass("active")){
+				$(obj).find(".user_select_icon").removeClass("active");
+				$(obj).find(".user_select_icon").addClass("actived");
+				$("#selectUserAllTo_div").removeClass("active");
+				$("#selectUserAllTo_div").addClass("actived");
+				var groupId="";
+				for(var i=0;i<userList.length;i++){
+					var userTemp = userList[i].split("|");
+					var userId=userTemp[0];
+					var userName=userTemp[1];
+					togroupArray.remove(groupid+"|"+userId+"|"+userName+"|"+userTemp[2]);
+					selectedToUser.remove(userId+"|"+userName+"|"+userTemp[2]);
+					torefreshSelected('1',userId+"|"+userName+"|"+userTemp[2]);
+					var temp="#to"+userId;
+					$(temp).removeClass("active").addClass("actived");
+
+					var isExit=false;
+					if(!isExit){
+						 for(var j=0;j<togroupArray.length;j++){
+							if(togroupArray[j].indexOf(userId)>=0){
+								groupId=togroupArray[j].split("|")[0];
+								isExit=true;
+							}
+						}
+					}
+				}
+				var temp2="#togroup"+groupId;
+				$(temp2).removeClass("active").addClass("actived");
+				var length=togroupArray.length-1;
+				for(var j=length;j>=0;j--){
+					if(togroupArray[j].split("|")[0]==groupId){
+						var temp=togroupArray[j];
+						togroupArray.remove(temp);
+					}
+				}
+			}else{
+				$(obj).find(".user_select_icon").removeClass("actived").addClass("active");
+				for(var i=0;i<userList.length;i++){
+					var userTemp = userList[i].split("|");
+					var userId=userTemp[0];
+					var userName=userTemp[1];
+					togroupArray.push(groupid+"|"+userId+"|"+userName+"|"+userTemp[2]);			//在群组集合添加已选择的群组
+					if(selectedToUser.indexOf(userId+"|"+userName+"|"+userTemp[2])<=-1){ 		 //去除集合中重复人员
+						selectedToUser.push(userId+"|"+userName+"|"+userTemp[2]);
+						torefreshSelected('2',userId+"|"+userName+"|"+userTemp[2]);
+						var temp="#to"+userId;
+						$(temp).removeClass("actived").addClass("active");
+					}
+				}
+			}
+		}else{
+			showMsg("提示信息", "当前群组没有联系人！", 1);
+		}
+		$("#tonum").html(selectedToUser.length+"人");
+	}
+	function switchGroupListTo(){
+		if($("#togroup").hasClass("uparrow")){
+			$("#groupUserIdListTo").hide();
+			$("#togroup").removeClass("uparrow").addClass("downarrow");
+		}else{
+			$("#groupUserIdListTo").show();
+			$("#togroup").removeClass("downarrow").addClass("uparrow");
+		}
+	}
+	function switchPublicGroupList(){
+		if($("#pugroup").hasClass("uparrow")){
+			$("#publicgroupUserIdList").hide();
+			$("#pugroup").removeClass("uparrow").addClass("downarrow");
+		}else{
+			$("#publicgroupUserIdList").show();
+			$("#pugroup").removeClass("downarrow").addClass("uparrow");
+		}
+	}
+	//刷新选中的人员列表
+	function refreshCommonUsersTo(){
+		if(tocommonArray.length==0){
+			doGetCommonUsersTo();
+		}else{
+			var html = "";
+			for(var i=0;i<tocommonArray.length;i++){
+				var value = tocommonArray[i].split("|");
+				if(searchUserIdListTo.indexOf(value[0])>=0){
+					//此用户在搜索结果中，常用联系人 不再显示
+					continue ;
+				}
+				item = tempHtml2;
+				item = item.replace("@UserID", "'"+ value[0] + "'");
+				item = item.replace("@ToUserId", value[0]);
+				item = item.replace("@UserName","'"+value[1]+"'");
+				item = item.replace("@UserName",value[1]);
+				//item = item.replace("@HeadPic","'"+value.headPic+"'");
+				item = item.replaceAll("@personImage",value[2]);
+				//如果该用户已经被选中
+				if(selectedToUser.indexOf(value[0]+"|"+value[1]+"|"+value[2])>-1){
+					item = item.replace("@actived","active");
+				}else{
+					item = item.replace("@actived","actived");
+				}
+				if(userListAllTo.indexOf(value[0]+"|"+value[1]+"|"+value[2])<=-1){
+					userListAllTo.push(value[0]+"|"+value[1]+"|"+value[2]);
+				}
+
+				html += item;
+			};
+			$("#commonUserListTo").html(html);
+		}
+	}
+	//进入联系人选择页面
+	function showSelectUser(type){
+		$("#wrap_main").hide();
+		if(type=="taskto"){
+    		$("#selectToUser_div").show();
+    		$("#selectCcUser_div").hide();
+    		if(toIsOpen=="0"){
+				doSearchTo();
+				doSearch();
+				//doGetCommonUsersTo();
+				//初始化已选列表
+				initSelectedToList();
+    		}else{
+    			initSelectedToList();
+    			$(".touser_select_icon").removeClass("active").addClass("actived");
+       	    	for(var i=0;i<selectedToUser.length; i++){
+       	    		var id = selectedToUser[i].split("|")[0];
+       	    		$("#to"+id).removeClass("actived").addClass("active");
+       	    	}
+    			if($("#selectUserAllCc_div").attr("allSelectCc")=="1"){
+    				$("#selectUserAllCc_div").removeClass("actived").addClass("active");
+    			}
+       			$("#tonum").html(selectedToUser.length+"人");
+
+       			//常用联系人群组
+       	    	for(var i=0;i<togroupArray.length; i++){
+					var id = togroupArray[i].split("|")[0];
+       	    		$("#togroup"+id).removeClass("actived").addClass("active");
+       	    	}
+       	    	if(selectedToUser.length!=oldSelectedToUserLength){				//全选按钮控制
+       				$("#selectUserAllTo_div").removeClass("active").addClass("actived");
+       			}else if(selectedToUser.length==oldSelectedToUserLength && selectedToUser.length!=0){
+       				$("#selectUserAllTo_div").removeClass("actived").addClass("active");
+       			}
+    		}
+
+    		//优化取消后联系人还在集合里问题 chenfeixiong 2014-08-01
+    		oldselectedToUser= new Array();
+    		for(var x=0;x<selectedToUser.length;x++){
+    			oldselectedToUser.push(selectedToUser[x]);
+    		}
+
+		}else{
+    		$("#selectCcUser_div").show();
+    		$("#selectToUser_div").hide();
+    		if(ccIsOpen=="0"){
+				doSearchCc();
+				doCcSearch();
+    			//doGetCommonUsersCc();
+				//初始化已选列表
+    			initSelectedCcList();
+    		}else{
+    			if(selectedCcUser.length==0){
+    				$("#ccalreadySelected").html("");
+    			}
+    			$(".ccuser_select_icon").removeClass("active").addClass("actived");
+       	    	for(var i=0;i<selectedCcUser.length; i++){
+       	    		var id = selectedCcUser[i].split("|")[0];
+       	    		$("#cc"+id).removeClass("actived").addClass("active");
+       	    	}
+    			if($("#selectUserAllTo_div").attr("allSelectTo")=="1"){
+    				$("#selectUserAllTo_div").removeClass("actived").addClass("active");
+    			}
+       			$("#ccnum").html(selectedCcUser.length+"人");
+
+       		 	//常用联系人群组
+       	    	for(var i=0;i<ccgroupArray.length; i++){
+					var id = ccgroupArray[i].split("|")[0];
+       	    		$("#ccgroup"+id).removeClass("actived").addClass("active");
+       	    	}
+       	    	if(selectedCcUser.length!=oldSelectedCcUserLength){				//全选按钮控制
+       				$("#selectUserAllCc_div").removeClass("active").addClass("actived");
+       			}else if(selectedCcUser.length==oldSelectedCcUserLength &&selectedCcUser.length!=0){
+       				$("#selectUserAllCc_div").removeClass("actived").addClass("active");
+       			}
+    		}
+
+    		//优化取消后联系人还在集合里问题 chenfeixiong 2014-08-01
+    		oldselectedCcUser= new Array();
+    		for(var x=0;x<selectedCcUser.length;x++){
+    			oldselectedCcUser.push(selectedCcUser[x]);
+    		}
+
+		}
+
+	}
+	//显示全部负责人
+	function showAllto(){
+		var p = $("#toPersonList").find("li");
+		for(var i=0;i<p.length;i++){
+			$(p[i]).show();
+		}
+		$("#tomoreDiv").hide();
+		var list =$("#tomoreDiv").find("input");
+		if(list.length==0){
+			$("#tomoreDiv").append('<input id="showTomore" type="hidden" value="0">');
+		}
+	}
+
+	//删除联系人
+	function deleteUser(obj,type,value){
+   		$(obj).parent().remove();
+   		if("to"==type){
+   			selectedToUser.remove(value);
+   			torefreshSelected("1",value);
+   			var list =$("#tomoreDiv").find("input");
+   			if(list.length==0){
+   			//优化删除联系人后点击查看全部人数没有减少问题   yuanminsha   2015-07-29
+   	   			$("#tomoreDiv").show();
+   				$("#toNum").html(selectedToUser.length);
+   				resetUsersTo();
+   				var arry = $("#toPersonList").find(".remove_icon");
+   				for(var i=0;i<arry.length;i++){
+   		    		$(arry[i]).show();
+   		    	}
+   			}
+
+   			/* var url = document.location.href;//删除负责人缓存
+   			if(url.charAt(url.length-1)=='#'){
+   				url=url.substr(0,url.length-1);
+   			}
+			if (window.localStorage[url]) {
+
+   		        var json = JSON.parse(localStorage.getItem(url));
+
+   		     	json['toPersonList']=selectedToUser;
+
+   		     	localStorage[url]=JSON.stringify(json);
+   		    } */
+
+   		}else{
+   			selectedCcUser.remove(value);
+   			ccrefreshSelected("1",value);
+
+   			var list =$("#ccmoreDiv").find("input");
+   			if(list.length==0){
+   			//优化删除联系人后点击查看全部人数没有减少问题   yuanminsha   2015-07-29
+   	   			$("#ccmoreDiv").show();
+   				$("#ccNum").html(selectedCcUser.length);
+
+   				resetUsersCc();
+   				var arry = $("#ccPersonList").find(".remove_icon");
+   				for(var i=0;i<arry.length;i++){
+   		    		$(arry[i]).show();
+   		    	}
+   			}
+/*
+    		var url = document.location.href;//删除相关人缓存
+			if(url.charAt(url.length-1)=='#'){
+				url=url.substr(0,url.length-1);
+			}
+		    if (window.localStorage[url]) {
+		        var json = JSON.parse(localStorage.getItem(url));
+		        json['ccPersonList']=selectedCcUser;
+		        localStorage[url]=JSON.stringify(json);
+		    }
+   			 */
+   		}
+	}
+	function torefreshSelected(a,b){
+    	if(a=="1"){	//减人
+    		var list = $("#toselected_user").find("li");
+    		var id = b.split("|")[0];
+    		for(var i=0;i<list.length;i++){
+    			if($(list[i]).attr("id")==("toalready"+id)){
+    				$(list[i]).remove();
+    			}
+    		}
+
+        	$(".selected_user_inner_to").width(selectedToUser.length*53+40);
+        	$("#selected_user_inner2").width(selectedToUser.length*53+30);
+    		if(selectedToUser.length==0){
+        		$(".search-box-height-to").css("height","50px");
+        		$("#toselected_user").hide();
+    		}
+    	}
+    	if(a=="2"){	//加人
+    		var user = b.split("|");
+            var li = temp_already_to;
+            li = li.replaceAll("@userId",user[0]);
+            li = li.replaceAll("@userName",user[1]);
+            li = li.replaceAll("@personImage",user[2]);
+        	$(".selected_user_inner_to").width(selectedToUser.length*53+40);
+        	$("#selected_user_inner2").width(selectedToUser.length*53+30);
+         	$("#toalreadySelected").append(li);
+    		$(".search-box-height-to").css("height","150px");
+         	$("#toselected_user").show();
+    	}
+    }
+    //点击已选择人员，取消选择此用户
+    function toremoveAlready(obj,userId,userName,headPic){
+    	$(obj).remove();
+    	$("#to"+userId).removeClass("active").addClass("actived");
+    	$("#"+userId+"_a").removeClass("active").addClass("actived");
+    	$("#"+userId+"_d").removeClass("active").addClass("actived");
+    	selectedToUser.remove(userId+"|"+userName+"|"+headPic);
+		if(selectedToUser.length==0){
+    		$(".search-box-height-to").css("height","50px");
+    		$("#toselected_user").hide();
+    		$("#chooseUserId2").css("height","50px");
+    		$("#selected_user2").hide();
+		}
+    	$(".selected_user_inner_to").width(selectedToUser.length*53+40);
+    	$(".selected_user_inner").width(selectedToUser.length*53+30);
+    	$("#tonum").html(selectedToUser.length+"人");
+		$("#num2").html(selectedToUser.length+"人");
+
+    	//去除该用户所在的常用联系人群组勾选状态
+    	var groupId="";
+		for(var i=0;i<togroupArray.length;i++){
+			if(togroupArray[i].indexOf(userId)>=0){
+				groupId=togroupArray[i].split("|")[0];
+				var temp="#togroup"+groupId;
+				$(temp).removeClass("active").addClass("actived");
+			}
+		}
+		var length=togroupArray.length-1;
+		for(var j=length;j>=0;j--){
+			if(togroupArray[j].split("|")[0]==groupId){
+				var temp=togroupArray[j];
+				togroupArray.remove(temp);
+			}
+		}
+    }
+    function initSelectedToList(){
+		if(selectedToUser.length==0){
+			$(".search-box-height-to").css("height","50px");
+			$("#toselected_user").hide();
+		}else{
+			$("#toalreadySelected").html("");
+			var html = "";
+        	$(".selected_user_inner_to").width(selectedToUser.length*53+40);
+			for(var i=0;i<selectedToUser.length;i++){
+	    		var user = selectedToUser[i].split("|");
+	            var li = temp_already_to;
+	            li = li.replaceAll("@userId",user[0]);
+	            li = li.replaceAll("@userName",user[1]);
+	            li = li.replaceAll("@personImage",user[2]);
+	            html += li;
+			}
+			$("#toalreadySelected").append(html);
+			$(".search-box-height-to").css("height","150px");
+			$("#toselected_user").show();
+		}
+    }
+    </script>
+    <script type="text/javascript">
+	var lock_roll=false;
+    $(function() {
+    	/*setTimeout(function(){
+        	$("#tomain").height($(window).height());
+    	},3500);*/
+         // 下拉获取数据事件，请在引用的页面里使用些事件，这为示例
+         var nScrollHight = 0; //滚动距离总长(注意不是滚动条的长度)
+         var nScrollTop = 0; //滚动到的当前位置
+         var $frameto = $("#tomain");
+         $frameto.on("scroll", function() {
+
+        		 var nDivHight = $frameto.height();
+                 nScrollHight = $(this)[0].scrollHeight;
+                 nScrollTop = $(this)[0].scrollTop;
+                 if (nScrollTop + nDivHight >= nScrollHight) {
+                     // 触发事件，这里可以用AJAX拉取下页的数数据
+					 if(!lock_roll){
+						lock_roll=true;
+						if(tomaxPageIndex>=topageIndex){
+							if(tocurrPage<tomaxPage){
+								topageIndex++;
+								doSearchTo();
+							}
+						}
+					}
+				}
+
+         });
+     });
+
+    var chooseType = 0;
+    function changeChoose(type){
+    chooseType = type;
+    	if(1 == type){//部门选人
+    		$("#user_select_div2").show();
+    		$("#selectToUser_div").hide();
+    		//已选人员列表显示
+			if(selectedToUser.length==0){
+				$("#chooseUserId2").css("height","50px");
+				$("#selected_user2").hide();
+			}else{
+				$("#chooseUserId2").css("height","150px");
+				$("#selected_user2").show();
+				$("#num2").html(selectedToUser.length+"人");
+				$("#tonum").html(selectedToUser.length+"人");
+			}
+			$("#alreadySelected2").html($("#toalreadySelected").html());
+    	}else{//名称选人
+    		$("#selectToUser_div").show();
+    		$("#user_select_div2").hide();
+    		//已选人员列表显示
+			if(selectedToUser.length==0){
+				$(".search-box-height-to").css("height","50px");
+				$("#toselected_user").hide();
+			}else{
+				$(".search-box-height-to").css("height","150px");
+				$("#toselected_user").show();
+				$("#num2").html(selectedToUser.length+"人");
+				$("#tonum").html(selectedToUser.length+"人");
+			}
+			$("#toalreadySelected").html($("#alreadySelected2").html());
+    	}
+    }
+    </script>
+
+
+
+    <style type="text/css">
+        .num {
+            min-width: 20px;
+            padding-top: 6px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: right;
+            padding-right: 15px;
+            display: inline-block;
+        }
+    </style>
+    <link rel="stylesheet" href="/wxqyh/jsp/wap/css/wt.css" />
+    <div style="display:none" id="user_select_div3">
+        <input type="hidden" name="userId1" id="userId1" value="" />
+        <form action="/wxqyh/portal/departmentAction!getChildDeptAndPerson.action?sortTop=1&userId=&pId=&deptId=" method="post" id="department_user_search1" onsubmit="return false">
+            <input name="targetUser1" value="" type="hidden" id="targetUser1" />
+            <div id="wrap_main1" class="wrap">
+                <div class="search-box fixed">
+                    <div class="inner-search-box">
+                        <div class="search-box-o flexbox">
+                            <div class="flexItem">
+                                <div class="search-input-box flexbox">
+                                    <div class="flexItem">
+                                        <input class="search-input" type="text" placeholder="输入【姓名\拼音\手机号】搜索" name="keyWord" id="keyWord3" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="search_more">
+                                <a id="letter_search1" href="#" class="search_letter_btn"><i class="fa fa-th"></i></a>
+                                <a id="users_search1" href="#" class="search_letter_btn hide"><i class="fa fa-search"></i></a>
+                                <div class="letter_list hide">
+                                    <ul class="clearfix">
+                                        <li> <a href="javascript:searchLetter3('A')">A</a></li>
+                                        <li> <a href="javascript:searchLetter3('B')">B</a></li>
+                                        <li> <a href="javascript:searchLetter3('C')">C</a></li>
+                                        <li> <a href="javascript:searchLetter3('D')">D</a></li>
+                                        <li> <a href="javascript:searchLetter3('E')">E</a></li>
+                                        <li> <a href="javascript:searchLetter3('F')">F</a></li>
+                                        <li> <a href="javascript:searchLetter3('G')">G</a></li>
+                                        <li> <a href="javascript:searchLetter3('H')">H</a></li>
+                                        <li> <a href="javascript:searchLetter3('I')">I</a></li>
+                                        <li> <a href="javascript:searchLetter3('J')">J</a></li>
+                                        <li> <a href="javascript:searchLetter3('K')">K</a></li>
+                                        <li> <a href="javascript:searchLetter3('L')">L</a></li>
+                                        <li> <a href="javascript:searchLetter3('M')">M</a></li>
+                                        <li> <a href="javascript:searchLetter3('N')">N</a></li>
+                                        <li> <a href="javascript:searchLetter3('O')">O</a></li>
+                                        <li> <a href="javascript:searchLetter3('P')">P</a></li>
+                                        <li> <a href="javascript:searchLetter3('Q')">Q</a></li>
+                                        <li> <a href="javascript:searchLetter3('R')">R</a></li>
+                                        <li> <a href="javascript:searchLetter3('S')">S</a></li>
+                                        <li> <a href="javascript:searchLetter3('T')">T</a></li>
+                                        <li> <a href="javascript:searchLetter3('U')">U</a></li>
+                                        <li> <a href="javascript:searchLetter3('V')">V</a></li>
+                                        <li> <a href="javascript:searchLetter3('W')">W</a></li>
+                                        <li> <a href="javascript:searchLetter3('X')">X</a></li>
+                                        <li> <a href="javascript:searchLetter3('Y')">Y</a></li>
+                                        <li> <a href="javascript:searchLetter3('Z')">Z</a></li>
+                                        <li> <a href="javascript:searchAll3()" style="font-size: 30px;">*</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--已选择人员-->
+                    <div class="selected_user" id="selected_user3">
+                        <div class="selected_user_inner" id="selected_user_inner3">
+                            <ul class="clearfix f-add-user-list " id="alreadySelected3"></ul>
+                        </div>
+                    </div>
+                    <!-- 已选择人员 end -->
+                </div>
+                <div id="usmain3" class="wrap_inner" style="min-height:350px">
+                    <div class="search-box-height" id="chooseUserId3"></div>
+                    <div class="chooseAllus common_list relative" id="chooseAll3"></div><!-- 全选 -->
+                    <div class="wrap_content">
+                        <div class="search-box-height" style="height: 5px;"></div>
+                        <div class="address_list" id="department_list1">
+                            <!-- 显示模板数据 -->
+                        </div>
+                        <div class="footheight"></div>
+                        <div class="all_pull" id="getmore_comment_d1" style="margin-bottom:0px;">
+                            <div class="load_more_user">已没有更多</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="foot_bar" id="menuDiv1">
+                    <div class="foot_bar_inner flexbox">
+                        <a class="flexItem btn white_btn ask_btn prev_ask_btn" href="javascript:userSelectCancel1()">取消</a>
+                        <a class="flexItem btn white_btn ask_btn next_ask_btn" id="createBtn" href="javascript:doSure1()">确定<span id="num3">0人</span></a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+	//上级目录数组
+	var arrCc = new Array();
+
+	var tempbackCc = '<div class="settings-item"> '
+        +' <a class="a_link" href="javascript:preCcDept()"></a>'
+        +' <div class="inner-settings-item flexbox">'
+        +'     <div class="return_back"> <i class="fa"></i></div>'
+        +'     <div class="title flexItem">'
+        +'         <p class="name">返回上一级</p>'
+        +'     </div></div></div>';
+
+	var tempDepartCc = '<div class="settings-item"> <a class="rightLink" href="javascript:void(0)"></a>'
+       +' <div class="inner-settings-item flexbox" style="cursor: pointer;"> '
+       +'<div id="ccd3781ed48a2349dcb3fa9a0a029fc455" class="@deptClass" name="dept">'
+	   +'</div>'
+       +'     <div class="description_title flexItem flexbox ohidden" onclick="selectCcDept(@pid,@deptId,@userId)" style="z-index: 3;"> '
+       +'         <p class="onep flexItem">@deptName </p><span class="num">@totalUser</span></div> '
+       +' </div></div>';
+
+	var tempHtml_Cc = '<div class="letter_bar">@FirstNameP</div>';
+
+	var tempHtml2_Cc = ' <div class="settings-item" > '
+			+ '      <div class="inner-settings-item flexbox" style="cursor: pointer;" onclick="selectCcUser(this,@UserID,@personName,@UserPic);" >                '
+		    + '<div id="@User_DIV" class="@userClass" style="z-index: 3;" name="users">'
+		    + '<i class="fa"></i>'
+		    + '</div>'
+			+ '          <div class="avator" style="z-index: 3;">           '
+			+ '              <img src="@personImage" alt="" onerror="javascript:replaceUserHeadImage(this);"/>'
+			+ '          </div>     '
+			+ '          <div class="name flexItem" >@UserName</div>  '
+			+ '  </div>      ';
+
+    var temp_choose_all3='<div class="settings-item" style="height: 55px;" >'
+    	+'<div class="inner-settings-item flexbox">'
+    	+'<div class="user_select_icon actived" id="selectUserAllCc_div" allSelectCc="0"></div>'
+    	+'<div class="title flexItem">'
+    	+'</div>'
+    	+'</div>'
+    	+'</div><div class="xuanrenBtn" onclick="changeChooseCc(0)">按名称选人</div>';
+	var pageIndex3 = 1;
+	var ischangeCc = 0;
+	$(document).ready(function(){
+    	setTimeout(function(){
+        	$(".wrap_inner").height($(window).height());
+    	},800);
+		$("#users_search1").on("click",function(){
+			   var keyWord =$.trim($('#keyWord3').val());
+			   if(keyWord != ''){
+					$("#department_list1").html("");
+					doSearchCcUser("search");
+			   }else{
+				   $("#department_user_search1").attr("action"," /wxqyh/portal/departmentAction!getChildDeptAndPerson.action?sortTop=1&userId=&pId=&deptId=");
+				   doCcSearch();
+			   }
+		});
+		$('.search-input').keydown(function(e){
+			if(e.keyCode==13 && "1" == chooseCcType){
+			   var keyWord =$.trim($('#keyWord3').val());
+			   if(keyWord != ''){
+					$("#department_list1").html("");
+					doSearchCcUser("search");
+			   }else{
+				   $("#department_user_search1").attr("action"," /wxqyh/portal/departmentAction!getChildDeptAndPerson.action?sortTop=1&userId=&pId=&deptId=");
+				   doCcSearch();
+			   }
+			}
+		});
+	});
+
+
+	/**
+	 * 加载数据
+	 */
+	function doCcSearch(keep) {
+		showLoading();
+		$('#department_user_search1').ajaxSubmit({
+			data : {
+				'page' : pageIndex3
+			},
+			dataType : 'json',
+			success : function(result) {
+				if ("0" == result.code) {
+					$("#department_list1").html("");
+					var pId = result.data.pId;
+					if(keep=='yes')arrCc.push(pId);
+					//返回按钮
+					if(pId!="top"&&arrCc.length!=0){
+						var bitem = tempbackCc;
+						$("#department_list1").append(bitem);
+					}
+					$("#chooseAll3").html(temp_choose_all3);
+					//部门列表
+					var dlist = result.data.deptlist;
+					if(dlist){
+						for ( var i = 0; i < dlist.length; i++) {
+							var deptinfo = dlist[i];
+							var ditem = tempDepartCc;
+							ditem = ditem.replaceAll("@userId","'"+''+"'" );
+							ditem = ditem.replaceAll("@deptName",deptinfo.departmentName );
+							if(!deptinfo.totalUser){
+								ditem = ditem.replaceAll("@totalUser","" );
+							}else{
+								ditem = ditem.replaceAll("@totalUser", deptinfo.totalUser);
+							}
+							ditem = ditem.replaceAll("@pid", "'"+ deptinfo.parentDepart + "'");
+							ditem = ditem.replaceAll("@deptId", "'"+ deptinfo.id + "'");
+							ditem = ditem.replaceAll("@deptClass", "user_select_icon actived");
+							$("#department_list1").append(ditem);
+						}
+					}
+					//人员列表
+					var userList = result.data.userList;
+					var pinyin = "";
+					var pinyin2 = "";
+					for ( var i = 0; i < userList.length; i++) {
+						var userinfo = userList[i];
+
+						var item = tempHtml_Cc;
+						if(userinfo.isTop>0){
+							//添加置顶
+							pinyin="";//不显示置顶栏
+						}else{
+							pinyin = userinfo.pinyin.toUpperCase().substr(0, 1);
+						}
+						//添加拼音
+						item = item.replace("@FirstNameP",pinyin);
+						if (pinyin2 != pinyin && pinyin!="") {
+							$("#department_list").append(item);
+							pinyin2 = pinyin;
+						}
+
+						item = tempHtml2_Cc;
+						item = item.replaceAll("@UserID", "'"+ userinfo.userId + "'");
+						item = item.replaceAll("@User_DIV",userinfo.userId + "_c");
+						item = item.replaceAll("@UserName",userinfo.personName);
+						item = item.replaceAll("@personName","'"+userinfo.personName + "'");
+						item = item.replaceAll("@UserPic","'"+userinfo.headPic+ "'");
+						item = item.replaceAll("@personImage",userinfo.headPic);
+						if(selectedCcUser){
+							$("#selected_user_inner3").width(selectedCcUser.length*53+30);
+						}
+						if(selectedCcUser.indexOf(userinfo.userId+"|"+userinfo.personName+"|"+userinfo.headPic)>-1){
+							item = item.replace("@userClass","user_select_icon active");
+						}else{
+							item = item.replace("@userClass","user_select_icon actived");
+						}
+						$("#department_list1").append(item);
+					}
+
+  					if(dlist.length==0&&userList.length==0){
+						$("#department_list1").append("<p style='text-align:center;margin-top: 10px;'>无更多联系人信息</p>");
+  					}
+
+					if("1"==pageIndex3 && userList.length<=0){
+						$("#getmore_comment_d1").hide();
+					}else{
+						$("#getmore_comment_d1").show();
+					}
+				}
+				hideLoading();
+			},
+			error : function() {
+				showMsg("",internetErrorMsg,1);
+				hideLoading();
+			}
+		});
+	}
+
+	function seachCcUsers(obj, userID) {
+		document.getElementById("department_user_search1").action = "user_detail.jsp";
+		$("#targetUser1").val(userID);
+		document.getElementById("department_user_search1").submit();
+	}
+
+	function selectCcDept(pId,deptId){
+		document.getElementById("department_user_search1").action = "/wxqyh/portal/departmentAction!getChildDeptAndPerson.action?sortTop=1&userId=&pId="+pId+"&deptId="+deptId;
+		doCcSearch('yes');
+	}
+	function preCcDept(){
+		var pId = arrCc.pop();
+		document.getElementById("department_user_search1").action = "/wxqyh/portal/departmentAction!getChildDeptAndPerson.action?sortTop=1&userId=&pId="+pId+"&deptId="+pId;
+		doCcSearch('no');
+	}
+
+	/**
+	 * 搜索拼音首字母
+	 */
+	function searchLetter3(letter){
+		$("#keyWord3").val(letter);
+		$("#department_list1").html("");
+		pageIndex3 = 1;
+		doSearchCcUser("firstletter");
+		$(".letter_list").hide();
+		$(".over_opactiy_lay").css({
+            "display": "none",
+            "opacity":0
+        })
+	}
+	//搜索全部
+	function searchAll3(){
+		$("#department_user_search1").attr("action"," /wxqyh/portal/departmentAction!getChildDeptAndPerson.action?sortTop=1&userId=&pId=&deptId=");
+		$(".letter_list").hide();
+		doCcSearch();
+	}
+
+	function doSearchCcUser(type){
+		var url = "";
+
+		//var keyWord=$.trim($("#keyWord").val());
+		if(type=="firstletter"){	//搜索首字母
+			url = "/wxqyh/portal/contactAction!searchFirstLetterList.action";
+		}else{		//普通搜索
+			url = "/wxqyh/portal/departmentAction!getUserByNameOrPhone.action";
+		}
+
+		document.getElementById("department_user_search1").action=url;
+    	showLoading();
+    	$('#department_user_search1').ajaxSubmit({
+			data : {
+				'page' : pageIndex3
+			},
+			dataType : 'json',
+			success : function(result) {
+		/*  $.ajax({
+			url:url,
+			type:"get",
+			data: {keyWord:keyWord},
+			dataType:"json",
+			success:function(result){  */
+				//$('.search-input').val("");
+	             $("#letter_search1").show();
+	             $("#users_search1").hide();
+				if(result.code == "0"){
+					var userList = result.data.userList;
+					var pinyin = "";
+					var pinyin2 = "";
+					for ( var i = 0; i < userList.length; i++) {
+						var userinfo = userList[i];
+						//添加拼音
+						var item = tempHtml_Cc;
+						pinyin = userinfo.pinyin.toUpperCase().substr(0, 1);
+						item = item.replace("@FirstNameP",pinyin);
+						if (i == 0 || pinyin2 != pinyin) {
+							$("#department_list1").append(item);
+							pinyin2 = pinyin;
+						}
+						item = tempHtml2_Cc;
+						item = item.replaceAll("@UserID", "'"+ userinfo.userId + "'");
+						item = item.replaceAll("@User_DIV",userinfo.userId + "_c");
+						item = item.replaceAll("@UserName",userinfo.personName);
+						item = item.replace("@Remark",userinfo.mark);
+						item = item.replaceAll("@personName","'"+userinfo.personName + "'");
+						item = item.replaceAll("@UserPic","'"+userinfo.headPic+ "'");
+						item = item.replace("@personImage",userinfo.headPic);
+						if(selectedCcUser.indexOf(userinfo.userId+"|"+userinfo.personName+"|"+userinfo.headPic)>-1){
+							item = item.replace("@userClass","user_select_icon active");
+						}else{
+							item = item.replace("@userClass","user_select_icon actived");
+						}
+						$("#department_list1").append(item);
+					}
+					if(userList.length==0){
+						$("#department_list1").append("<p style='text-align:center;margin-top: 10px;'>没有搜索到任何数据，换别的关键字试试。例如姓名、拼音、手机号都可以哦</p>");
+					}
+
+					if("1"==pageIndex3 && userList.length<=0){
+						$("#getmore_comment_d1").hide();
+					}else{
+						$("#getmore_comment_d1").show();
+					}
+
+				}
+				hideLoading();
+			},
+			error:function(){
+				$('.search-input').val("");
+	             $("#letter_search1").show();
+	             $("#users_search1").hide();
+				hideLoading();
+			}
+		});
+	}
+
+	function selectCcUser(obj,userID,userName,headPic){
+		if(''==userID){
+			return;
+		}
+		if($(obj).find(".user_select_icon").hasClass("active")){
+			//$(obj).find(".user_select_icon").removeClass("active");
+			//$(obj).find(".user_select_icon").addClass("actived");
+			$("#selectUserAllCc_div").removeClass("active");
+			$("#selectUserAllCc_div").addClass("actived");
+			$("#"+userID+"_c").removeClass("active");
+			$("#"+userID+"_c").addClass("actived");
+			$("#cc"+userID).removeClass("active").addClass("actived");
+			selectedCcUser.remove(userID+"|"+userName+"|"+headPic);
+			refreshSelected3('1',userID+"|"+userName+"|"+headPic);
+
+			//去除该用户所在的常用联系人群组勾选状态
+			var groupId="";
+			for(var i=0;i<ccgroupArray.length;i++){
+				if(ccgroupArray[i].indexOf(userID)>=0){
+					groupId=ccgroupArray[i].split("|")[0];
+					var temp="#ccgroup"+groupId;
+					$(temp).removeClass("active").addClass("actived");
+				}
+			}
+			var length=ccgroupArray.length-1;
+			for(var j=length;j>=0;j--){
+				if(ccgroupArray[j].split("|")[0]==groupId){
+					var temp=ccgroupArray[j];
+					ccgroupArray.remove(temp);
+				}
+			}
+
+		}else{
+			//$(obj).find(".user_select_icon").removeClass("actived");
+			//$(obj).find(".user_select_icon").addClass("active");
+			$("#"+userID+"_c").removeClass("actived");
+			$("#"+userID+"_c").addClass("active");
+			$("#cc"+userID).removeClass("actived").addClass("active");
+			selectedCcUser.push(userID+"|"+userName+"|"+headPic);
+			refreshSelected3('2',userID+"|"+userName+"|"+headPic);
+		}
+		$("#ccnum").html(selectedCcUser.length+"人");
+		$("#num3").html(selectedCcUser.length+"人");
+	}
+
+
+	function refreshSelected3(a,b){
+		if(a=="1"){	//减人
+			var list = $("#ccselected_user").find("li");
+			var id = b.split("|")[0];
+			for(var i=0;i<list.length;i++){
+				if($(list[i]).attr("id")==("ccalready"+id)){
+					$(list[i]).remove();
+				}
+			}
+			$(".selected_user_inner_cc").width(selectedCcUser.length*53+30);
+
+			var list = $("#selected_user3").find("li");
+			var id = b.split("|")[0];
+			for(var i=0;i<list.length;i++){
+				if($(list[i]).attr("id")==("ccalready"+id)){
+					$(list[i]).remove();
+				}
+			}
+			$("#selected_user_inner3").width(selectedCcUser.length*53+30);
+			if(selectedCcUser.length==0){
+				$(".search-box-height-cc").css("height","50px");
+				$("#chooseUserId3").css("height","50px");
+				$("#ccselected_user").hide();
+				$("#selected_user3").hide();
+			}
+		}
+		if(a=="2"){
+			var user = b.split("|");
+            var li = temp_already_cc;
+            li = li.replaceAll("@userId",user[0]);
+            li = li.replaceAll("@userName",user[1]);
+            li = li.replaceAll("@personImage",user[2]);
+        	$(".selected_user_inner_cc").width(selectedCcUser.length*53+30);
+        	$("#selected_user_inner3").width(selectedCcUser.length*53+30);
+         	$("#ccalreadySelected").append(li);
+			$("#alreadySelected3").append(li);
+    		$(".search-box-height-cc").css("height","150px");
+    		$("#chooseUserId3").css("height","150px");
+         	$("#ccselected_user").show();
+         	$("#selected_user3").show();
+		}
+    }
+
+	/*取消选择人员信息*/
+	function userSelectCancel1(){
+		//keywork="";
+		//isShowGroup = 0;
+		//优化取消后联系人还在集合里问题 chenfeixiong 2014-08-01
+		var len=selectedCcUser.length;
+		for(var x=len-1;x>=0;x--){
+			//手动删除常用联系人群组
+			var groupId="";
+			for(var i=0;i<ccgroupArray.length;i++){
+				if(ccgroupArray[i].indexOf(selectedCcUser[x].split("|")[0])>=0){
+					groupId=ccgroupArray[i].split("|")[0];
+					var temp="#ccgroup"+groupId;
+					$(temp).removeClass("active").addClass("actived");
+				}
+			}
+			var length=ccgroupArray.length-1;
+			for(var j=length;j>=0;j--){
+				if(ccgroupArray[j].split("|")[0]==groupId){
+					var temp=ccgroupArray[j];
+					ccgroupArray.remove(temp);
+				}
+			}
+			$("#selectUserAllCc_div").removeClass("active").addClass("actived");
+
+			refreshSelected3("1",selectedCcUser[x]);
+			selectedCcUser.remove(selectedCcUser[x]);
+		}
+		for(var x=0;x<oldselectedCcUser.length;x++){
+			selectedCcUser.push(oldselectedCcUser[x]);
+			refreshSelected3("2",selectedCcUser[x]);
+		}
+	    if(selectedCcUser.length==0){
+			$("#ccalreadySelected").html("");
+    		$(".search-box-height-cc").css("height","50px");
+    		$("#ccselected_user").hide();
+		}
+		$("#selectCcUser_div").hide();
+		$("#user_select_div3").hide();
+		$("#wrap_main").show();
+	}
+
+	/*确定选择*/
+    function doSure1(){
+    	//keywork="";
+    	//isShowGroup = 0;
+    	if(selectedCcUser.length==0){
+    		showMsg("提示信息", "您未选择任何人！", 1);
+    		return ;
+    	}else{
+    		if(1 == chooseCcType){//部门选人
+    			$("#ccalreadySelected").html($("#alreadySelected3").html());
+    		}
+   			resetUsersCc();
+   			$("#selectCcUser_div").hide();
+   			$("#user_select_div3").hide();
+   			$("#wrap_main").show();
+   		}
+    }
+    </script>
+    <div style="display:none" id="selectCcUser_div">
+        <input type="hidden" name="userId" id="userId" value="" />
+        <div class="wrap">
+            <div class="search-box fixed">
+                <form action="/wxqyh/portal/selectUserAction!ajaxGetUserListByOrgID.action" method="post" id="ccUserSearch" onsubmit="return false">
+                    <div class="inner-search-box">
+                        <div class="search-box-o flexbox">
+                            <div class="flexItem">
+                                <div class="search-input-box flexbox">
+                                    <div class="flexItem">
+                                        <input class="search-input ccsearch-input" type="text" placeholder="输入【姓名\拼音\手机号】搜索" name="keyWord" id="cckeyWord" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="search_more">
+                                <a id="ccletter_search" href="#" class="search_letter_btn"><i class="fa fa-th"></i></a>
+                                <a id="ccusers_search" href="#" class="search_letter_btn hide"><i class="fa fa-search"></i></a>
+                                <div class="letter_list hide" style="z-index: 99;">
+                                    <ul class="clearfix">
+                                        <li> <a href="javascript:ccsearchLetter('A')">A</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('B')">B</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('C')">C</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('D')">D</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('E')">E</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('F')">F</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('G')">G</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('H')">H</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('I')">I</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('J')">J</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('K')">K</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('L')">L</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('M')">M</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('N')">N</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('O')">O</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('P')">P</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('Q')">Q</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('R')">R</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('S')">S</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('T')">T</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('U')">U</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('V')">V</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('W')">W</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('X')">X</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('Y')">Y</a></li>
+                                        <li> <a href="javascript:ccsearchLetter('Z')">Z</a></li>
+                                        <li> <a href="javascript:ccsearchAll()" style="font-size: 30px;">*</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!--已选择人员-->
+                <div class="selected_user" id="ccselected_user">
+                    <div class="selected_user_inner selected_user_inner_cc">
+                        <ul class="clearfix f-add-user-list " id="ccalreadySelected"></ul>
+                    </div>
+                </div>
+                <!-- 已选择人员 end -->
+            </div>
+            <div id="ccmain" class="wrap_inner">
+                <div class="search-box-height search-box-height-cc"></div>
+                <div class="chooseAllCc common_list relative"></div>
+                <div class="letter_bar" onclick="switchPublicGroupListcc()" id="publicgroupcc">公共群组(<span id="publicgroupCcNum">0</span>)<span id="pugroupcc" class="downarrow"></span></div>
+                <div id="publicgroupUserIdListcc" class="common_list" style="display: none;"></div>
+                <div class="letter_bar" onclick="switchGroupListCc()">常用联系人群组(<span id="groupUserIdCcNum">0</span>)<span id="ccgroup" class="uparrow"></span></div>
+                <div id="groupUserIdListCc" class="common_list"></div>
+                <div class="letter_bar" onclick="switchCommonListCc()">常用联系人<span id="ccarrow" class="uparrow"></span></div>
+                <div id="commonUserListCc" class="common_list"></div>
+                <div class="address_list ">
+                    <div class="cclist">
+                        <!-- 模板数据 -->
+                    </div>
+                </div>
+                <div class="footheight"></div>
+            </div>
+            <div class="foot_bar">
+                <div class="foot_bar_inner flexbox">
+                    <a class="flexItem btn white_btn ask_btn prev_ask_btn" href="javascript:userSelectCancelCc()">取消</a>
+                    <a class="flexItem btn white_btn ask_btn next_ask_btn" href="javascript:doSureCc()">确定<span id="ccnum">0人</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+	var selectedCcUser = new Array();
+
+	var oldselectedCcUser = new Array();  //存储已选择人员的临时集合
+	var oldSelectedCcUserLength =0;     //记录选择人数，用于全选取消后判断
+	var param = '{corp_id=wxe6535b20ca67180d, agentCode=ask}';
+	var tempHtml3 = '<div class="letter_bar">@FirstNameP</div>';
+
+	var tempHtml4 = ' '
+	+'<div class="settings-item" onclick="selectUserCc(this,@UserID,@UserName,\'@personImage\');"> '
+	+'    <a class="a_link" href="#"></a> '
+	+'    <div class="inner-settings-item flexbox"> '
+	+'        <div class="user_select_icon ccuser_select_icon @actived" id="cc@CcUserId"> <i class="fa"></i> '
+	+'        </div> '
+	+'        <div class="avator"> '
+	+'            <img src="@personImage" alt="" onerror="javascript:replaceUserHeadImage(this);"/>'
+	+'        </div> '
+	+'        <div class="title flexItem"> '
+	+'            <p class="name">@UserName</p> '
+	+'        </div> '
+	+'    </div> '
+	+'</div>';
+    var temp_choose_all_cc='<div class="settings-item" onclick="chooseAllCc();">'
+    	+'<div class="inner-settings-item flexbox">'
+    	+'<div class="user_select_icon actived" id="selectUserAllCc_div" allSelectCc="0"><i class="fa"></i></div>'
+    	+'<div class="title flexItem">'
+    	+'<p class="name">全选</p>'
+    	+'</div>'
+    	+'</div>'
+    	+'</div><div class="xuanrenBtn" id="zuzhi_cc" onclick="changeChooseCc(1)">按组织选人</div>';
+   	//已选择人员模板
+   	var temp_already_cc = ''
+   		+'<li id="ccalready@userId" onclick="ccremoveAlready(this,\'@userId\',\'@userName\',\'@personImage\')"><img src="@personImage" alt="" onerror="javascript:replaceUserHeadImage(this);" />'
+   		+ '<p class="name">@userName</p></li>';
+   	 //常用联系人群组模版
+   		var tempHtmlg = ''
+   			+'<div class="settings-item" onclick="selectgroupcc(this,@groupId);"> '
+   			+'    <a class="a_link" href="#"></a> '
+   			+'	  <div id="cchidden@Id" style="display:none"></div>'
+   			+'    <div class="inner-settings-item flexbox to"> '
+   			+'        <div class="user_select_icon ccuser_select_icon @actived" id="ccgroup@Id"> <i class="fa"></i> '
+   			+'        </div> '
+   			+'        <div class="avator"> '
+   			+'            <img src="../images/img/aa.jpg" alt="" />'
+   			+'        </div> '
+   			+'        <div class="title flexItem"> '
+   			+'            <p class="name">@groupName</p> '
+   			+'        </div> '
+   			+'    </div> '
+   			+'</div>';
+	var ccpageIndex = 1;
+	var ccmaxPageIndex;
+	var ischange = 0;
+	var ccmaxPage,cccurrPage;
+	var userListAllCc = new Array();
+
+	/**
+	 * 搜索拼音首字母
+	 */
+	function ccsearchLetter(letter){
+		//userListAllCc = cccommonArray.concat();
+		userListAllCc = new Array();
+		document.getElementById("ccUserSearch").action="/wxqyh/portal/selectUserAction!searchFirstLetter.action";
+		$("#cckeyWord").val(letter);
+		$(".cclist").html("");
+		ccpageIndex = 1;
+		//isShowGroupcc=0;
+		doSearchCc();
+		$(".letter_list").hide();
+		$(".over_opactiy_lay").css({
+            "display": "none",
+            "opacity":0
+        })
+        //搜索时隐藏常用联系人
+		$("#commonUserListCc").hide();
+		$("#ccarrow").removeClass("uparrow").addClass("downarrow");
+		//隐藏常用联系人群组
+		$("#groupUserIdListCc").hide();
+		$("#ccgroup").removeClass("uparrow").addClass("downarrow");
+		//隐藏公共群组
+		$("#publicgroupUserIdListcc").hide();
+		$("#pugroupcc").removeClass("uparrow").addClass("downarrow");
+	}
+	//搜索全部相关人
+	function ccsearchAll(){
+		//cckeywork="";
+		//userListAllCc = cccommonArray.concat();
+		userListAllCc = new Array();
+		$("#ccUserSearch").attr("action","/wxqyh/portal/selectUserAction!ajaxGetUserListByOrgID.action");
+		$("#cckeyWord").val("");
+		$(".cclist").html("");
+		ccpageIndex = 1;
+		//isShowGroupcc=0;
+		doSearchCc();
+		$(".letter_list").hide();
+		$(".over_opactiy_lay").css({
+            "display": "none",
+            "opacity":0
+        })
+        //搜索时隐藏常用联系人
+		$("#commonUserListCc").hide();
+		$("#ccarrow").removeClass("uparrow").addClass("downarrow");
+		//隐藏常用联系人群组
+		$("#groupUserIdListCc").hide();
+		$("#ccgroup").removeClass("uparrow").addClass("downarrow");
+		//隐藏公共群组
+		$("#publicgroupUserIdListcc").hide();
+		$("#pugroupcc").removeClass("uparrow").addClass("downarrow");
+	}
+	/**
+	 * 加载数据
+	 */
+	//var cckeywork="";
+	var isShowGroupcc=0;
+	var ccpinyin = "";
+	var ccpinyin2 = "";
+	var ccIsOpen = "0";
+	var isShowCommonCc = "0";
+	var searchUserIdListCc = "";	//搜索结果人员ID集合
+	var agentCode_cc = "";
+	function doSearchCc() {
+		ccIsOpen = "1";
+		if(ccpageIndex==1){
+			searchUserIdListCc = "";
+			showLoading();
+		}
+		$('#ccUserSearch').ajaxSubmit({
+			data : {
+				'agentCode' : agentCode_cc,
+				'page' : ccpageIndex
+			},
+			dataType : 'json',
+			success : function(result) {
+				cclock_roll=false;
+				//cckeywork=$("#cckeyWord").val();
+				//$("#cckeyWord").val("");
+	             $("#ccletter_search").show();
+	             $("#ccusers_search").hide();
+				if ("0" == result.code) {
+					$(".chooseAllCc").html(temp_choose_all_cc);
+					ccmaxPageIndex=result.data.maxPage;
+					ccmaxPage = result.data.maxPage;
+					cccurrPage = result.data.currPage;
+					userListCc = result.data.pageData;
+					//userListCc = result.data.userList;
+					if(userListCc&&userListCc.length>0){
+						for ( var i = 0; i < userListCc.length; i++) {
+							var userinfo = userListCc[i];
+							/* if(commonUserIdListCc.indexOf(userinfo.userId)>=0){
+								//此用户已存在常用联系人，不再显示
+								continue ;
+							} */
+							searchUserIdListCc += userinfo.userId;
+							if(userListAllCc.indexOf(userinfo.userId+"|"+userinfo.personName+"|"+userinfo.headPic)<=-1){
+								userListAllCc.push(userinfo.userId+"|"+userinfo.personName+"|"+userinfo.headPic);
+							}
+
+							//添加拼音
+							var item = tempHtml3;
+							ccpinyin = userinfo.pinyin.toUpperCase().substr(0, 1);
+							item = item.replace("@FirstNameP",ccpinyin);
+							if (ccpinyin2 != ccpinyin) {
+								$(".cclist").append(item);
+								ccpinyin2 = ccpinyin;
+							}
+
+							item = tempHtml4;
+							item = item.replace("@UserID", "'"+ userinfo.userId + "'");
+							item = item.replace("@CcUserId", userinfo.userId);
+							item = item.replace("@UserName","'"+userinfo.personName+"'");
+							item = item.replace("@UserName",userinfo.personName);
+							//item = item.replace("@HeadPic","'"+userinfo.headPic+"'");
+							item = item.replaceAll("@personImage",userinfo.headPic);
+							item = item.replace("@actived","actived");
+							for(var k=0;k<selectedCcUser.length;k++){
+								var uid = selectedCcUser[k].split("|")[0];
+								if(uid==userinfo.userId){
+									item = item.replace("actived","active");
+								}
+							}
+							$("#ccnum").html(selectedCcUser.length+"人");
+							$(".cclist").append(item);
+							$("#zuzhi_cc").hide();
+							if(result.data.isRangeAll == true){
+								$("#zuzhi_cc").show();
+							}
+						}
+					}else{
+						$("#zuzhi_cc").hide();
+						$(".cclist").html("<p style='text-align:center;margin-top: 10px;'>没有搜索到任何数据，换别的关键字试试</p>");
+					}
+					hideLoading();
+				} else {
+					hideLoading();
+	                //showMsg("", result.desc, 1);
+				}
+				//得到搜索结果后刷新常用联系人列表
+				refreshCommonUsersCc();
+			},
+			error : function() {
+				hideLoading();
+                showMsg("", "系统繁忙，请稍后再试！", 1);
+			}
+		});
+		if(isShowGroupcc==0){
+			doGetGroupUsersCc();	//获取常用联系人群组
+			isShowGroupcc++;
+		}
+	}
+
+	function seachUsers(obj, userID) {
+		document.getElementById("orginfo_search").action = "user_detail.jsp?id="
+				+ userID;
+		document.getElementById("orginfo_search").submit();
+	}
+
+	function selectUserCc(obj,userID,userName,headPic){
+		if($(obj).find(".user_select_icon").hasClass("active")){
+			$(obj).find(".user_select_icon").removeClass("active");
+			$(obj).find(".user_select_icon").addClass("actived");
+			$("#selectUserAllCc_div").removeClass("active");
+			$("#selectUserAllCc_div").addClass("actived");
+			selectedCcUser.remove(userID+"|"+userName+"|"+headPic);
+			ccrefreshSelected('1',userID+"|"+userName+"|"+headPic);
+
+			//去除该用户所在的常用联系人群组勾选状态
+			var groupId="";
+			for(var i=0;i<ccgroupArray.length;i++){
+				if(ccgroupArray[i].indexOf(userID)>=0){
+					groupId=ccgroupArray[i].split("|")[0];
+					var temp="#ccgroup"+groupId;
+					$(temp).removeClass("active").addClass("actived");
+				}
+			}
+			var length=ccgroupArray.length-1;
+			for(var j=length;j>=0;j--){
+				if(ccgroupArray[j].split("|")[0]==groupId){
+					var temp=ccgroupArray[j];
+					ccgroupArray.remove(temp);
+				}
+			}
+		}else{
+			$(obj).find(".user_select_icon").removeClass("actived");
+			$(obj).find(".user_select_icon").addClass("active");
+			selectedCcUser.push(userID+"|"+userName+"|"+headPic);
+			ccrefreshSelected('2',userID+"|"+userName+"|"+headPic);
+		}
+		$("#ccnum").html(selectedCcUser.length+"人");
+	}
+
+	//全选
+	function chooseAllCc(){
+		selectedCcUser = new Array();
+		//清空已选择人员列表
+		$("#ccalreadySelected").html("");
+		$("#alreadySelected3").html("");
+		$(".search-box-height-cc").css("height","50px");
+		$("#ccselected_user").hide();
+		$("#chooseUserId3").css("height","50px");
+		$("#selected_user3").hide();
+		//取消全选
+		if($("#selectUserAllCc_div").hasClass("active")){
+			$("#selectUserAllCc_div").removeClass("active");
+			$("#selectUserAllCc_div").addClass("actived");
+			$("#selectUserAllCc_div").attr("allSelectCc","0");
+			$("#ccmain").find(".user_select_icon").each(function(){
+				$(this).removeClass("active");
+				$(this).addClass("actived");
+	        });
+			$("#usmain3").find(".user_select_icon").each(function(){
+				$(this).removeClass("active");
+				$(this).addClass("actived");
+	        });
+			$("#ccnum").html("0人");
+			$("#num3").html("0人");
+		}else{
+			$("#selectUserAllCc_div").removeClass("actived");
+			$("#selectUserAllCc_div").addClass("active");
+			$("#selectUserAllCc_div").attr("allSelectCc","1");
+
+			$("#ccmain").find(".user_select_icon").each(function(){
+				$(this).removeClass("actived");
+				$(this).addClass("active");
+	        });
+			$("#usmain3").find(".user_select_icon").each(function(){
+				$(this).removeClass("actived");
+				$(this).addClass("active");
+	        });
+			var userinfo;
+			for ( var i = 0; i < userListAllCc.length; i++) {
+				userinfo = userListAllCc[i];
+				selectedCcUser.push(userinfo);
+				ccrefreshSelected("2",userinfo);
+			}
+			//用于取消后判断全选
+			oldSelectedCcUserLength=selectedCcUser.length;
+
+			$("#ccnum").html(selectedCcUser.length+"人");
+			$("#num3").html(selectedCcUser.length+"人");
+		}
+	}
+	/*取消选择人员信息*/
+	function userSelectCancelCc(){
+		//cckeywork="";
+		//isShowGroupcc=0;
+		$("#selectCcUser_div").hide();
+		$("#wrap_main").show();
+
+		//优化取消后联系人还在集合里问题 chenfeixiong 2014-08-01
+		var len=selectedCcUser.length;
+		for(var x=len-1;x>=0;x--){
+			//去除该用户所在的常用联系人群组勾选状态
+			var groupId="";
+			var userID=selectedCcUser[x].split("|")[0];
+			for(var i=0;i<ccgroupArray.length;i++){
+				if(ccgroupArray[i].indexOf(userID)>=0){
+					groupId=ccgroupArray[i].split("|")[0];
+					var temp="#ccgroup"+groupId;
+					$(temp).removeClass("active").addClass("actived");
+				}
+			}
+			var length=ccgroupArray.length-1;
+			for(var j=length;j>=0;j--){
+				if(ccgroupArray[j].split("|")[0]==groupId){
+					var temp=ccgroupArray[j];
+					ccgroupArray.remove(temp);
+				}
+			}
+
+			ccrefreshSelected("1",selectedCcUser[x]);
+			selectedCcUser.remove(selectedCcUser[x]);
+		}
+		for(var x=0;x<oldselectedCcUser.length;x++){
+			selectedCcUser.push(oldselectedCcUser[x]);
+			ccrefreshSelected("2",selectedCcUser[x]);
+		}
+	    if(selectedCcUser.length==0){
+			$("#ccalreadySelected").html("");
+    		$(".search-box-height-cc").css("height","50px");
+    		$("#ccselected_user").hide();
+		}
+		if(selectedCcUser.length!=oldSelectedCcUserLength){				//全选按钮控制
+			$("#selectUserAllCc_div").removeClass("active").addClass("actived");
+		}else if(selectedCcUser.length==oldSelectedCcUserLength && selectedCcUser.length!=0){
+			$("#selectUserAllCc_div").removeClass("actived").addClass("active");
+		}
+
+		resetUsersCc();
+	}
+	//确认选择
+	function doSureCc(){
+		//cckeywork="";
+		//isShowGroupcc=0;
+    	if(selectedCcUser.length==0){
+    		showMsg("提示信息", "您未选择任何人！", 1);
+    		return ;
+    	}
+    	else{
+    		resetUsersCc();
+   			$("#selectCcUser_div").hide();
+   			$("#wrap_main").show();
+   		}
+    }
+	function resetUsersCc(){
+		var persons="";
+   		var userIds="";
+   		var users = "";
+		if(selectedCcUser.length>5){
+			$("#ccmoreDiv").show();
+			$("#ccNum").html(selectedCcUser.length);
+			$("#num3").html(selectedCcUser.length);
+			var list =$("#ccmoreDiv").find("input");
+   			if(list.length>0){
+   				$(list[0]).remove();
+   			}
+		}else{
+			$("#ccmoreDiv").hide();
+		}
+   		for ( var i = 0; i < selectedCcUser.length; i++) {
+   			var person = selectedCcUser[i].split("|");
+   			var item = template2;
+   			if(i<5){
+   				item = item.replace("@Show","block");
+   			}else{
+   				item = item.replace("@Show","none");
+   			}
+			item = item.replace("@UserId",person[0]);
+			item = item.replace("@UserName",person[1]);
+			item = item.replace("@HeadPic",person[2]);
+			item = item.replace("@ArrayValue","'"+person[0]+"|"+person[1]+"|"+person[2]+"'");
+			users += item;
+		}
+   		deletePersons("taskcc");
+		$("#ccPersonList").prepend(users);
+			/* var url=document.location.href;//@相关人缓存
+			if(url.charAt(url.length-1)=='#'){
+				url=url.substr(0,url.length-1);
+			}
+			if(window.localStorage[url]){//H5本地缓存
+				var json=JSON.parse(localStorage.getItem(url));
+				json['ccPersonList']=selectedCcUser;
+				localStorage[url]=JSON.stringify(json);
+			}else{
+				var json={};
+				json['ccPersonList']=selectedCcUser;
+				localStorage[url]=JSON.stringify(json);
+			} */
+
+	}
+	(function($){
+	    $(function(){
+			$("#ccusers_search").on("click",function(){
+				//isShowGroupcc=0;
+	 				ccpageIndex = 1;
+					//userListAllCc = cccommonArray.concat();
+					userListAllCc = new Array();
+ 				   $(".cclist").html("");
+ 					if($("#cckeyWord").val()==""){
+ 						document.getElementById("ccUserSearch").action="/wxqyh/portal/selectUserAction!ajaxGetUserListByOrgID.action";
+ 					}
+ 					else{
+ 						document.getElementById("ccUserSearch").action="/wxqyh/portal/selectUserAction!searchByNameOrPhone.action";
+ 					}
+ 				   //$("#ccUserSearch").attr("action","/wxqyh/portal/selectUserAction!ajaxGetUserListByUserNameOrPhone.action");
+ 				   doSearchCc();
+ 			        //搜索时隐藏常用联系人
+ 					$("#commonUserListCc").hide();
+ 					$("#ccarrow").removeClass("uparrow").addClass("downarrow");
+ 					//隐藏常用联系人群组
+ 					$("#groupUserIdListCc").hide();
+ 					$("#ccgroup").removeClass("uparrow").addClass("downarrow");
+ 					//隐藏公共群组
+ 					$("#publicgroupUserIdListcc").hide();
+ 					$("#pugroupcc").removeClass("uparrow").addClass("downarrow");
+			});
+			//回车查询
+	 		$('#cckeyWord').keydown(function(e){
+	 			if(e.keyCode==13){
+	 				ccpageIndex = 1;
+					userListAllCc = new Array();
+	 				   $(".cclist").html("");
+	 					if($("#cckeyWord").val()==""){
+	 						document.getElementById("ccUserSearch").action="/wxqyh/portal/selectUserAction!ajaxGetUserListByOrgID.action";
+	 					}
+	 					else{
+	 						document.getElementById("ccUserSearch").action="/wxqyh/portal/selectUserAction!searchByNameOrPhone.action";
+	 					}
+	 				   //$("#ccUserSearch").attr("action","/wxqyh/portal/selectUserAction!ajaxGetUserListByUserNameOrPhone.action");
+	 				   doSearchCc();
+	 			        //搜索时隐藏常用联系人
+	 					$("#commonUserListCc").hide();
+	 					$("#ccarrow").removeClass("uparrow").addClass("downarrow");
+	 					//隐藏常用联系人群组
+	 					$("#groupUserIdListCc").hide();
+	 					$("#ccgroup").removeClass("uparrow").addClass("downarrow");
+	 					//隐藏公共群组
+	 					$("#publicgroupUserIdListcc").hide();
+	 					$("#pugroupcc").removeClass("uparrow").addClass("downarrow");
+	 			}
+	 		});
+			// 搜索框字母导航
+		    /*弹出框*/
+		    function show_lay(){
+		        var over_opactiy_lay = $(".over_opactiy_lay");
+		        if(!over_opactiy_lay.length){
+		            $("body").append('<div class="over_opactiy_lay"></div>');
+		            over_opactiy_lay = $(".over_opactiy_lay");
+		        }
+		        over_opactiy_lay.css({
+		            "display": "block",
+		            "opacity":1
+		        })
+		    }
+
+		    function hide_lay(){
+		        var over_opactiy_lay = $(".over_opactiy_lay");
+		        over_opactiy_lay.css({
+		            "display": "none",
+		            "opacity":0
+		        })
+		    }
+		    $(".ccsearch-input").on("input", function(){
+		        var val = $(this).val();
+		         if(val!=""){
+		             $("#ccletter_search").hide();
+		             $("#ccusers_search").show();
+		             $(".letter_list").hide();
+		             hide_lay();
+		         }else{
+		             $("#ccletter_search").show();
+		             $("#ccusers_search").hide();
+		         }
+		     });
+
+		     $("#ccletter_search").on("click", function(){
+		    	 show_lay();
+		         $(".letter_list").toggle();
+		         var over_opactiy_lay = $(".over_opactiy_lay");
+		         if(over_opactiy_lay.length){
+		             over_opactiy_lay.on("click", function(){
+		                 $(".letter_list").hide();
+		                 over_opactiy_lay.off();
+		                 hide_lay();
+		             });
+		         }
+		     });
+	    })
+	})(jQuery)
+
+	function switchCommonListCc(){
+		if($("#ccarrow").hasClass("uparrow")){
+			$("#commonUserListCc").hide();
+			$("#ccarrow").removeClass("uparrow").addClass("downarrow");
+		}else{
+			$("#commonUserListCc").show();
+			$("#ccarrow").removeClass("downarrow").addClass("uparrow");
+		}
+	}
+	//获取常用联系人
+	var commonUserIdListCc = "";
+	var cccommonArray = new Array();	//常用联系人数组
+	function doGetCommonUsersCc(){
+		$.ajax({
+			url:"/wxqyh/portal/selectUserAction!getCommonList.action",
+			data : {"agentCode" : agentCode_cc},
+			type:"get",
+			dataType:"json",
+			success:function(result){
+				if(result.code=="0"){
+					var commonList = result.data.commonList;
+					if(commonList&&commonList.length>0){
+						for(var i=0;i<commonList.length;i++){
+							var value = commonList[i];
+							cccommonArray.push(value.userId+"|"+value.personName+"|"+value.headPic);
+							if(searchUserIdListCc.indexOf(value.userId)>=0){
+								//此用户在搜索结果中，常用联系人 不再显示
+								continue ;
+							}
+							if(userListAllCc.indexOf(value.userId+"|"+value.personName+"|"+value.headPic)<=-1){
+								userListAllCc.push(value.userId+"|"+value.personName+"|"+value.headPic);
+							}
+							item = tempHtml4;
+							item = item.replace("@UserID", "'"+ value.userId + "'");
+							item = item.replace("@CcUserId", value.userId);
+							item = item.replace("@UserName","'"+value.personName+"'");
+							item = item.replace("@UserName",value.personName);
+							//item = item.replace("@HeadPic","'"+value.headPic+"'");
+							item = item.replaceAll("@personImage",value.headPic);
+							item = item.replace("@actived","actived");
+							for(var k=0;k<selectedCcUser.length;k++){
+								var uid = selectedCcUser[k].split("|")[0];
+								if(uid==value.userId){
+									item = item.replace("actived","active");
+								}
+							}
+							//commonUserIdListCc += value.userId;
+							$("#commonUserListCc").append(item);
+						};
+					}
+				}
+				//userListAllCc = cccommonArray.concat();
+				//doSearchCc();
+			}
+		});
+	}
+	//获取常用联系人群组  chenfeixiong 2014/08/25
+	var groupUserIdListCc = "";
+	var ccgroupArray = new Array();	//常用联系人群组数组
+	function doGetGroupUsersCc(){
+		$("#groupUserIdListCc").html("");
+		$("#publicgroupUserIdListcc").html("");
+		$.ajax({
+			url:"/wxqyh/portal/selectUserAction!getUserGroup.action",
+			type:"get",
+			dataType:"json",
+			success:function(result){
+				if(result.code=="0"){
+					var groupList = result.data.pageData;
+					if(groupList&&groupList.length>0){
+						//maquanyang 添加群组数量 2015-8-7
+						$("#groupUserIdCcNum").html(groupList.length);
+						for(var i=0;i<groupList.length;i++){
+							var value = groupList[i];
+							item = tempHtmlg;
+							item = item.replaceAll("@groupId", "'"+ value.groupId + "'");
+							item = item.replace("@groupName",value.groupName);
+							item = item.replaceAll("@Id",value.groupId);
+							if(ccgroupArray.indexOf(value.groupId+"|")>-1){
+								item = item.replace("@actived","active");
+							}else{
+								item = item.replace("@actived","actived");
+							}
+							$("#groupUserIdListCc").append(item);
+						 }
+					}
+					//添加公共群组 chenfeixiong
+					var publicListcc = result.data.publicList;
+					if(publicListcc&&publicListcc.length>0){
+						//maquanyang 添加群组数量 2015-8-7
+						$("#publicgroupCcNum").html(publicListcc.length);
+						for(var i=0;i<publicListcc.length;i++){
+							var value = publicListcc[i];
+							item = tempHtmlg;
+							item = item.replaceAll("@groupId", "'"+ value.groupId + "'");
+							item = item.replace("@groupName",value.groupName);
+							item = item.replaceAll("@Id",value.groupId);
+							item = item.replace("@actived","actived");
+							$("#publicgroupUserIdListcc").append(item);
+						 }
+					}
+				}
+			}
+		});
+	}
+	var userCCstr="";
+	function selectgroupcc(obj,groupid){
+		if(userCCstr.indexOf(groupid)<0){
+			$.ajax({		//加载群组人员
+				url:"/wxqyh/portal/selectUserAction!getUserGroupPerson.action",
+				type:"post",
+				async:false,
+				data:{groupId:groupid,
+				'agentCode' : agentCode_cc},
+				dataType:"json",
+				success : function(json) {
+					if ("0" == json.code) {
+						if(userCCstr!=null){
+							userCCstr+=","+groupid;
+						}else{
+							userCCstr=groupid;
+						}
+						var userList = json.data.pageData;
+						if(userList&&userList.length>0){
+							for ( var i = 0; i < userList.length; i++) {
+								var userinfo = userList[i];
+								var temp="#cchidden"+groupid;
+								$(temp).append("<input value='"+userinfo.userId+"|"+userinfo.personName+"|"+userinfo.headPic+"' />");
+							}
+						}
+					}
+				},
+			});
+		}
+		var userList= new Array();
+		$("#cchidden"+groupid).find("input").each(function (){
+			userList.push(this.value);
+		});
+		if(userList.length>0){
+			if($(obj).find(".user_select_icon").hasClass("active")){
+				$(obj).find(".user_select_icon").removeClass("active");
+				$(obj).find(".user_select_icon").addClass("actived");
+				$("#selectUserAllCc_div").removeClass("active");
+				$("#selectUserAllCc_div").addClass("actived");
+				var groupId="";
+				for(var i=0;i<userList.length;i++){
+					var userTemp = userList[i].split("|");
+					var userId=userTemp[0];
+					var userName=userTemp[1];
+					ccgroupArray.remove(groupid+"|"+userId+"|"+userName+"|"+userTemp[2]);
+					selectedCcUser.remove(userId+"|"+userName+"|"+userTemp[2]);
+					ccrefreshSelected('1',userId+"|"+userName+"|"+userTemp[2]);
+					var temp="#cc"+userId;
+					$(temp).removeClass("active").addClass("actived");
+
+					var isExit=false;
+					if(!isExit){
+						 for(var j=0;j<ccgroupArray.length;j++){
+							if(ccgroupArray[j].indexOf(userId)>=0){
+								groupId=ccgroupArray[j].split("|")[0];
+								isExit=true;
+							}
+						}
+					}
+				}
+				var temp2="#ccgroup"+groupId;
+				$(temp2).removeClass("active").addClass("actived");
+				var length=ccgroupArray.length-1;
+				for(var j=length;j>=0;j--){
+					if(ccgroupArray[j].split("|")[0]==groupId){
+						var temp3=ccgroupArray[j];
+						ccgroupArray.remove(temp3);
+					}
+				}
+			}else{
+				$(obj).find(".user_select_icon").removeClass("actived").addClass("active");
+				for(var i=0;i<userList.length;i++){
+					var userTemp = userList[i].split("|");
+					var userId=userTemp[0];
+					var userName=userTemp[1];
+					ccgroupArray.push(groupid+"|"+userId+"|"+userName+"|"+userTemp[2]);			//在群组集合添加已选择的群组
+					if(selectedCcUser.indexOf(userId+"|"+userName+"|"+userTemp[2])<=-1){ 		 //去除集合中重复人员
+						selectedCcUser.push(userId+"|"+userName+"|"+userTemp[2]);
+						ccrefreshSelected('2',userId+"|"+userName+"|"+userTemp[2]);
+						var temp="#cc"+userId;
+						$(temp).removeClass("actived").addClass("active");
+					}
+				}
+			}
+		}else{
+			showMsg("提示信息", "当前群组没有联系人！", 1);
+		}
+		$("#ccnum").html(selectedCcUser.length+"人");
+	}
+	function switchGroupListCc(){
+		if($("#ccgroup").hasClass("uparrow")){
+			$("#groupUserIdListCc").hide();
+			$("#ccgroup").removeClass("uparrow").addClass("downarrow");
+		}else{
+			$("#groupUserIdListCc").show();
+			$("#ccgroup").removeClass("downarrow").addClass("uparrow");
+		}
+	}
+	function switchPublicGroupListcc(){
+		if($("#pugroupcc").hasClass("uparrow")){
+			$("#publicgroupUserIdListcc").hide();
+			$("#pugroupcc").removeClass("uparrow").addClass("downarrow");
+		}else{
+			$("#publicgroupUserIdListcc").show();
+			$("#pugroupcc").removeClass("downarrow").addClass("uparrow");
+		}
+	}
+	function refreshCommonUsersCc(){
+		if(cccommonArray.length==0){
+			doGetCommonUsersCc();
+		}else{
+			var html = "";
+			for(var i=0;i<cccommonArray.length;i++){
+				var value = cccommonArray[i].split("|");
+				if(searchUserIdListCc.indexOf(value[0])>=0){
+					//此用户在搜索结果中，常用联系人 不再显示
+					continue ;
+				}
+				item = tempHtml4;
+				item = item.replace("@UserID", "'"+ value[0] + "'");
+				item = item.replace("@CcUserId", value[0]);
+				item = item.replace("@UserName","'"+value[1]+"'");
+				item = item.replace("@UserName",value[1]);
+				//item = item.replace("@HeadPic","'"+value.headPic+"'");
+				item = item.replaceAll("@personImage",value[2]);
+				//如果该用户已经被选中
+				if(selectedCcUser.indexOf(value[0]+"|"+value[1]+"|"+value[2])>-1){
+					item = item.replace("@actived","active");
+				}else{
+					item = item.replace("@actived","actived");
+				}
+				if(userListAllCc.indexOf(value[0]+"|"+value[1]+"|"+value[2])<=-1){
+					userListAllCc.push(value[0]+"|"+value[1]+"|"+value[2]);
+				}
+				html += item;
+			};
+			$("#commonUserListCc").html(html);
+		}
+	}
+
+	function ccrefreshSelected(a,b){
+    	if(a=="1"){	//减人
+    		var list = $("#ccselected_user").find("li");
+    		var id = b.split("|")[0];
+    		for(var i=0;i<list.length;i++){
+    			if($(list[i]).attr("id")==("ccalready"+id)){
+    				$(list[i]).remove();
+    			}
+    		}
+        	$(".selected_user_inner_cc").width(selectedCcUser.length*53+40);
+        	$("#selected_user_inner3").width(selectedCcUser.length*53+30);
+    		if(selectedCcUser.length==0){
+        		$(".search-box-height-cc").css("height","50px");
+        		$("#ccselected_user").hide();
+    		}
+    	}
+    	if(a=="2"){	//加人
+    		var user = b.split("|");
+            var li = temp_already_cc;
+            li = li.replaceAll("@userId",user[0]);
+            li = li.replaceAll("@userName",user[1]);
+            li = li.replaceAll("@personImage",user[2]);
+        	$(".selected_user_inner_cc").width(selectedCcUser.length*53+40);
+        	$("#selected_user_inner3").width(selectedCcUser.length*53+30);
+         	$("#ccalreadySelected").append(li);
+    		$(".search-box-height-cc").css("height","150px");
+         	$("#ccselected_user").show();
+    	}
+    }
+    //点击已选择人员，取消选择此用户
+    function ccremoveAlready(obj,userId,userName,headPic){
+    	$(obj).remove();
+    	$("#cc"+userId).removeClass("active").addClass("actived");
+    	$("#"+userId+"_c").removeClass("active").addClass("actived");
+    	selectedCcUser.remove(userId+"|"+userName+"|"+headPic);
+		if(selectedCcUser.length==0){
+    		$(".search-box-height-cc").css("height","50px");
+    		$("#ccselected_user").hide();
+    		$("#chooseUserId3").css("height","50px");
+    		$("#selected_user3").hide();
+		}
+    	$(".selected_user_inner_cc").width(selectedCcUser.length*53+40);
+    	$("#ccnum").html(selectedCcUser.length+"人");
+    	$(".selected_user_inner").width(selectedCcUser.length*53+30);
+		$("#num3").html(selectedCcUser.length+"人");
+
+    	//去除该用户所在的常用联系人群组勾选状态
+		var groupId="";
+		for(var i=0;i<ccgroupArray.length;i++){
+			if(ccgroupArray[i].indexOf(userId)>=0){
+				groupId=ccgroupArray[i].split("|")[0];
+				var temp="#ccgroup"+groupId;
+				$(temp).removeClass("active").addClass("actived");
+			}
+		}
+		var length=ccgroupArray.length-1;
+		for(var j=length;j>=0;j--){
+			if(ccgroupArray[j].split("|")[0]==groupId){
+				var temp=ccgroupArray[j];
+				ccgroupArray.remove(temp);
+			}
+		}
+    }
+    function initSelectedCcList(){
+		if(selectedCcUser.length==0){
+			$("#ccalreadySelected").html("");
+			$(".search-box-height-cc").css("height","50px");
+			$("#ccselected_user").hide();
+		}else{
+			var html = "";
+        	$(".selected_user_inner_cc").width(selectedCcUser.length*53+40);
+			for(var i=0;i<selectedCcUser.length;i++){
+	    		var user = selectedCcUser[i].split("|");
+	            var li = temp_already_cc;
+	            li = li.replaceAll("@userId",user[0]);
+	            li = li.replaceAll("@userName",user[1]);
+	            li = li.replaceAll("@personImage",user[2]);
+	            html += li;
+			}
+			$("#ccalreadySelected").append(html);
+			$(".search-box-height-cc").css("height","150px");
+			$("#ccselected_user").show();
+		}
+    }
+  //显示全部相关人
+	function showAllcc(){
+		var p = $("#ccPersonList").find("li");
+		for(var i=0;i<p.length;i++){
+			$(p[i]).show();
+		}
+		$("#ccmoreDiv").hide();
+		var list =$("#ccmoreDiv").find("input");
+		if(list.length==0){
+			$("#ccmoreDiv").append('<input id="showCcmore" type="hidden" value="0">');
+		}
+	}
+    </script>
+    <script type="text/javascript">
+	var cclock_roll=false;
+    $(function() {
+    	/*setTimeout(function(){
+        	$(".wrap_inner").height($(window).height());
+    	},3500);*/
+         // 下拉获取数据事件，请在引用的页面里使用些事件，这为示例
+         var nScrollHight = 0; //滚动距离总长(注意不是滚动条的长度)
+         var nScrollTop = 0; //滚动到的当前位置
+         var $framecc = $("#ccmain");
+         $framecc.on("scroll", function() {
+             var nDivHight = $framecc.height();
+             nScrollHight = $(this)[0].scrollHeight;
+             nScrollTop = $(this)[0].scrollTop;
+             if (nScrollTop + nDivHight >= nScrollHight) {
+                 // 触发事件，这里可以用AJAX拉取下页的数数据
+				 if(!cclock_roll){
+					cclock_roll=true;
+					if(ccmaxPageIndex>=ccpageIndex){
+						if(cccurrPage<ccmaxPage){
+						/* if(cckeywork!=""){
+							$("#cckeyWord").val(cckeywork);
+						} */
+						/* if(cccurrPage==ccmaxPage){
+							cckeywork="";
+						} */
+						ccpageIndex++;
+						doSearchCc();
+						}
+					}
+				 }
+
+
+             };
+         });
+     });
+
+    var chooseCcType = 0;
+    function changeChooseCc(type){
+     chooseCcType = type;
+    	if(1 == type){//部门选人
+    		$("#user_select_div3").show();
+    		$("#selectCcUser_div").hide();
+    		//已选人员列表显示
+			if(selectedCcUser.length==0){
+				$("#chooseUserId3").css("height","50px");
+				$("#selected_user3").hide();
+			}else{
+				$("#chooseUserId3").css("height","150px");
+				$("#selected_user3").show();
+				$("#num3").html(selectedCcUser.length+"人");
+			}
+			$("#alreadySelected3").html($("#ccalreadySelected").html());
+    	}else{//名称选人
+    		$("#selectCcUser_div").show();
+    		$("#user_select_div3").hide();
+    		//已选人员列表显示
+			if(selectedCcUser.length==0){
+				$(".search-box-height-cc").css("height","50px");
+				$("#ccselected_user").hide();
+			}else{
+				$(".search-box-height-cc").css("height","150px");
+				$("#ccselected_user").show();
+			}
+			$("#ccalreadySelected").html($("#alreadySelected3").html());
+    	}
+    }
+    </script>
+
+
+
+    <div style="display:none" id="selectAuditUser_div">
+        <div class="wrap">
+            <div class="search-box fixed">
+                <form action="/wxqyh/portal/flow/flowAction!getDepartmentInfo.action" method="post" id="auditUserSearch" onsubmit="return false"></form>
+            </div>
+            <div id="auditmain" class="wrap_inner">
+                <div class="search-box-height search-box-height-audit"></div>
+                <div class="chooseAllAudit common_list"></div>
+                <div class="address_list">
+                    <div class="auditlist">
+                        <!-- 模板数据 -->
+                    </div>
+                    <div class="all_pull" id="tips" style="display:none">
+                        <p class="lastComment">正在加载中...</p>
+                    </div>
+                </div>
+                <div class="footheight"></div>
+            </div>
+            <div class="foot_bar">
+                <div class="foot_bar_inner flexbox">
+                    <a class="flexItem btn white_btn ask_btn prev_ask_btn" href="javascript:userSelectCancelAudit()">取消</a>
+                    <a class="flexItem btn white_btn ask_btn next_ask_btn" href="javascript:doSureAudit()">确定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+	var  auditTempHtml2 = ' '
+	+'<div class="settings-item" onclick="selectAuditDepartment(this,@dpID);"> '
+	+'    <a class="a_link" href="#"></a> '
+	+'    <div class="inner-settings-item flexbox to"> '
+	+'        <div class="user_select_icon audituser_select_icon @actived" > <i class="fa"></i> '
+	+'        </div> '
+	+'        <div class="title flexItem"> '
+	+'            <p class="name">@departmentName</p> '
+	+'        </div> '
+	+'    </div> '
+	+'</div>';
+	var auditTempHtml = '<div class="letter_bar"></div>';
+
+	var audittemplate4 = ''
+       	+'<li class="toli" style="display:@Show;height: 55px;"> '
+       	+'    <p class="img"> '
+       	+'        <img src="@HeadPic" onerror="javascript:replaceUserHeadImage(this);" alt="" /> '
+       	+'    </p> '
+       	+'    <p class="name">@UserName</p> '
+       	+'</li>';
+
+    var opentype="";
+    var audtiFlag="";
+	/**
+	 * 加载数据
+	 */
+	function doSearchAudit() {
+
+		$('#auditUserSearch').ajaxSubmit({
+			data : {},
+			dataType : 'json',
+			success : function(result) {
+				if ("0" == result.code) {
+					var departmentList=result.data.departmentList;
+
+					if(departmentList&&departmentList.length>0){
+						$(".auditlist").html("");
+						for ( var i = 0; i < departmentList.length; i++) {
+							var department = departmentList[i];
+							//添加部门
+							var item = auditTempHtml;
+
+
+							$(".auditlist").append(item);
+
+							item = auditTempHtml2;
+
+							item = item.replace("@dpID","'"+department.id+"'");
+							item = item.replace("@departmentName", department.departmentName);
+							item = item.replace("@actived","actived");
+							var dpId=$("#dpId").val();
+							if(dpId==department.id){
+								item = item.replace("actived","active");
+						    }
+							$(".auditlist").append(item);
+						}
+
+					}else{
+						$(".auditlist").html("<p style='text-align:center;margin-top: 10px;'>没有搜索到任何数据，换别的关键字试试</p>");
+					}
+					hideLoading();
+				} else {
+					hideLoading();
+				}
+			},
+			error : function() {
+				hideLoading();
+                showMsg("", "系统繁忙，请稍后再试！", 1);
+			}
+		});
+
+	}
+
+
+	function selectAuditDepartment(obj,dpId){
+		$('.user_select_icon').removeClass('active').addClass('actived');
+		$(obj).find(".user_select_icon").removeClass("actived");
+		$(obj).find(".user_select_icon").addClass("active");
+
+		if(dpId!=""){
+			$("#dpId").val(dpId);
+		}
+	}
+	//根据id获取用户信息
+	function getAuditUserInfo(dpId){
+		$.ajax({
+            type:"POST",
+            url: "/wxqyh/portal/flow/flowAction!getFlowUserReceive.action",
+            data: {dpId:dpId},
+            dataType: "json",
+            success: function(result){
+            	 if ("0" == result.code) {
+            		 var userList=result.data.userList;
+            		 if(userList&&userList.length>0){
+            			 auditUsers="";
+ 						for ( var i = 0; i < userList.length; i++) {
+ 							var auditUser = userList[i];
+ 				   			var item = audittemplate4;
+ 				   			if(i<5){
+ 				   				item = item.replace("@Show","block");
+ 				   			}else{
+ 				   				item = item.replace("@Show","none");
+ 				   			}
+ 							item = item.replace("@UserName",auditUser.personName);
+ 							item = item.replace("@HeadPic",auditUser.headPic);
+ 							auditUsers += item;
+            	            }
+
+ 						var addAndRemoveAuditTemplate="<li class='f-user-add' style='margin-bottom: 20px;' onclick='showSelectAudtiUser(1)' id='initialAuditUser'></li>";
+          				if(opentype=="2"||opentype=="3"){//3为在审批过程中下方的选人  2是在审批的时候
+       						addAndRemoveAuditTemplate="<li class='f-user-add' style='margin-bottom: 20px;' onclick='showSelectAudtiUser(3)' id='initialAuditUser'></li>";
+       						$("#startAuditUserList").html(addAndRemoveAuditTemplate);
+               				$("#startAuditUserList").prepend(auditUsers);
+
+       						addAndRemoveAuditTemplate="<li class='f-user-add' style='margin-bottom: 20px;' onclick='showSelectAudtiUser(2)' id='initialAuditUser'></li>";
+       						$("#next_audit_userlist_count1").html("下一步处理人("+userList.length+"人)");
+              				$("#auditPersonList").html(addAndRemoveAuditTemplate);
+                  			$("#auditPersonList").prepend(auditUsers);
+                  			if(opentype=="2"){
+                  			$("#closeaudit_div").show();
+                  			}
+              			}else{
+              				$("#startAuditUserList").html(addAndRemoveAuditTemplate);
+              				$("#startAuditUserList").prepend(auditUsers);
+              				$("#start_audit_users_div").html("处理人("+userList.length+")");
+              			}
+
+            		 }
+                    }
+            }
+		});
+	}
+
+	/*取消选择人员信息*/
+	function userSelectCancelAudit(){
+		restoreSubmit();
+		$("#selectAuditUser_div").hide();
+		$("#wrap_main").show();
+	}
+	//确认选择
+	function doSureAudit(){
+		var dpId=$("#dpId").val();
+    	if(""==dpId){
+    		showMsg("提示信息", "请选择部门！", 1);
+    		return ;
+    	}
+    	else{
+    		getAuditUserInfo(dpId);
+   			$("#selectAuditUser_div").hide();
+   			$("#wrap_main").show();
+   		}
+    }
+
+	//进入部门选择页面
+	function showSelectAudtiUser(obj){
+		opentype=obj;
+		if(opentype=="2"){//审核过程中
+			$("#closeaudit_div").hide();
+		}
+		$("#wrap_main").hide();
+		$("#selectAuditUser_div").show();
+    	doSearchAudit();
+	}
+
+    function getStartAuditUser(flow_id){
+   	   $("#flowId").val(flow_id);
+   	   var id=$("#id").val();
+           	$.ajax({
+                   type:"POST",
+                   url: "/wxqyh/portal/flow/flowAction!getFlowAuditUser.action",
+                   data: {id:id,flowId:flow_id},
+                   dataType: "json",
+                   success: function(data){
+                   	 if ("0" == data.code) {
+                   		 var auditUserList=data.data.startAuditList;
+                   		 audtiFlag=data.data.audtiFlag;
+                   		 if(auditUserList&&auditUserList.length>0){
+                       			 var auditUsers="";
+                       			 for(var i=0;i<auditUserList.length;i++){
+       	                			 var item=audittemplate4;
+       		               				item = item.replace("@UserName",auditUserList[i].personName);
+       		               				item = item.replace("@HeadPic",auditUserList[i].headPic);
+       		               				auditUsers += item;
+
+       	                		 }
+                       			$("#start_audit_users_div").html("处理人("+auditUserList.length+")");
+                         			$("#startAuditUserList").html(auditUsers);
+                   		 }if(audtiFlag=="2"){//多部门
+                	    		$("#auditalreadySelected").html("");
+                	    		$(".search-box-height-audit").css("height","50px");
+                	    		$("#auditselected_user").hide();
+                	    		$(".audituser_select_icon").removeClass("active").addClass("actived");//去掉勾选
+   	             			var addAndRemoveAuditTemplate="<li class='f-user-add' style='margin-bottom: 20px;' onclick='showSelectAudtiUser(1)' id='initialAuditUser'></li>";
+   	         				 $("#start_audit_users_div").html("处理人");
+       	         			 if(auditUserList&&auditUserList.length>0){
+       	         				 $("#dpId").val(auditUserList[0].deptId);
+       	             			 $("#startAuditUserList").append(addAndRemoveAuditTemplate);
+       	         			 }else{
+       	         				$("#startAuditUserList").html(addAndRemoveAuditTemplate);
+       	         			 }
+                   		 }else if(audtiFlag=="3"){//不存在直接负责人
+                   			 $("#startAuditUserList").html("你所在的部门暂无设置直接负责人,请联系后台管理员");
+                   		 }
+                   		 $("#startAuditUserList").show();
+                   	 }
+
+                   }
+       	  });
+           }
+    </script>
+
+
+    <script type="text/javascript" src="/wxqyh/themes/wap/js/flow/flow.js?ver=2016.02.18.01"></script>
+    <script type="text/javascript">
+			$('#askDay,#askHour').on('input',function(){
+				var askday = $('#askDay').val();
+				var askhour = $('#askHour').val();
+				if(!askday){
+					askday = '0.0';
+				}
+				if(!workhour){
+					workhour = '8.0';
+				}
+				if(!askhour){
+					askhour = '0.0';
+				}
+				var naskday = askday*1.0;
+				var naskhour = askhour*1.0;
+				var nworkhour = workhour*1.0;
+				if(naskhour>=nworkhour){
+					$('#workhourDays').html(workhour);
+					$('#workhourDiv').show();
+				}else{
+					$('#workhourDiv').hide();
+				}
+				$('#applyDays').html((naskday+naskhour/nworkhour).toFixed(2));
+			});
+
+			$("#taskStart").on('change',function(){
+				setStopByStart($("#taskStart").val(),$("#taskStop").val())
+				getFlowAndRemainDays();
+			});
+    </script>
+</body>
+</html>

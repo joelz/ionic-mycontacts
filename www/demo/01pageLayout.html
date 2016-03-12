@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>页面布局</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <script src="js/jquery-1.9.1.min.js"></script>
+
+    <link href="js/ku.css" rel="stylesheet" />
+    <script type="text/javascript">
+		    (function($){
+		        $(function(){
+					agentCode_to = "ask";
+					agentCode_cc = "ask";
+		        	/* var opt = {
+		        	        preset: 'datetime', //日期
+		        	        theme: 'android-holo light', //皮肤样式
+		        	        display: 'bottom', //显示方式
+		        	        mode: 'scroller', //日期选择模式
+		        	        dateFormat: 'yy-mm-dd', // 上面部分的日期格式
+		        	        setText: '确定', //确认按钮名称
+		        	        cancelText: '取消',//取消按钮名籍我
+		        	        dateOrder: 'yymmdD', //面板中日期排列格式
+		        	        showNow: true,
+		        	        nowText: "今天",
+		        	         group: true,
+		        	         stepMinute: 5,//设置分钟间隔
+		        	        dayText: '日', monthText: '月份', yearText: '年份', //面板中年月日文字
+		        	        endYear:2050 //结束年份
+
+		        	    }; */
+		        	opt.preset='datetime';//调用日历显示  日期时间
+		        	$('#taskStop,#taskStart').mobiscroll(opt);//直接调用日历 插件
+		            $('#taskStop').on('focus', function(){
+		            	//关闭输入法
+		            	$("#title").css("ime-mode","disabled");
+		            	$("#content").css("ime-mode","disabled");
+		                /* setTimeout(function(){
+		                	$("#taskStop").calendar('show');
+
+		                },800); */
+		            });
+		            $('#taskStart').on('focus', function(){
+		            	$("#title").css("ime-mode","disable");
+		        		$("#content").css("ime-mode","disable");
+		        		/* setTimeout(function(){
+			                $("#taskStart").calendar('show');
+		        		},800); */
+		            });
+		        });
+
+		    })(jQuery);
+    </script>
+
+</head>
+
+<body>
+    <div id="wrap_main" class="wrap">
+        <div id="main" class="wrap_inner">
+
+            <form action="/wxqyh/portal/askAction!ajaxAdd.action" id="taskform" onsubmit="return false;">
+                <input type="hidden" name="tbQyAskPO.isFree" id="isFreeFlow" />
+                <div class="form-style">
+                    <div class="f-item ">
+                        <div class="inner-f-item item-text flexbox">
+                            <span class="f-item-title">类型</span>
+                            <div class="flexItem">
+                                <select name="tbQyAskPO.askType" id="taskType" onchange="autoInput(this.value,this.options[this.selectedIndex].text)" class="flexItem item-select"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-item ">
+                        <div class="inner-f-item">
+                            <div class="flexItem">
+                                <input type="text" name="tbQyAskPO.title" value="" id="title" valid="{maxLength:150}" placeholder="请输入请假标题" class="item-select inputStyle maxlength" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-item">
+                        <div class="inner-f-item">
+                            <div class="text_div">
+                                <textarea class="item-select inputStyle" name="tbQyAskPO.content" id="content" cols="30" rows="2" placeholder="请输入请假内容" maxlength="500"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-item ">
+                        <div class="inner-f-item item-text flexbox">
+                            <span class="f-item-title">申请时长</span>
+                            <div class="flexItem">
+                                <input type="number" name="tbQyAskPO.askDay" style="width:35%" value="1" id="askDay" placeholder="请输入天数" class="item-select inputStyle" /><span>天零</span>
+                                <input type="number" name="tbQyAskPO.ext1" style="width:35%;" value="" id="askHour" placeholder="0" class="item-select inputStyle" /><span>小时</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-item ">
+                        <div class="inner-f-item item-text flexbox ">
+                            <span class="f-item-title">开始时间</span>
+                            <div class="flexItem">
+                                <input type="hidden" name="tbQyAskPO.startTime" value="" id="hiddenStartTime" />
+                                <input type="text" style="width:75%" id="taskStart" value="" placeholder="请选择日期" readonly="readonly" class="item-input inputStyle" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-item">
+                        <div class="inner-f-item item-text flexbox ">
+                            <span class="f-item-title">截止时间</span>
+                            <div class="flexItem">
+                                <input type="hidden" name="tbQyAskPO.endTime" value="" id="hiddenStopTime" />
+                                <input type="text" style="width:75%" id="taskStop" value="" placeholder="请选择日期" readonly="readonly" class="item-input inputStyle" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-item bgefefef">
+                        <div class="SS_title inner-f-item item-text">
+                            <div id="remainingDiv" class="hidden">你剩余可用<span id="vacationName"></span>为<span id="remainingDays">1</span> 天</div>
+                            <div>本次申请 <span id="applyDays">1</span> 天</div>
+                            <div id="workhourDiv" class="hidden red">申请时长的小时不能大于<span id="workhourDays">8</span>(工作日时长)</div>
+                        </div>
+                    </div>
+                    <div class="f-item">
+                        <div class="loadImg mb10 clearfix" id="upPicDiv" style="padding-left: 10px;">
+                            <div class="f-add-user-list">
+                                <ul id="imglist" class="impression">
+                                    <li class="f-user-add" id="addimage" style="margin-bottom:14px">
+                                        <input id="imageFileInput" class="imageFileInput" accept="image/*" type="file">
+                                    </li>
+                                    <li class="f-user-remove" show="0" onclick="removeImage(this,'imglist')"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="isRelatives" style="display:none" class="letter_bar">审批人<div class="loadlast_onoff">加载上次<div class="onOff" id="onOff2"><span class="onOff_off"> <input type="hidden" name="toSelectId" id="toSelectId" value="0" /></span></div></div></div>
+                    <div class="f-add-user clearfix" id="responsibility_user_div" style="display:none">
+                        <div class="inner-f-add-user">
+                            <div class="f-add-user-list">
+                                <ul class="clearfix" id="toPersonList">
+                                    <li class="f-user-add" style="margin-bottom:20px" onclick="showSelectUser('taskto')"></li>
+                                    <li class="f-user-remove" style="margin-bottom:20px" show="0" onclick="removePersons(this,'taskto')"></li>
+                                </ul>
+                                <div class="load_more_user" style="display:none" id="tomoreDiv">
+                                    <a href="javascript:showAllto()">点击查看全部(<span id="toNum">0</span>人)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="letter_bar">相关人<div class="loadlast_onoff">加载上次<div class="onOff" id="onOff3"><span class="onOff_off"> <input type="hidden" name="ccSelectId" id="ccSelectId" value="0" /></span></div></div></div>
+                    <div class="f-add-user clearfix">
+                        <div class="inner-f-add-user">
+                            <div class="f-add-user-list">
+                                <ul class="clearfix" id="ccPersonList">
+                                    <li class="f-user-add" style="margin-bottom:20px" onclick="showSelectUser('taskcc')"></li>
+                                    <li class="f-user-remove" style="margin-bottom:20px" show="0" onclick="removePersons(this,'taskcc')"></li>
+                                </ul>
+                                <div class="load_more_user" style="display:none" id="ccmoreDiv">
+                                    <a href="javascript:showAllcc()">点击查看全部(<span id="ccNum">0</span>人)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="letter_bar" id="flowShowDiv" style="display:none">可用流程</div>
+                    <div class="answer-list radio_btn">
+                        <input type="hidden" id="flowId" name="flowId" value="" />
+                        <input type="hidden" id="dpId" name="flowDpId" value="" />
+                        <ul id="flowListDiv"></ul>
+                    </div>
+                    <div class="letter_bar" style="display:none" id="start_audit_users_div">处理人</div>
+                    <div class="f-add-user clearfix">
+                        <div class="inner-f-add-user">
+                            <div class="f-add-user-list">
+                                <ul class="clearfix" id="startAuditUserList"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form_btns mt10">
+                        <div class="inner_form_btns">
+                            <div class="fbtns flexbox">
+                                <input type="hidden" name="tbQyAskPO.askStatus" id="taskStatus" value="" />
+                                <a class="fbtn btn gray_btn flexItem" style="margin-right: 5px;" href="javascript:commitTask('0')">保存为草稿</a>
+                                <a class="fbtn btn flexItem" style="margin-left: 5px;" href="javascript:commitTask('1')">立即提交</a>
+                            </div>
+                            <div class="fbtns_desc">如果你还没有确定现在立即发布，可以保存为草稿，之后可以再次编辑。</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div>
+        <br />
+        <br />
+        <br />
+        <a href="index.html">回到列表</a>
+        <br />
+    </div>
+
+</body>
+</html>

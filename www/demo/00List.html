@@ -1,0 +1,412 @@
+﻿
+
+<!DOCTYPE html>
+<html>    
+
+
+
+<!-- 用于手机调用页面，不获取用户登录信息，避免抛出异常。"dgu" don't get user -->
+
+
+
+<script>var baseURL = "/wxqyh";var resourceURL = "http://res.do1.com.cn/qwy";var localport = "http://qwyimg.do1.com.cn/fileweb";var compressURL = "http://qwyimg.do1.com.cn/fileweb/compress";var agentJson = "%5B%7B%22angentId%22%3A%22activity%22%2C%22regex%22%3A%22%5E.*activity.*%24%22%7D%2C%7B%22angentId%22%3A%22addressBook%22%2C%22regex%22%3A%22%5E.*addressbook.*%24%22%7D%2C%7B%22angentId%22%3A%22ask%22%2C%22regex%22%3A%22%5E.*%2Fask%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22chat%22%2C%22regex%22%3A%22%5E.*chat.*%24%22%7D%2C%7B%22angentId%22%3A%22checkwork%22%2C%22regex%22%3A%22%5E.*checkwork.*%24%22%7D%2C%7B%22angentId%22%3A%22crm%22%2C%22regex%22%3A%22%5E.*crm.*%24%22%7D%2C%7B%22angentId%22%3A%22diary%22%2C%22regex%22%3A%22%5E.*diary.*%24%22%7D%2C%7B%22angentId%22%3A%22dynamic%22%2C%22regex%22%3A%22%5E.*dynamicin.*%24%22%7D%2C%7B%22angentId%22%3A%22express%22%2C%22regex%22%3A%22%5E.*express.*%24%22%7D%2C%7B%22angentId%22%3A%22form%22%2C%22regex%22%3A%22%5E.*form.*%24%22%7D%2C%7B%22angentId%22%3A%22homework%22%2C%22regex%22%3A%22%5E.*homework.*%24%22%7D%2C%7B%22angentId%22%3A%22jdoa%22%2C%22regex%22%3A%22%5E.*%2Foa%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22jdoabhw%22%2C%22regex%22%3A%22%5E.*bhw.*%24%22%7D%2C%7B%22angentId%22%3A%22meetingassistant%22%2C%22regex%22%3A%22%5E.*meeting.*%24%22%7D%2C%7B%22angentId%22%3A%22moveapprove%22%2C%22regex%22%3A%22%5E.*moveapprove.*%24%22%7D%2C%7B%22angentId%22%3A%22outsidework%22%2C%22regex%22%3A%22%5E.*outwork.*%24%7C%5E.*movework.*%24%7C%5E.*moveworksign.*%24%7C%5E.*outsideworkinfo.*%24%22%7D%2C%7B%22angentId%22%3A%22productinfo%22%2C%22regex%22%3A%22%5E.*product.*%24%22%7D%2C%7B%22angentId%22%3A%22qwhelper%22%2C%22regex%22%3A%22%5E.*qwhelper.*%24%22%7D%2C%7B%22angentId%22%3A%22secretary%22%2C%22regex%22%3A%22%5E.*explain.*%24%22%7D%2C%7B%22angentId%22%3A%22survey%22%2C%22regex%22%3A%22%5E.*question.*%24%22%7D%2C%7B%22angentId%22%3A%22task%22%2C%22regex%22%3A%22%5E.*task.*%24%22%7D%2C%7B%22angentId%22%3A%22topic%22%2C%22regex%22%3A%22%5E.*topic.*%24%22%7D%2C%7B%22angentId%22%3A%22formdiy%22%2C%22regex%22%3A%22%5E.*%2Fformdiy%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22wqqd%22%2C%22regex%22%3A%22%5E.*%2Fwqqd%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22todo%22%2C%22regex%22%3A%22%5E.*%2Ftodo%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22recruit%22%2C%22regex%22%3A%22%5E.*%2Frecruit%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22car%22%2C%22regex%22%3A%22%5E.*%2Fcar%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22qwim%22%2C%22regex%22%3A%22%5E.*%2Fqwim%2F.*%24%22%7D%2C%7B%22angentId%22%3A%22reimbursement%22%2C%22regex%22%3A%22%5E.*%2Freimbursement%2F.*%24%22%7D%5D";var wxqyh_corpId = "wxe6535b20ca67180d";var dqdp_csrf_token = "";
+var downFileURL="/Struts2/fileUploadAction!exportFile.action?filePath=";var openURL="http://qy.do1.com.cn/open";var wxqyh_isOpen = false;var lastDeadline="2015-12-20 23:59";
+</script>
+
+<div id="id_dqdp_tip" style="position: absolute;"></div>
+
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta content="telephone=no" name="format-detection" />
+        <meta content="email=no" name="format-detection" />
+        <link rel="stylesheet" href="/wxqyh/jsp/wap/css/ku.css?ver=2016.03.03.09" />
+        <link rel="stylesheet" href="/wxqyh/jsp/wap/css/font-awesome.min.css?ver=2016.03.03.09" />
+        <script src='/wxqyh/js/3rd-plug/jquery-ui-1.8/js/jquery-1.7.2.min.js'></script>
+         <script type="text/javascript" src="/wxqyh/jsp/wap/js/emojify.min.js?ver=2016.03.03.09"></script>
+        <script type="text/javascript" src="/wxqyh/jsp/wap/js/ku-jquery.js?ver=2016.03.03.09"></script>
+		<script src='/wxqyh/jsp/wap/js/common.js?ver=2016.03.03.09'></script>
+		<script src="/wxqyh/js/3rd-plug/jquery/jquery.form.js"></script>
+		<script type="text/javascript" src="/wxqyh/jsp/wap/js/wechat.js"></script>
+		
+		<link rel="stylesheet" href="/wxqyh/jsp/wap/css/mobiscroll.2.13.2.min.css?ver=2016.03.03.09" />
+		<script type="text/javascript" src="/wxqyh/jsp/wap/js/mobiscroll.2.13.2.min.js"></script>
+		
+		<script src="/wxqyh/js/qw/wap/express/list.js?ver=2016.03.03.09"></script>
+        <script>
+        	var status = '0';
+       		if(status=='1'){
+        		document.title="已领取的快递";
+        	}else{
+        		document.title="未领取的快递";
+        	}
+        </script>
+    </head>
+    <body>
+    <form action="/wxqyh/portal/expressAction!ajaxSearch.action" method="post" id="orginfo_search" onsubmit="return false">
+        <div id="wrap_main" class="wrap">
+        <input type="hidden" id="cstatus" value="0"/>
+        <input type="hidden" id="csource" value=""/>
+        <input type="hidden" id="ckeyWord" value=""/>
+        <input type="hidden" id="ctype" value=""/>
+            <div class="search-box fixed">
+                <div class="inner-search-box">
+	            <div class="search-box-o flexbox">
+                	<div class="flexItem">
+	                    <div class="search-input-box flexbox">
+	                        <div class="flexItem" id="temp">
+	                            <input class="search-input" type="text" placeholder="搜索收件人" name="keyWord" id="keyWord"/>
+	                         </div>
+	                    </div>
+	                </div>
+	                <div class="search_more"> 
+	                	<a href="javascript:enterSearch()" class="search_letter_btn"><i class="fa fa-search"></i></a>
+                	</div>
+                </div>
+                </div>
+            </div>
+            <div id="main" class="wrap_inner" >
+                <div class="address_list" id="comments">
+                    <div class="search-box-height"></div>
+                    <!-- 模板数据 -->
+                </div>
+                <div class="all_pull" id="showMoreDiv" >
+                    <p class="lastComment" id="moreTip">向上滑加载更多</p>
+                </div>
+                <div class="footheight" id="footheight" style="height:60px;display:none;"></div>
+        	</div>
+        	<div class="foot_bar" id="footDiv" style="display:none;padding:5px;position:fixed">
+                <div class="foot_bar_inner flexbox"> 
+ 					<a class="flexItem btn red_btn " href="javascript:doSure()" style="margin-right: 10px;">催领快递</a>
+ 					<a class="flexItem btn red_btn " href="javascript:closeExpress()" style="margin-right: 10px;">关闭快递</a>
+                </div>
+            </div>
+       </div>
+      </form>
+		
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
+<script type="text/javascript" src="/wxqyh/jsp/wap/js/CheckJSApi.js?ver=2016.03.03.09"></script>
+<script type="text/javascript" language="javascript">
+
+	var operationNeedHandle = "";
+
+    var width = $(this).width(),
+        height = $(this).height(),
+        win_width = $(window).width(),
+        win_height = ($(window).height())*0.9;//需要减去微信上方的头的2倍高度
+	/**
+	 * msgTitle 标题
+	 * msgContent 消息内容
+	 * type 1 确认；2确认，取消
+	 * needHandle 传入成功或者失败的处理函数，如下{ok:function(result){},fail:function(result){}}
+	 */
+	function showMsg(msgTitle, msgContent, type, needHandle) {
+		 restoreSubmit();//还原提交按钮
+		if (msgTitle == "")
+			msgTitle = "提示内容";
+		//$("#showMsg_overlay").height(($("#showMsg_overlay").height()+document.body.clientHeight)+"px");
+		$("#showMsg_overlay").height($(document).height());
+		$("#hmsgTitle").html(msgTitle);
+		$("#pmsgContent").html(msgContent);
+		if (1 == type) {
+			$("#btnConfirm").show();
+			$("#btnCancel").hide();
+		} else if (2 == type) {
+			$("#btnConfirm").show();
+			$("#btnCancel").show();
+		} else {
+			$("#btnConfirm").show();
+			$("#btnCancel").hide();
+		}
+
+		$(".overlay").show();
+		win_height = document.getElementById("overlayImage").offsetHeight/5;
+		win_width = document.getElementById("overlayImage").offsetWidth;
+		//$("#showMsg_div").show();
+		document.getElementById("showMsg_div").style.display = "block";
+		//让加载中剧中对齐
+        var tips_width = document.getElementById("showMsg_div").offsetWidth,
+        tips_height= document.getElementById("showMsg_div").offsetHeight,
+        top = (win_height-tips_height)/2,
+        left = (win_width-tips_width)/2;
+		$("#showMsg_div").css({
+			'top' : top + "px",
+			'left' : left + "px"
+		});
+		operationNeedHandle = needHandle;
+		//$("#operationNeedHandle").val(needHandle);
+		//operationCancelHandle = needCancelHandle;
+		//$("#operationCancelHandle").val(needCancelHandle);
+	}
+
+	/* $(window).scroll(function() { */
+		/* var scrolltop = $(window).scrollTop();
+		$("#showMsg_div").css({
+			'top' : scrolltop + 100 + "px"
+		}); */
+		/* //让加载中剧中对齐
+        tips_height= document.getElementById("showMsg_div").offsetHeight,
+        top = (win_height-tips_height)/2,
+		$("#showMsg_div").css({
+			'top' : top + "px"
+		});
+	}); */
+
+	/**
+	 * 关闭消息窗口 operationRCD{0:确定, -1:取消，1:关闭}
+	 */
+	function closeMsgBox(flag) {
+		$("#hmsgTitle").html("");
+		$("#pmsgContent").html("");
+		$(".overlay").hide();
+		document.getElementById("showMsg_div").style.display = "none";
+
+		if (operationNeedHandle == undefined || operationNeedHandle == "") {
+			return;
+		} else if (operationNeedHandle == 1) {
+			if (0 == flag) {
+				try {
+					handle();
+				} catch (e) {
+
+				}
+			}
+		} else {
+			//执行操作事件
+			if (0 == flag) {
+				e = operationNeedHandle.ok;
+			} else {
+				e = operationNeedHandle.fail;
+			}
+			if (e != null) {
+				e && e.call(e, null, null);
+			}
+		}
+	}
+
+	 /**
+	 *显示加载页面
+	 *msgContent 加载页面显示的内容，如果不传，默认为"加载中..."
+	 */
+	function showLoading(msgContent) {
+		//传入的信息为空
+		if(msgContent == undefined || msgContent==""){
+			$("#loading_text").html("加载中...");
+		}
+		else{
+			$("#loading_text").html(msgContent);
+		}
+		$(".overlay").show();
+		win_height = document.getElementById("overlayImage").offsetHeight/5;
+		win_width = document.getElementById("overlayImage").offsetWidth;
+		
+		document.getElementById("loading_simple_div").style.display = "block";
+		//让加载中剧中对齐
+        var tips_width = document.getElementById("loading_simple_div").offsetWidth,
+        tips_height= document.getElementById("loading_simple_div").offsetHeight,
+        top = (win_height-tips_height)/2,
+        left = (win_width-tips_width)/2;
+		$("#loading_simple_div").css({
+			'top' : top + "px",
+			'left' : left + "px"
+		});
+	}
+
+	 /**
+	 *隐藏加载页面
+	 */
+	function hideLoading() {
+		$(".overlay").hide();
+		document.getElementById("loading_simple_div").style.display = "none";
+	}
+	
+	 /**
+	  * show original image
+	  */
+	function showImage(url) {
+		$("#src_image").attr("src",url);
+		$("#overlayImage").show();
+		$("#loading_image_div").show();
+	}
+	
+	 /**
+	  * hide original image
+	  */
+	function hideImage() {
+		$("#overlayImage").hide();
+		$("#loading_image_div").hide();
+	}
+	 
+
+	/**
+	 * option 选项
+	 * msgTitle 标题
+	 * needHandle 传入成功或者失败的处理函数，如下{ok:function(result){},fail:function(result){}}
+	 */
+	function showChooseBox(option, msgTitle, needHandle,flowId) {
+		if(1<arguments.length && msgTitle != ""){
+			$("#chooseMsgTital").html("<p>"+msgTitle+"</p>");
+		}
+		else{
+			$("#chooseMsgTital").hide();
+		}
+		if(option.length>0){
+			var temp = "";
+			if(flowId){
+				for(var i=0;i<option.length;i++){
+					if(flowId==option[i].id){
+						temp += '<li class="active"><input type="radio" style="display:none" name="radio_choose" checked="checked" vname="'+option[i].name+'" value="'+option[i].id+'">'+
+						'<div class="xian_option"><i class="fa"></i>'+option[i].name+'</div></li>';
+					}
+					else{
+						temp += '<li><input type="radio" style="display:none" name="radio_choose" vname="'+option[i].name+'" value="'+option[i].id+'">'+
+						'<div class="xian_option"><i class="fa"></i>'+option[i].name+'</div></li>';
+					}
+				}
+			}
+			else{
+				for(var i=0;i<option.length;i++){
+					temp += '<li><input type="radio" style="display:none" name="radio_choose" vname="'+option[i].name+'" value="'+option[i].id+'">'+
+					'<div class="xian_option"><i class="fa"></i>'+option[i].name+'</div></li>';
+				}
+			}
+			$("#chooseMsgUl").html(temp);
+		}
+
+		$(".overlay").show();
+		win_height = document.getElementById("overlayImage").offsetHeight/5;
+		win_width = document.getElementById("overlayImage").offsetWidth;
+		//$("#showMsg_div").show();
+		document.getElementById("chooseMsg_div").style.display = "block";
+		//让加载中剧中对齐
+        var tips_width = document.getElementById("chooseMsg_div").offsetWidth,
+        tips_height= document.getElementById("chooseMsg_div").offsetHeight,
+        top = (win_height-tips_height)/2,
+        left = (win_width-tips_width)/2;
+		$("#chooseMsg_div").css({
+			'top' : top + "px",
+			'left' : left + "px"
+		});
+		if(2<arguments.length){
+			operationNeedHandle = needHandle;
+		}
+        $('#chooseMsgUl').on('click','li',function(event){
+            var self = $(this),
+            context = self.parent(),
+            siblings = $('.active',context);
+
+    	    siblings.removeClass('active');
+    	    self.addClass('active');
+
+    	    context.find("input[type='radio']").attr("checked", false);
+    	    self.find("input[type='radio']").attr("checked", true);
+        });
+	}
+	/**
+	 * 关闭消息窗口 operationRCD{0:确定, -1:取消，1:关闭}
+	 */
+	function closeChooseMsgBox(flag) {
+		//console.log($("#chooseMsgUl input[name='radio_choose'][checked]"));
+		var choose =  $("#chooseMsgUl input[name='radio_choose'][checked]");
+		$("#chooseMsgTital").html("");
+		$("#chooseMsgUl").html("");
+		$(".overlay").hide();
+		document.getElementById("chooseMsg_div").style.display = "none";
+
+		if (operationNeedHandle == "") {
+			return;
+		}
+		else {
+			//执行操作事件
+			if (0 == flag) {
+				e = operationNeedHandle.ok;
+			} else {
+				e = operationNeedHandle.fail;
+			}
+			if (e != null) {
+				var chooseValue = {};
+				chooseValue.id = choose.val();
+				chooseValue.name = choose.attr("vname");
+				e && e.call(e, chooseValue, null);
+			}
+		}
+	}
+	 
+</script>
+<div class="text_tips" id="showMsg_div"
+	style="display: none; position: fixed; left: 50%;">
+	<div class="inner_text_tips">
+		<div class="text_tips_content" id="pmsgContent"></div>
+		<div class="text_tips_btns flexbox">
+			<a id="btnConfirm" class="btn tips_submit_btn flexItem" href="javascript:closeMsgBox(0);">确定</a>
+			<a id="btnCancel" class="btn tips_cancel_btn  flexItem" href="javascript:closeMsgBox(-1);">取消</a>
+		</div>
+	</div>
+	<input type="hidden" value="" id="operationNeedHandle" />
+</div>
+
+<div class="simple_tips" id="loading_simple_div" style="display: none; position: fixed;">
+    <div class="simple_tips_content text-center">
+        <div id="loading" class="loading ma">
+            <div><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+			</div>
+        </div>
+        <div class="simple_tips_text mt10">
+            <p id="loading_text">加载中...</p>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="overlayImage" style="display: none;"></div>
+
+<!--图片预览-->
+<div class="img_preview" id="loading_image_div" style="display: none;">
+    <div class="inner_img_preview">
+        <img  id='src_image'  src="" alt="" onclick="hideImage();"/>
+      
+    </div>
+</div>
+
+<div class="text_tips" id="chooseMsg_div" style="display: none;position: fixed; left: 40%;">
+	<div class="inner_text_tips">
+		<div id="question1" class="question_detail" style="">
+			<div class="inner_question_detail">
+				<div class="ask_info" id="chooseMsgTital"></div>
+				<div class="ask_info">
+					<div class="answer-list radio_btn">
+						<ul id="chooseMsgUl">
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="text_tips_btns flexbox">
+			<a id="btnConfirm" class="btn tips_submit_btn flexItem" href="javascript:closeChooseMsgBox(0);">确定</a>
+			<a id="btnCancel" class="btn tips_cancel_btn  flexItem" href="javascript:closeChooseMsgBox(-1);">取消</a>
+		</div>
+	</div>
+</div>
+		
+	<!--一键关闭弹窗理由填写 -->
+		 <div class="text_tips" id="close_div2" style="display: none; position: fixed;">
+			<form action="#" id="approveform" method="post" onsubmit="return false;">
+			<div class="inner_text_tips">
+				<div class="textarea_tips_content" >
+				<div class="letter_bar">请填写关闭理由</div>
+				<textarea name="reason" id="closeReason2" cols="30" rows="2"  maxlength="100">录入人关闭了快递!</textarea>
+				<p style="display:none;color: red;" id="closeTip2">关闭理由不能为空</p>
+				<p style="display:none;color: red;" id="closeTip3"></p>
+				</div>
+				<div class="text_tips_btns flexbox">
+					<a id="btnChange" class="btn tips_submit_btn flexItem" href="javascript:confirmOneKeyClose()">确定</a>
+					<a id="btnCancel1" class="btn tips_cancel_btn  flexItem" href="javascript:closeMyMsgBox2()">取消</a>
+				</div>
+			</div>
+			</form>
+		</div>
+    </body>
+</html>
