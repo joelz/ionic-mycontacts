@@ -2,7 +2,7 @@
 
 angular.module('starter.services', [])
 
-.factory('Chats', function () {
+.factory('Chats', function ($q,$http) {
     var lsKey = "allEmployees";
     var apiBaseUrl = 'http://lazyrest287227634.sinaapp.com/api/';
     // Some fake testing data
@@ -15,18 +15,16 @@ angular.module('starter.services', [])
         //}
     ];
 
-
     var divisionList = [];
 
-
     function getToken() {
-        var dtd = $.Deferred();
+        var dtd = $q.defer();
 
-        $.post(apiBaseUrl + 'user/get_token/', { 'account': '', 'password': '' },
-        function (data) {
+        $http.post(apiBaseUrl + 'user/get_token/', { 'account': '', 'password': '' }).then(
+        function (res) {
             //console.log(data);
             //alert( data );
-            var data_obj = jQuery.parseJSON(data);
+            var data_obj = res.data;
 
             if (data_obj.err_code != 0) {
                 alert('error when login.');
@@ -39,25 +37,27 @@ angular.module('starter.services', [])
             }
         });
 
-        return dtd.promise();
+        return dtd.promise;
     }
 
     function loadDivisionData(token) {
-        var dtd = $.Deferred();
+        var dtd = $q.defer();
 
-        $.get(apiBaseUrl + 'Division/list/token=' + token + '&count=200&since_id=0', {}, function (data) {
+        $http.get(apiBaseUrl + 'Division/list/token=' + token + '&count=200&since_id=0').then(function (res) {
 
-            var ret = jQuery.parseJSON(data);
+            var ret = res.data;
 
-            var divisions = $.map(ret.data.items, function (m) {
-                return {
+            var divisions = [];
+
+            angular.forEach(ret.data.items, function (m) {
+                divisions.push({
                     "id": parseInt(m.id),
                     "Name": m.Name,
                     "Addr": m.Addr,
                     "Tel": m.Tel,
                     "Fax": m.Fax,
                     "ZipCode": m.ZipCode
-                };
+                });
             });
 
             //console.log(staffs);
@@ -65,18 +65,17 @@ angular.module('starter.services', [])
             divisionList = divisions;
 
             dtd.resolve(token);
+        });
 
-        }, 'html');
-
-        return dtd.promise();
+        return dtd.promise;
     }
 
     function loadStaffData(token) {
-        var dtd = $.Deferred();
+        var dtd = $q.defer();
 
-        $.get(apiBaseUrl + 'Staff/list/token=' + token + '&count=200&since_id=0', {}, function (data) {
+        $http.get(apiBaseUrl + 'Staff/list/token=' + token + '&count=200&since_id=0').then(function (res) {
 
-            var ret = jQuery.parseJSON(data);
+            var ret = res.data;
 
             /*
             //return obj:
@@ -94,9 +93,10 @@ angular.module('starter.services', [])
             
             */
 
-            var staffs = $.map(ret.data.items, function (m) {
+            var staffs = [];
+            angular.forEach(ret.data.items, function (m) {
                 if (m.IsActive === '1') {
-                    return {
+                    staffs.push({
                         "id": parseInt(m.id),
                         "name": m.Name,
                         "title": "Staff",
@@ -111,7 +111,7 @@ angular.module('starter.services', [])
                         "pinyinFull": m.pinyinFull,
                         "pinyinInitial": m.pinyinInitial,
                         "showMobile02": m.Mobile02.length > 0
-                    };
+                    });
                 }
             });
 
@@ -121,10 +121,9 @@ angular.module('starter.services', [])
             localStorage.setItem(lsKey, JSON.stringify(staffs));
 
             dtd.resolve();
+        });
 
-        }, 'html');
-
-        return dtd.promise();
+        return dtd.promise;
     }
 
 
@@ -190,17 +189,17 @@ angular.module('starter.services', [])
             return arr;
         },
         load: function (callback,fromRemote) {
-            //$.when(getToken()).then(loadDivisionData).then(loadStaffData).then(callback);
+            //$q.when(getToken()).then(loadDivisionData).then(loadStaffData).then(callback);
 
             if (loadDataFromLocal() == false || fromRemote) {
-                $.when(loadDivisionData('fake_token')).then(loadStaffData).then(callback);
+                $q.when(loadDivisionData('fake_token')).then(loadStaffData).then(callback);
             }
             else {
                 callback();
             }
         },
         refresh: function (callback) {
-            $.when(loadDivisionData('fake_token')).then(loadStaffData).then(callback);
+            $q.when(loadDivisionData('fake_token')).then(loadStaffData).then(callback);
         }
     };
 })
