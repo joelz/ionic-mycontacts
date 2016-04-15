@@ -4,7 +4,6 @@ angular.module('starter.services', [])
 
 .factory('Chats', function ($q,$http) {
     var lsKey = "allEmployees";
-    var apiBaseUrl = 'http://lazyrest287227634.sinaapp.com/api/';
     // Some fake testing data
     var chats = [
         //{
@@ -17,113 +16,93 @@ angular.module('starter.services', [])
 
     var divisionList = [];
 
-    function getToken() {
-        var dtd = $q.defer();
-
-        $http.post(apiBaseUrl + 'user/get_token/', { 'account': '', 'password': '' }).then(
-        function (res) {
-            //console.log(data);
-            //alert( data );
-            var data_obj = res.data;
-
-            if (data_obj.err_code != 0) {
-                alert('error when login.');
-            }
-            else {
-                if ((parseInt(data_obj.data.uid) < 1) || (data_obj.data.token.length < 4))
-                    alert('The server is busy.' + data_obj.data.uid + '~' + data_obj.data.token);
-                else
-                    dtd.resolve(data_obj.data.token);
-            }
-        });
-
-        return dtd.promise;
-    }
+    var Staff = AV.Object.extend('Staff');
+    var Division = AV.Object.extend('Division');
 
     function loadDivisionData(token) {
+
         var dtd = $q.defer();
 
-        $http.get(apiBaseUrl + 'Division/list/token=' + token + '&count=200&since_id=0').then(function (res) {
+        var query = new AV.Query(Division);
+        query.find({
+            success: function (results) {
 
-            var ret = res.data;
+                var ret = JSON.parse(JSON.stringify(results));
 
-            var divisions = [];
+                var divisions = [];
 
-            angular.forEach(ret.data.items, function (m) {
-                divisions.push({
-                    "id": parseInt(m.id),
-                    "Name": m.Name,
-                    "Addr": m.Addr,
-                    "Tel": m.Tel,
-                    "Fax": m.Fax,
-                    "ZipCode": m.ZipCode
+                angular.forEach(ret, function (m) {
+                    divisions.push({
+                        "id": parseInt(m.DivisionId),
+                        "Name": m.Name,
+                        "Addr": m.Addr,
+                        "Tel": m.Tel,
+                        "Fax": m.Fax,
+                        "ZipCode": m.ZipCode
+                    });
                 });
-            });
 
-            //console.log(staffs);
+                //console.log(divisions);
 
-            divisionList = divisions;
+                divisionList = divisions;
 
-            dtd.resolve(token);
+
+                dtd.resolve(token);
+            },
+            error: function (aError) {
+                dtd.reject(aError);
+            }
         });
 
         return dtd.promise;
     }
 
     function loadStaffData(token) {
+
         var dtd = $q.defer();
 
-        $http.get(apiBaseUrl + 'Staff/list/token=' + token + '&count=200&since_id=0').then(function (res) {
+        var query = new AV.Query(Staff);
+        query.find({
+            success: function (results) {
 
-            var ret = res.data;
+                var ret = JSON.parse(JSON.stringify(results));
 
-            /*
-            //return obj:
-            [{
-                "id": "2",
-                "Name": "\u6f58\u7ecd\u5e7f",
-                "Gender": "0",
-                "Tel": "63819908",
-                "Ext": "3748",
-                "Mobile01": "13801685049",
-                "Mobile02": "",
-                "Email": "pansg@it.dch.com.cn",
-                "DivisionId": "0"
+                var staffs = [];
+                angular.forEach(ret, function (m) {
+                    if (m.IsActive === '1') {
+                        staffs.push({
+                            "id": parseInt(m.UserId),
+                            "name": m.Name,
+                            "title": "Staff",
+                            "division": findDivisionName(m.DivisionId),
+                            "cellPhone": formatCellphone(m.Mobile01),
+                            "cellPhone02": formatCellphone(m.Mobile02),
+                            "officePhone": m.Tel,
+                            "ext": m.Ext,
+                            "email": m.Email,
+                            "city": "",
+                            "face": m.hasPic == "1" ? "img/" + m.UserId + ".png" : "img/no-pic.png",
+                            "pinyinFull": m.pinyinFull,
+                            "pinyinInitial": m.pinyinInitial,
+                            "showMobile02": m.Mobile02.length > 0
+                        });
+                    }
+                });
+
+                //console.log(staffs);
+
+                chats = staffs;
+                localStorage.setItem(lsKey, JSON.stringify(staffs));
+
+                dtd.resolve(token);
+            },
+            error: function (aError) {
+                dtd.reject(aError);
             }
-            
-            */
-
-            var staffs = [];
-            angular.forEach(ret.data.items, function (m) {
-                if (m.IsActive === '1') {
-                    staffs.push({
-                        "id": parseInt(m.id),
-                        "name": m.Name,
-                        "title": "Staff",
-                        "division": findDivisionName(m.DivisionId),
-                        "cellPhone": formatCellphone(m.Mobile01),
-                        "cellPhone02": formatCellphone(m.Mobile02),
-                        "officePhone": m.Tel,
-                        "ext": m.Ext,
-                        "email": m.Email,
-                        "city": "",
-                        "face": m.hasPic == "1" ? "img/" + m.id + ".png" : "img/no-pic.png",
-                        "pinyinFull": m.pinyinFull,
-                        "pinyinInitial": m.pinyinInitial,
-                        "showMobile02": m.Mobile02.length > 0
-                    });
-                }
-            });
-
-            //console.log(staffs);
-
-            chats = staffs;
-            localStorage.setItem(lsKey, JSON.stringify(staffs));
-
-            dtd.resolve();
         });
 
         return dtd.promise;
+
     }
 
 

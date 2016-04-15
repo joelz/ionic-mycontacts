@@ -21,6 +21,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             StatusBar.styleDefault();
         }
     });
+
+    AV.initialize('sTXvKG581J78iuJggwdBhGNa-gzGzoHsz', 'lpjj6kUp570MQFJteBKIvl9U');
+
+    AV.User.logIn('test', '123456').then(function () {
+        //console.log('login sucess.');
+    }, function (err) {
+        console.log(err);
+    });
+
 })
 
 .config(function ($stateProvider, $urlRouterProvider) {
