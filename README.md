@@ -6,7 +6,7 @@
 
 技术栈：
 
-数据存储：[Sina App Engine](https://sae.sina.com.cn/?m=dashboard)，[LazyRest](http://ftqq.com/open-source-projects/lazyrest/)
+数据存储：[LeanCloud](https://leancloud.cn/)
 
 应用框架：[Ionic](http://ionicframework.com/)
 
